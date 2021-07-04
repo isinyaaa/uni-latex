@@ -1,0 +1,321 @@
+
+\documentclass{beamer}
+\usetheme[nofonts,logo=usp-logo5.png]{fibeamer}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=brazilian]{portuguese}
+
+\usepackage{IMTtikz}
+\DeclareMathOperator{\var}{Var}
+
+\title{Propriedades e métodos em grafos aleatórios}
+\subtitle{Uma exploração}
+\author{Isabella B}
+
+\begin{document}
+    \frame[c]{\maketitle}
+
+    %\begin{darkframes}
+    \begin{frame}{Intro - espaços de probabilidade}
+        \vspace{-0.8cm}
+        \begin{block}{Definição}
+            Seja $\Omega$ um conjunto finito e
+            $ \mathbb{P} \colon \Omega\to\intcc{0,1} $ tq.
+            $ \sum_{\omega\in\Omega} \mathbb{P}(\omega) = 1 $.
+            Defina
+            $ \mathbb{P}(A) = \sum_{\omega\in A} \mathbb{P}(\omega) $.
+        \end{block}
+
+        \pause
+        \begin{exampleblock}{Propriedades}
+
+        \end{exampleblock}
+
+        \vspace{-0.5cm}
+        \begin{enumerate}
+            \item (complementar) \vspace{\stretch2}
+            \item (monotonicidade) \vspace{\stretch2}
+        \end{enumerate}
+    \end{frame}
+
+    \begin{frame}{Intro - espaços de probabilidade}
+        \vspace{-0.8cm}
+        \begin{enumerate}
+            \setcounter{enumi}{2}
+            \item (inclusão-exclusão) \vspace{\stretch2}
+            \item (cota da união) \vspace{\stretch3}
+        \end{enumerate}
+        \pause
+        \begin{exampleblock}{Independência}
+
+        \end{exampleblock} \vspace{\stretch1}
+    \end{frame}
+
+    \begin{frame}{Intro - ``grafos'' aleatórios}
+        \begin{block}{Modelo de Erdős--Rényi}
+            Dados $ n\in\mathbb{N} $ e $ p\in\intcc{0,1} $, defina $ G(n,p) $ como o
+            grafo aleatório com $n$ vértices obtido sorteando arestas $ \{u,v\} $
+            independentemente, com probabilidade $ p $, onde $ u,v\in[n] $.
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Intro - ``grafos'' aleatórios}
+        \begin{block}{Modelo de Erdős--Rényi}
+            \vspace{-0.3cm}
+            \begin{align*}
+                &V\del{G(n,p)}=[n]\\
+                &\mathbb{P}\del{e\in E\del{G(n,p)}}=p,\quad \forall e \in
+                E\del{K_n}\text{ independentemente.}
+            \end{align*}
+        \end{block} \pause
+
+        \begin{alertblock}{Note que:}
+
+        \end{alertblock}
+    \end{frame}
+
+    \begin{frame}{Intro - número de independência}
+        \begin{block}{Definição - subgrafo}
+            Um grafo $H$ é subgrafo de $G$ se $V(H)\subseteq V(G)$ e
+            $E(H)\subseteq E(G)$.
+
+            Dizemos também que $G$ contém $H$ e escrevemos $H\subset G$ para
+            denotar essa relação.
+        \end{block}
+
+        \pause
+
+        \begin{block}{Definição - subgrafo induzido}
+            Dado $X \subseteq V(G)$, o subgrafo de $G$ induzido por $X$ (denotado $G[X]$)
+            é o subgrafo $H\subset G$, onde $V(H)=X$ e $E(H)=\set{uv\in
+            E(G)\colon u, v \in X}$.
+
+        \end{block}
+
+    \end{frame}
+
+    \begin{frame}{Intro - número de independência}
+
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número de independência}
+        \begin{block}{Teorema}
+            Se $p=p(n)\gg 1/\log n$, então
+            \[ \alpha\del{G(n,p)}\leqslant \dfrac{2\log n}{p}, \]
+            com alta probabilidade.
+        \end{block} \pause
+
+        \begin{block}{Demonstração:}
+            Dados $n\in\mathbb{n}$ e $p\in\intcc{0,1}$.
+            Analisamos $e\in E\del{G(n,p)}$:
+
+            \begin{align*}
+                \mathbb{P}\del{e\in E\del{G(n,p)}} &= p\\
+                \implies \mathbb{P}\del{e\notin E\del{G(n,p)}} &= (1-p)
+            \end{align*}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número de independência}
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número de independência}
+        \vspace{-1cm}
+        \begin{block}{Aproximações}
+            \begin{align*}
+                \del{\dfrac{n}{k}}^k\leqslant\binom{n}{k}&\leqslant
+                \del{\dfrac{\mathrm{e}n}{k}}^k & (1-p)&\leqslant\mathrm{e}^{-p}
+            \end{align*}
+        \end{block} \vspace{\stretch3}
+
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número de independência}
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número de independência}
+    \end{frame}
+
+    \begin{frame}{Intro - número cromático}
+        \begin{block}{Definição}
+            \begin{multline*}
+                \chi(G)=\min \left\lbrace r\colon\exists c:v(G)\longrightarrow\set{1,...,r}\right.\\
+                \left.\textup{ tq. }c(u)\neq c(v)\forall \{u,v\}\in E(G)\right\rbrace
+            \end{multline*}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número cromático}
+        \begin{block}{Corolário}
+            Se $p=p(n)\gg 1/\log n$, então
+            \[ \chi\del{G(n,p)}\geqslant\dfrac{pn}{2\log n} \]
+            com alta probabilidade.
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Propriedade - cota do número cromático}
+        \vspace{-0.5cm}
+        \begin{block}{Lema}
+            Seja $G$ um grafo com $n$ vértices, então
+            \[\chi(G)\geqslant\dfrac{n}{\alpha(G)}.\]
+        \end{block}
+        \begin{exampleblock}{Demonstração:}
+        \end{exampleblock} \vspace{\stretch4}
+    \end{frame}
+
+
+    \begin{frame}{Propriedade - cota do número cromático}
+        \vspace{-0.5cm}
+        \begin{block}{Corolário}
+            Se $p=p(n)\gg 1/\log n$, então
+            \[ \chi\del{G(n,p)}\geqslant\dfrac{pn}{2\log n} \]
+            com alta probabilidade.
+        \end{block}
+        \begin{exampleblock}{Demonstração:}
+        \end{exampleblock} \vspace{\stretch4}
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+        \vspace{\stretch1}
+        \begin{exampleblock}{Pergunta}
+        \end{exampleblock}
+        \vspace{\stretch2}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \begin{block}{Variável aleatória}
+            \begin{itemize}
+                \item Definição:
+
+                Dado um espaço de probabilidade $(\Omega,\mathbb{R})$, $X$ é uma função real
+                $X\colon\Omega\rightarrow\mathbb{R}$.
+                \item Notação:
+
+                Dado um número $x\in\mathbb{R}$, denotamos por $\{X\geqslant x\}$ o
+                evento $\{\omega\in\Omega\colon X(\omega)\geqslant x\}$ e por
+                $\mathbb{P}(X\geqslant x)$ sua probabilidade.
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \begin{block}{Esperança}
+            \begin{itemize}
+                \item Definição:
+                \[
+                \mathbb{E}[X] = \sum_{\omega\in\Omega} X(\omega) \mathbb{P}(\omega)
+                \overset{X\geqslant0}{=} \sum_{k=0}^\infty k\cdot\mathbb{P}(X=k).\]
+                \item Note que:
+                \[\mathbb{E}\sbr{aX+bY}=a\mathbb{E}[X]+b\mathbb{E}[Y].\]
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \vspace{-1cm}
+        \begin{block}{Variância}
+            \[\var(X)=\mathbb{E}\sbr{(X-\mathbb{E}[X])^2}\]
+        \end{block} \pause
+        \begin{exampleblock}{Identidade}
+        \end{exampleblock} \vspace{\stretch2}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \begin{block}{Definição - variável indicadora}
+            Dado um evento $A$, definimos a variável indicadora como a variável
+            aleatória $\mathbb{1}_A$ tal que, para cada $\omega \in \Omega$,
+            temos
+            \[\mathbb{1}_A(\omega)=\begin{cases}
+                1,&\textup{se }\omega\in A\\
+                0,&\textup{case contrário}.
+            \end{cases}\]
+
+            \alert{Note que:}
+            \[\mathbb{E}[\mathbb{1}_A]=\mathbb{P}(A)\]
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \vspace{-1cm}
+        Dados $X$ uma variável aleatória não negativa e um número $\lambda > 0$.
+
+        \begin{block}{Desigualdade de Markov}
+            \[ \mathbb{P}(X\geqslant \lambda)\leqslant \dfrac{E[X]}{\lambda} \]
+        \end{block}
+
+        \begin{exampleblock}{Demonstração}
+        \end{exampleblock} \vspace{\stretch2}
+    \end{frame}
+
+    \begin{frame}{Intro - método do primeiro momento}
+        \vspace{-1cm}
+        Dados $X$ uma variável aleatória não negativa e um número $\lambda > 0$.
+
+        \begin{block}{Desigualdade de Chebyschev}
+            \[ \mathbb{P}\del{\envert{X-\mathbb{E}[X]}\geqslant\lambda}\leqslant
+            \dfrac{\var(X)}{\lambda^2} \]
+        \end{block}
+
+        \begin{exampleblock}{Demonstração}
+        \end{exampleblock} \vspace{\stretch2}
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+        \vspace{-0.5cm}
+        \begin{block}{Teorema}
+            Se $p\ll 1/n$, então
+            \[ \mathbb{P}\del{K_3\subset G(n,p)}\to 0 \]
+            quando $n\to \infty$.
+        \end{block}
+
+        \begin{exampleblock}{Demonstração}
+        \end{exampleblock}
+
+        \vspace{\stretch3}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+        \vspace{-0.5cm}
+        \begin{block}{Teorema}
+            Se $p\gg 1/n$, então
+            \[ \mathbb{P}\del{K_3\subset G(n,p)}\to 1 \]
+            quando $n\to\infty$.
+        \end{block}
+
+        \begin{exampleblock}{Demonstração}
+        \end{exampleblock}
+
+        \vspace{\stretch3}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - triângulos em $G(n,p)$}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - $K_r$ em $G(n,p)$}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - $K_r$ em $G(n,p)$}
+
+    \end{frame}
+
+    \begin{frame}{Estrutura - $K_r$ em $G(n,p)$}
+
+    \end{frame}
+
+    %\begin{frame}{Estrutura - $K_r +1$ aresta em $G(n,p)$}
+
+    %\end{frame}
+
+    %\end{darkframes}
+\end{document}

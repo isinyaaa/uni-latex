@@ -1,0 +1,363 @@
+\documentclass[english]{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\colorlet{papercolor}{white}
+\usetikzlibrary{hobby}
+
+\givecredits
+\author{Isabella B. Amaral}
+%\USPN{118010773}
+\lecture{Combinatorics I}
+\examname{Exercise sheet I}
+\hwtype{Attempted solution}
+\lcode{}
+%\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\ex}{ex}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\makeatletter
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+\makeatother
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\makeatletter
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+\makeatother
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{questions}
+		\question By defining, and calculating the expectation of, a suitable random variable, show that every graph $ G $ has a bipartite subgraph with at least $ e(G)/2 $ edges.
+		
+		\begin{solution}
+			Define an $ n- $vertex random graph $ G $ such that $ \mathbb{P}(e\in E(G))=p $ (independent for each vertex), and thus has an expected average degree of $ \mathbb{E}\sbr{\bar{d}(G)}=n\,p $ as it is a binomial distribution.
+			
+			As we're dealing with bounded $ n $, we assume it's non-zero. By definition of an \textbf{average} we get that:
+			\[ \overbrace{\del{\displaystyle\sum_{v\in V(G)}d(v)}}^{=\,2e(G)}/n=\bar{d}(G) \]
+			If we let $ \bar{d}(G)=n\,p $, we then have
+			\[ n\,p=\dfrac{2e(G)}{n}\implies e(G)=\dfrac{n^{2}\,p}{2} \]
+			If we let $ s $ be the least set size that fills our requirement, we must then have that the number of edges of a $ K_{s,s} $ be $ e(G)/2 $, and thus:
+			\[ \dfrac{s^{2}}{4}=\dfrac{e(G)}{2}=\del{\dfrac{n^{2}}{2}}\dfrac{1}{2}\implies s^{2}=n^{2}\,p. \]
+			By Kővári--Sós--Turán\footnote{Proof in the end of the document \ref{thm:KST}.} we have that a bipartite graph composed of two $ s- $vertex sets is bound to occur for
+			\[ e(G)>C\,n^{2-1/s} \]
+			so, replacing $ e(G) $ and $ s $ by our previous equations we have that, for
+			\[ \dfrac{n^{2}\,p}{2}>C\,n^{2-1/\del{n\,\sqrt{p}}}\implies n\,\sqrt{p}\log_{n}\del{p/C}+1>0\implies \dfrac{p}{C}\geqslant 1\iff p \geqslant C \]
+			a complete bipartite graph of with set size $ s $ must exist.
+			
+		\end{solution}
+		
+		\question Show that $ R(3,4)\leqslant 9 $, $ R(4,4) \leqslant 18 $ and $  R(3, 3, 3) \leqslant 17 $.
+		
+		\begin{solution}
+			Here we adopt the lemma (proven in class\footnote{Proof in the end of the document \ref{lem:Rineq}.}) that
+			\[ R(s,t)\leqslant R(s-1,t)+R(s,t-1) \]
+			and, thus, we have $ R(3,4)\leqslant R(2,4)+R(3,3) $. We can clearly see that $ R(2,4) $ must be $ 4 $, as for $ n\geqslant 4 $ it's possible to form a $ K_4 $, and if we don't any other edge we draw is gonna form a $ K_2 $ of the other colour (the same thinking applies to any other $ R(2,n) $, i.e. $ R(2,n)=R(n,2)=n $).
+			
+			As for $ R(3,3) $ we already know the result\footnote{Proof in the end of the document \ref{thm:R33}}, which is $ 6 $, thus:
+			\[ R(3,4)\leqslant 4+6=10, \]
+			so, we must be able to construct a $ K_9 $ without a {\color{red} $ K_3 $} or a {\color{cyan} $ K_4 $}, but notice that, by the same construction method as the proof of lemma \ref{lem:Rineq}, we must be able to select any vertex $ v\in V(G) $ and get a subset $ A $ which must have less than $ 6 $ vertices (as $ K_{3,3}=6 $). But if we repeat this procedure for each vertex, we would have a total of $ 9\cdot 5=45 $ blue edges. How is this possible as, if we're counting each edge twice, we should have an even number? Contradiction!
+			
+			Which implies $ R(3,4)\leqslant 9 $.
+			
+			By the same lemma one notices that
+			\[ R(4,4)\leqslant R(3,4)+R(4,3)=9+9=18. \]
+			
+			And then, as we can guarantee that we have at least a monochromatic copy of a $ K_{4} $ in a $ 18- $vertex graph, we know that $ K_3\subset K_4 $, so $ R(3,3,3)\leqslant 17 $.
+		\end{solution}
+		
+		\question Show that every graph of average degree $ d $ contains a subgraph of minimum degree at least $ d/2 $. %in class
+		Deduce that $ \ex(n, T)\leqslant (k - 1)n $  for every tree $ T $ with $ k $ vertices.
+		
+		\begin{solution}
+			As was shown in class:
+			
+			\begin{lemma}\label{lem:l1trees}
+				Let $ G $ be a graph with average degree $ d $ then $ \exists G'\in G $ with a minimum degree ($ \delta $) $ x=x(d)\geqslant d/2 $
+			\end{lemma}
+			
+			\begin{proof}
+				
+				Dispose $ V(G) $ in a row, if every vertex has less than $ x $ edges going forwards ($ \rightarrow $) than we must have at most $ n\,d/2=e(G)\leqslant x\,n\implies x>d/2 $.
+			\end{proof}
+		
+%			It's quite trivial to show that $ \ex(n, T)\leqslant (k - 1)n $, for a tree can only ``go forwards'' if each vertex has at least one edge connecting it, so we could build $ n $ disjoint trees, each with $ (k-1) $ vertices, each having at most $ 2 $ edges.
+
+%			A tree needs, for each of its vertices, a new edge to connect it, and only one new edge, so take any vertex of a graph with $ n $ vertices and draw, from it, $ k-1 $ edges
+
+%			Let $ G $ be a graph with average degree $ d=\dfrac{2(k-1)n}{n}=2(k-1) $ and, by the lemma, we must have a $ G'\subset G $ with $ \delta(G)\geqslant k-1 $. Suppose there exists a tree $ T\subset G',v(T)=k<n $. By induction on $ k $ we have that:
+			
+%			For $ k=1,2 $ it's quite trivial, as for $ k=1 $ we have a mere vertex, and for $ k=2 $ we have $ \delta(G)\geqslant 1 $, and thus we have such a tree.
+			
+			
+			
+%			Denote $ d_{H}(v):=d(v),v\in V(H) $. 
+%			We know that $ v(G)=k-1 $ and thus we have $ d_{G'}(u)=d_{T'}(u)+d_{G'\backslash T'}(u)\geqslant \delta(G')\geqslant k-1 $.
+			
+%			As $ d_{G'}(u)\leqslant k-2\implies d_{G'}(u)\geqslant 1\implies \exists v $ neighbour of some $ u \in G'\backslash T' $ which we can add to $ T' $ to get $ T $ back (i.e. $ T=T'\cup\set{v} $).
+			
+%			Thus we can see that it's possible to add another leaf neighbouring any subtree in $ G' $ such that it has $ k-1 $ edges.
+			
+			\begin{lemma}\label{lem:l2trees}
+				Let $ G $ be a graph with minimum degree $ \delta(G)\geqslant k-1 $. Then $ T\subset G\,\forall $ trees $ T $ with $ k $ vertices.
+			\end{lemma}
+			
+			\begin{proof}
+				By induction on $ k $ we have that:
+				
+				For $ k=1,2 $ it's quite trivial, as for $ k=1 $ we have a mere vertex, and for $ k=2 $ we have $ \delta(G)\geqslant 1 $, and thus we have such a tree. %Take a maximal path inside a tree.
+				
+%				\TODO{organize the proof and draw an abstract maximal path}
+				
+				If $ T $ has $ k $ vertices, take out a leaf:
+				
+%				\TODO{illustration of proof}
+				
+				Then suppose it's valid for $ k $, thus we have $ \delta(G')\geqslant k > k-1 $. So, there exists a tree $ T'\subset T $, where $ T' $ is $ T $ without a leaf $ v $, neighbour of $ u \in V(T) $.
+				
+				\begin{center}
+					\begin{tikzpicture}
+						\path[draw,use Hobby shortcut,closed=true,shift={(-7,-0.2)}]
+						(-.4,0) .. (-.6,.3) .. (-.5,.6) .. (-.3,-.3);
+						\fill[red] (-6.8,0) node[left=0pt] {$ T' $} coordinate (p) circle (1pt);
+						\draw[red] (p) node[below] {$ u $} -- +(0.5,0.2) circle (1pt) node[right] {$ v $};
+						\draw[decorate,decoration={brace,amplitude=5pt,mirror}] (-7.5,-0.8) -- node[below=10pt] {$ T $} +(1.5,0);
+						
+						\draw[-{Implies[length=5pt,width=8pt]},double distance=5pt] (-5.5,0) -- +(1,0);
+						
+						\path[draw,use Hobby shortcut,closed=true,rotate=90]
+						(0,0) .. (.5,1) .. (1,3) .. (.3,4) .. (-1,2) .. (-1,.5);
+						\draw (-1.5,.3) node[] {$ G' $};
+						\path[draw,use Hobby shortcut,closed=true,shift={(-3,-0.2)}]
+						(-.4,0) .. (-.6,.3) .. (-.5,.6) .. (-.3,-.3);
+						\fill[red] (-2.8,0) node[left=0pt] {$ T' $} coordinate (pp) circle (1pt);
+						\draw[red] (pp) node[below] {$ u $} -- +(0.5,0.2) circle (1pt) node[right] {$ v $};
+						\draw[->] (pp)+(0,-0.5) to[out={180+30},in={180-30}] +(0.2,-1.5) node[below right] {\footnotesize $ D(T')\leqslant k-2 $ but $ \delta(G')\geqslant k-1 $};
+					\end{tikzpicture}
+				\end{center}
+				
+				So, it follows that $ d(u)\geqslant\delta(G')=k-1 $.
+			\end{proof}
+		
+			Let $ T $ be a tree with a fixed number of vertices $ k $. If we wish to bound $ \ex(n,T) $ we then have
+		
+			\[ e(G)=C\,n=\bar{d}(G)=2C\overset{\overset{(\ref{lem:l1trees})}{\exists G'\subset G}}{\implies}\delta(G')\geqslant C\overset{\overset{(\ref{lem:l2trees})}{\exists T\subset G'}}{\implies}(k-2)\dfrac{n}{2}\leqslant \ex(n,T)\leqslant (k-1)n \]
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+%		\question Show that if $ T $ is a tree with $ k $ vertices and $ G $ is a graph with minimum degree $ k - 1 $, then $ T \subset G $. Deduce that $ r(K_3, T) = 2k - 1 $.
+%		
+%		\begin{solution}
+%			If we have a minimum degree of $ k-1 $ in $ G $, by the previous exercise we know that $ T\subset G $ for $ v(T)=k $. Let , given any colouring $ c:\binom{n}{2} $
+%		\end{solution}
+%		
+%		\question Let $ T_1, \ldots, T_k $ be subtrees of a tree $ T $, any two of which have at least one vertex in common. Prove that there is a vertex in all the $ T_i $.
+%		
+%		\begin{solution}
+%			
+%		\end{solution}
+%		
+%		\question Let $ R_r(3) $ denote the $ r- $colour Ramsey number of a triangle. Show that
+%		\[ 2^{r} \leqslant R_r(3) \leqslant 3 \cdot r! \]
+%		Show moreover that $ R_r(3) \geqslant 5^{r/2} $.
+%		
+%		\begin{solution}
+%			
+%		\end{solution}
+%		
+%		\question Let $ g(n) $ be the largest integer $ m $ such that there exists a graph with the following properties: $ |V (G)| = n, e(G) = m $, and it is possible to red-blue colour the edges of $ G $ without creating a monochromatic triangle.
+%		
+%		Show that $g(n)/\binom{n}{2}$  converges, and find $ c $ such that $ g(n)/\binom{n}{2}\to c $ as $ n\to\infty $.
+%		
+%		\begin{solution}
+%			
+%		\end{solution}
+%		
+%		\question Recall that $ \alpha(G) $ denotes the size of the largest independent set in $ G $. Show that, for every graph $ G $,
+%		\[ \alpha (G) > \sum_{v\in V(G)} \dfrac{1}{d(v)+1}. \]
+%		
+%		\begin{solution}
+%			
+%		\end{solution}
+%		
+%		\paragraph{Note:} Sadly, I couldn't really take the proper time to do all of the problems, so I apologize for the partial and unimaginative solutions :(.
+		
+%		\question Let $ C(s) $ be the smallest $ n $ such that every connected graph on n vertices has, as an induced subgraph, either a complete graph $ K_s $, a star $ K_{1,s} $ or a path $ P_s $ of length $ s $.
+		
+%		Show that $ C(s) \leqslant R(s)^{s} $, where $ R(s) $ is the Ramsey number of $ s $.
+		
+		
+		
+%		\question Prove that $ R(3,k) \geqslant k^{1+c} $ for some $ c > 0 $.
+		
+		
+		
+%		\question Show that there is an infinite set $ S $ of positive integers such that the sum of any two distinct elements of $ S $ has an even number of distinct prime factors.
+		
+		
+		
+%		\question Suppose we are given $ n $ points and $ n $ lines in the plane. Show that there are at most $ O(n^{3/2}) $ point-line incidences.
+		\extra{appendix}
+		
+		\begin{theorem}[Kővári--Sós--Turán 1950's]\label{thm:KST}
+			$ \ex(n,H)=o(n^{2}) $
+		\end{theorem}
+		
+%		\TODO{explain $ o $ notation. write Erdos proof more concisely above}
+		
+		\begin{proof}
+			We can start by noticing that, given a bipartite graph $ H $ it must fit into another, larger, bipartite graph with disjoint sets of sizes $ s $ and $ t $, denoted $ K_{s,t} $. So we can write the inequality
+			\[ \ex(n,H)\leqslant \ex(n,K_{s,t}) \]
+			so now we can focus on bounding $ \ex(n,K_{s,t}) $ from below, which can be done by generalizing the idea from the previous proof (for $ C_4 $), only this time we'll be counting $ s- $cherries:
+			
+			\begin{figure}[h]
+				
+				\center
+				\begin{tikzpicture}
+					\coordinate (a) at (0,0);
+					\coordinate (b) at (-1.5,-1);
+					\coordinate (c) at (-0.4,-1);
+					\coordinate (d) at (0.8,-1);
+					\coordinate (e) at (2,-1);
+					
+					\draw[thin,black] (a) -- (b) (a) -- (c) (a) -- (e);
+					\draw[thin,black,dashed] (a) -- (d) (a) -- ($ (d)+(0.5,0) $) (a) -- ($ (d)+(-0.5,0) $);
+					\foreach \i in {1,...,10}{
+						\draw[thin,black,dashed] (a) -- ($ (d)+(0.5*rand,0) $);
+					}
+					
+					\fill[red] (b) circle (2pt) (c) circle (2pt) (e) circle (2pt);
+					\foreach \i in {1,...,30}{
+						\fill[red] ($ (d)+(0.6*rand,0) $) circle (0.8pt);
+					}
+					\fill[green] (a) circle (2pt);
+					
+					\draw[decorate,decoration={brace,amplitude=10pt,mirror,raise=5pt}] ($ (b)+(-2pt,0) $) -- node[below=15pt] {$ s $} ($ (e)+(2pt,0) $);
+				\end{tikzpicture}
+				
+				\caption{$ s- $cherry.}
+			\end{figure}
+			
+			
+			\begin{align*}
+				\del{\dfrac{n}{s}}^{s}\geqslant (t-1)\binom{n}{s}\geqslant\textup{\# cherries}&=\sum_{v\in V(G)}\binom{d(v)}{s}\\
+				\intertext{again, by Jensen's inequality}
+				\textup{\# cherries}&\geqslant n\binom{\sum d(v)/n}{s}=n\binom{2e(G)/n}{s}\\
+				&= \dfrac{n}{s!}\del{\dfrac{2e(G)}{n}}\del{\dfrac{2e(G)}{n}-1}\cdots \del{\dfrac{2e(G)}{n}-s+1}\\
+				\del{\dfrac{n}{s}}^{s}\geqslant\textup{\# cherries}&\geqslant \dfrac{e(G)^{s}}{s^{s}\,n^{s-1}}\\
+				\implies e(G)&\lesssim C\,n^{2-1/s}.
+			\end{align*}
+			
+			So that $ \ex(n,H)\lesssim C\,n^{2-1/s} $.
+		\end{proof}
+		
+		
+		\begin{lemma}\label{lem:Rineq}
+			$ R(s,t)\leqslant R(s-1,t)+R(s,t-1) $
+		\end{lemma}
+		
+		\begin{proof}
+			Let $ G $ be a graph with $ n=R(s,t)-1 $ which we will colour with $ c:E(K_n)\longrightarrow\set{R,B} $, such that it doesn't have a {\color{cyan}blue $ K_s $} or a {\color{red}red $ K_t $}. Take $ v\in V(K_n) $ and separate its neighbours into two groups: those which have a blue edge connecting $ v $ to them (say, group $ A $) and the same for those with a red edge (group $ B $). Then we cannot have {\color{cyan} $ K_{s-1} $} or {\color{red} $ K_t $} inside $ A $.
+			
+			So we must \textit{always} have $ |A|\leqslant R(s-1,t)-1 $ and $ |B|\leqslant R(s,t-1)-1 $ for any step of the recursion (say, take a vertex $ v'\in A $ and apply the same logic for some $ A' $ and $ B' $).
+			
+			Thus, we have
+			\[ |V|=|A|+|B|+1\implies R(s,t)-1=n=|A|+|B|+1\leqslant R(s-1,t)+R(s,t-1)-1. \]
+		\end{proof}
+	
+		\begin{theorem}\label{thm:R33}
+			$ K(3,3)=6 $
+		\end{theorem}
+		
+		\begin{proof}
+			Draw $ 6 $ vertices and notice that, by selecting any of them, we colour at least two vertices with the same colour:
+			
+			\medskip
+			
+			\begin{multi}
+				
+				\centering
+				\begin{tikzpicture}
+					\foreach \x in {1,...,6}
+					\coordinate (a\x) at ({(\x+1)*360/6}:2);
+					
+					\draw[cyan] (a1) -- (a2) (a1) -- (a4) (a1) -- (a6);
+					\draw[red] (a1) -- (a3) (a1) -- (a5);
+					
+					\foreach \x in {1,...,6}
+					\fill (a\x) circle (1pt);
+				\end{tikzpicture}
+				
+				\nextcol
+				
+				\centering
+				\begin{tikzpicture}
+					\foreach \x in {1,...,6}
+					\coordinate (a\x) at ({(\x+1)*360/6}:2);
+					
+					\draw[cyan] (a1) -- (a2) (a1) -- (a6);
+					\draw[red] (a1) -- (a3) (a1) -- (a4) (a1) -- (a5);
+					
+					\foreach \x in {1,...,6}
+					\fill (a\x) circle (1pt);
+				\end{tikzpicture}
+				
+			\end{multi}
+			
+			Let's select any $ 3 $ edges which are monochromatic say, the middle ones in the rightmost drawing, and then we can see that:
+			
+			\medskip
+			
+			\begin{multi}
+				
+				{\centering
+				\begin{tikzpicture}
+					\foreach \x in {1,...,6}
+					\coordinate (a\x) at ({(\x+1)*360/6}:2);
+					
+					\draw[cyan!30!papercolor] (a1) -- (a2) (a1) -- (a6);
+					
+					\draw[cyan] (a3) -- (a4) -- (a5) -- cycle;
+					\draw[red] (a1) -- (a3) (a1) -- (a4) (a1) -- (a5);
+					
+					\foreach \x in {1,...,6}
+					\fill (a\x) circle (1pt);
+				\end{tikzpicture}}
+				
+				\medskip
+				
+				In case we draw everything in the other colour, we end up forming a triangle.
+				
+				\nextcol
+				
+				{\centering
+				\begin{tikzpicture}
+					\foreach \x in {1,...,6}
+					\coordinate (a\x) at ({(\x+1)*360/6}:2);
+					
+					\draw[cyan!30!papercolor] (a1) -- (a2) (a1) -- (a6);
+					
+					\draw[cyan] (a3) -- (a4) -- (a5);
+					\draw[red] (a1) -- (a3) (a1) -- (a4) (a1) -- (a5) (a3) -- (a5);
+					
+					\foreach \x in {1,...,6}
+					\fill (a\x) circle (1pt);
+				\end{tikzpicture}}
+				
+				\medskip
+				
+				|If we try to avoid that by changing any one of the |edges we form a triangle anyway.
+				
+			\end{multi}
+		\end{proof}
+		
+	\end{questions}
+\end{document}

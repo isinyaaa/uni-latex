@@ -1,0 +1,196 @@
+\documentclass[english]{IMTexam}
+
+\usepackage[enums,arrows]{IMTtikz}
+\colorlet{papercolor}{white}
+\usetikzlibrary{hobby}
+
+\givecredits
+\author{Isabella B. Amaral}
+%\USPN{118010773}
+\lecture{Combinatorics I}
+\examname{Exam II}
+\hwtype{Attempted solution}
+\lcode{}
+%\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\ex}{ex}
+\DeclareMathOperator{\RT}{RT}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\makeatletter
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+\makeatother
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\makeatletter
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+\makeatother
+
+
+\begin{document}
+	
+	\maketitle
+	
+	\paragraph{Note:} Once again --- I didn't really have the background to take on this course, so most solutions are \textbf{really} quite handwavy and mostly inspired by what was given in class.
+	
+	\begin{questions}
+		\question Show that every graph $ G $ has a bipartite subgraph with at least $ e(G)/2 $ edges.
+		
+		\begin{solution}
+			Define an $ n- $vertex random graph $ G $ such that $ \mathbb{P}(e\in E(G))=p $ (independent for each vertex). Define $ \mathbb{I}_k $ as the indicator function for the $ k- $th edge and thus, by linearity of expectation we have
+			
+			\[ e(G)=\mathbb{E}\sbr{\textup{\# of edges}}=\sum_{k=1}^{\binom{n}{2}}\mathbb{E}\sbr{\mathbb{I}_k}=\sum_{k=1}^{\binom{n}{2}}\mathbb{P}\del{\textup{$ k $-th edge is present}}=\binom{n}{2}p. \]
+			
+			By Mantel's theorem (thm. \ref{thm:mantel}) the least edges a $ s- $vertex graph needs before it isn't bipartite anymore is $ \floor{s^{2}/4} $, thus if there exists an $ s<n $ such that $ e(G)\geqslant\floor{s^{2}/4}>e(G)/2 $ we are sure to have at least a complete $ s- $vertex bipartite graph. Thus
+			\[ e(G)\geqslant\dfrac{s^{2}}{4}>\dfrac{e(G)}{2}=\binom{n}{2}p\,\dfrac{1}{2}\geqslant \del{\dfrac{n}{2}}^{2}\dfrac{p}{2}\implies \del{\mathrm{e}\,n}^{2}\dfrac{p}{2}\geqslant s^{2} \geqslant\dfrac{p}{2}\,n^{2}\implies e\sqrt{\dfrac{p}{2}}\geqslant \dfrac{s}{n}\geqslant \sqrt{\dfrac{p}{2}}. \]
+			
+			As $ n\geqslant s>0 $ and $ 1>p>0 $ we have that
+			\[ e\sqrt{\dfrac{1}{2}}> 1 > e\sqrt{\dfrac{p}{2}}\geqslant \dfrac{s}{n}\geqslant \sqrt{\dfrac{p}{2}} > 0 \]
+			which is always true.
+		\end{solution}
+		
+%		\question Show that, for every graph $ H $ and every $ r $, there exists $ \delta(r)  > 0 $ such that the following holds for all sufficiently large $ n \in  \mathbb{N} $. If $ G $ is a graph on $ n $ vertices with
+%		\[ e(G)>(1-\delta)\binom{n}{2}, \]
+%		then in every $ r- $colouring of $ E(G) $ there are at least $ \delta n^{v(H)} $ monochromatic copies of $ H $.
+%		
+%%		\begin{solution}
+%%			
+%%		\end{solution}
+%	
+%		\question For every $ \varepsilon  > 0 $, prove that
+%		\[ k^{2-\varepsilon}\leqslant R(4,k)\leqslant k^{3} \]
+%		for all sufficiently large $ k $.
+%		
+%		\begin{solution}
+%			We can construct the desired lower bound by taking a graph which has $ k-1 $ red $ 3 $-vertex cliques interconnected by blue edges, then adding vertices afterwards. We can add those by making sure they don't complete any red $ K_4 $'s or blue $ K_k $'s and this can be done by drawing either one or two red edges from every red triangle (but never 3!), then we make sure the added vertices are connected by a blue edge. We can add up to $ (k-1) $ vertices for every triangle, for if we add any more than this, as the new vertices are all interconnected, they'll form a blue $ K_k $. Thus we can have $ 3(k-1)+(k-1)^{2}=(k-1)(k+2)\approx k^{2-\varepsilon} $.
+%			
+%			For our upper bound we can use two results that were proven in class
+%			
+%			\begin{lemma}
+%				$ R(s,t)\leqslant R(s-1,t)+R(s,t-1) $
+%			\end{lemma}
+%			
+%			\begin{proof}
+%				Let $ G $ be a graph with $ n=R(s,t)-1 $ which we will colour with $ c:E(K_n)\longrightarrow\set{R,B} $, such that it doesn't have a {\color{cyan}blue $ K_s $} or a {\color{red}red $ K_t $}. Take $ v\in V(K_n) $ and separate its neighbours into two groups: those which have a blue edge connecting $ v $ to them (say, group $ A $) and the same for those with a red edge (group $ B $). Then we cannot have {\color{cyan} $ K_{s-1} $} or {\color{red} $ K_t $} inside $ A $.
+%				
+%				So we must \textit{always} have $ |A|\leqslant R(s-1,t)-1 $ and $ |B|\leqslant R(s,t-1)-1 $ for any step of the recursion (say, take a vertex $ v'\in A $ and apply the same logic for some $ A' $ and $ B' $).
+%				
+%				Thus, we have
+%				\[ |V|=|A|+|B|+1\implies R(s,t)-1=n=|A|+|B|+1\leqslant R(s-1,t)+R(s,t-1)-1. \]
+%			\end{proof}
+%			
+%			Let's now put use the idea of recursion and get a more solid bound
+%			
+%			\begin{lemma}
+%				$ R(s,t)\leqslant \binom{s+t-2}{s-1}\quad\forall s,t\geqslant 2 $
+%			\end{lemma}
+			
+%			\begin{proof}
+%				Applying the previous lemma recursively we have that
+%				\begin{align*}
+%					R(s,t)&\leqslant R(s-1,t)+R(s,t-1)\\
+%					&\leqslant R(s-2,t)+2R(s-1,t-1)+R(s,t-2)\\
+%					&\leqslant R(s-3,t)+3R(s-2,t-1)+3R(s-1,t-2)+R(s,t-3)\\
+%					&\vdots\\
+%					&\leqslant \R(1,t)+ +3R(s-2,t-1)+3R(s-1,t-2)+R(s,1)\\
+%				\end{align*}
+%				$  $
+%				As $ \binom{s}{1}=\binom{s+1}{s}=R(s,1)=1 $
+				
+				
+%			\end{proof}
+
+			
+%		\end{solution}
+	
+%		\question Prove that for any constant $ 0 < c < 1/3 $, the threshold for the event that $ G(n, p) $ contains a collection of $ c\,n $ vertex-disjoint triangles is $ n^{−2/3} $.
+%		
+%		\begin{solution}
+%			
+%		\end{solution}
+%	
+%		\question Let $ k $ be a sufficiently large constant, let $ G $ be a cycle with $ k\,n $ vertices, and let $ c \colon V (G) \longrightarrow \sbr{n} $ be a colouring of the vertices of $ G $ with exactly $ k $ vertices of each colour. Show that there exists an independent set of size $ n $ with one vertex of each colour.
+%		
+%		\begin{solution}
+%					
+%		\end{solution}
+%	
+%		\question Prove the Erdős–Simonovits stability theorem: if $ G $ is an $ H- $free graph with
+%		\[ e(G)\geqslant \del{1-\dfrac{1}{\chi(H)-1}-o(1)}\binom{n}{2}, \]
+%		then $ G $ is $ o(n^{2})- $close to $ (\chi (H) − 1)- $partite.
+%		
+%		
+%%		\begin{solution}
+%%			
+%%		\end{solution}
+%	
+%		\question Recall that $ \RT(n, H, \alpha ) $ denotes the maximum number of edges in an $ H- $free graph $ G $ on $ n $ vertices with no independent set of size $ \alpha $.
+%		
+%		\begin{parts}
+%			\part Show that $ \RT(n, K_3, o(n)) = o(n^{2}) $.
+%			
+%%			\begin{solution}
+%%				
+%%			\end{solution}
+%			
+%			\part Use Szemerédi’s regularity lemma to prove that
+%			\[ \RT(n,K_4,o(n))\leqslant \dfrac{n^{2}}{8}+o(n^{2}). \]
+%			
+%%			\begin{solution}
+%%				
+%%			\end{solution}
+%		
+%			\part Prove the dependent random choice lemma. Deduce that
+%			\[ \RT(n,K_4,n^{1-\varepsilon})=o(n^{2}) \]
+%			for every fixed $ \varepsilon > 0 $.
+%			
+%%			\begin{solution}
+%%				
+%%			\end{solution}
+%		\end{parts}
+%	
+%		\paragraph{Note:} I didn't watch the last classes :/.
+%	
+%		\question A \textit{topological copy} of a graph $ H $ is any graph that can be made by replacing the edges of $ H $ by vertex-disjoint paths. Show that if $ G $ is a graph with $ n > k^{3} $ vertices that contains no topological copy of $ K_k $ , then $ \alpha(G) \geqslant k^{2/5} $.
+		
+		\extra{appendix}
+		
+		\begin{theorem}\label{thm:mantel}
+			$ \ex(n,K_3)=\floor{n^{2}/4} $
+		\end{theorem}
+		
+		\begin{proof}
+			Let $ G $ be the largest $ K_3- $free $ n-$vertex graph.
+			
+			So, suppose we have $ e(G)\leqslant \floor{n^{2}/4} $, then, if $ K_3\nsubseteq G $ we have
+			\begin{itemize}
+				\item for $ n=1 $:
+				\[ e(G)=0\leqslant \floor{1^{2}/4}=0. \]
+				\item for $ n=2 $:
+				\[ e(G)=1\leqslant \floor{2^{2}/4}=1. \]
+				\item for $ n=3 $:
+				\[ e(G)=2\leqslant \floor{3^{2}/4}=2. \]
+			\end{itemize}
+			
+			This hypothesis is equivalent to taking a complete bipartite graph, so we can make a clever construction to get a bound on the number of edges:
+			
+			We can grab one of its edges $ e\in E(G) $, so that each of $ e $'s vertices determines a disjoint subset, for if they had any vertex in common, there would be a copy of $ K_3 $ contained in $ G $.
+			
+			Let $ G' $ be this new graph we get by selecting an edge $ e\in E(G) $ and removing it from $ G $.
+			
+%			\TODO{illust of $ G $ and $ G' $}
+			
+			If $ G $ doesn't contain any copies of $ K_3 $ we can have at most $ n-2 $ vertices between $ e $ and $ G' $ (because there can be no more than one edge between the vertices in $ e $ and $ G' $ without forming a triangle), plus the edge $ e $ we've selected. Thus, by applying an induction on $ n $ we have:
+			\begin{align*}
+				e(G)&\leqslant e(G')+n-2+1\\
+				&\overset{IH}{\leqslant}\floor{\dfrac{(n-2)^{2}}{4}}+n-1=\floor{\dfrac{n^{2}-4n+4+4n-4}{4}}=\floor{\dfrac{n^{2}}{4}}.
+			\end{align*}
+		\end{proof}
+		
+	\end{questions}
+\end{document}

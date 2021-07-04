@@ -1,0 +1,110 @@
+\documentclass[english]{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\colorlet{papercolor}{white}
+\usetikzlibrary{hobby}
+
+\givecredits
+\author{Isabella B. Amaral}
+%\USPN{118010773}
+\lecture{Combinatorics I}
+\examname{Exercise sheet II}
+\hwtype{Attempted solution}
+\lcode{}
+%\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\ex}{ex}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\makeatletter
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+\makeatother
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\makeatletter
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+\makeatother
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{questions}
+		\question Prove the following supersaturation theorem for cliques:
+		
+		\begin{theorem}
+			A graph with $ o(n^{r}) $ copies of $ K_r $ has at most $ \ex(n, K_r) + o(n^{2}) $ edges.
+		\end{theorem}
+	
+		Hint: apply Turán’s theorem in a random subset of the vertices of constant size.
+		
+		\begin{solution}
+			
+		\end{solution}
+		
+		\question Show that, for every graph $ H $, there exists $ \delta > 0 $ such that the following holds for all sufficiently large $ n \in \mathbb{N} $. If $ G $ is a graph on $ n $ vertices with
+		\[ e(G)>(1-\delta)\binom{n}{2}, \]
+		then in every $ r- $colouring of $ E(G) $ there are at least $ \delta n^{v(H)} $ monochromatic copies of $ H $.
+				
+		\begin{solution}
+			
+		\end{solution}
+		
+		\question Say that a $ k- $uniform hypergraph $ G $ is said to be $ 2- $colourable if there exists a partition $ V(G) = A \cup B $ with no edges entirely contained in either $ A $ or $ B $. Let $ b(k) $ denote the minimum number of edges in a $ k- $uniform hypergraph that is not $ 2- $colourable.
+		\begin{parts}
+			\part By considering a random colouring, show that $ b(k) \geqslant 2k−1 $.
+			\part By considering a random hypergraph, prove an upper bound for $ b(k) $.
+		\end{parts}
+		
+		\begin{solution}
+			
+		\end{solution}
+		
+		\question Show that any finite set $ A $ of integers contains a sum-free subset of size at least $ |A|/3 $.
+		
+		\begin{solution}
+			
+		\end{solution}
+	
+		\question Prove that there exists a tournament of order $ n $ containing at least $ 2^{−n}(n − 1)! $ directed Hamiltonian cycles. (An ordering $ (v_1, \ldots, v_n) $ of the vertices is a directed Hamiltonian cycle if $ v_i $ beat $ v_{i+1} $ for every $ i \in \mathbb{Z}_n $.)
+		
+		\begin{solution}
+			
+		\end{solution}
+	
+		\question Let $ (e_1, \ldots, e_m) $ be an arbitrary ordering of the edges of a graph $ G $ on $ n $ vertices. Show that there exists an increasing walk (in this ordering) of length at least $ d = 2m/n $.
+		
+		\begin{solution}
+			
+		\end{solution}
+	
+		\question Let $ G $ be a (not necessarily planar) graph with $ |G| = n $ and $ e(G) = m $. Suppose that $ G $ is drawn in the plane, but with edges allowed to cross. Let $ t $ be the number of pairs of edges which cross. Show that $ t \geqslant m − 3n + 6 $.
+		
+		Suppose now $ m \geqslant 4n $. By considering a random set $ W \subset V(G) $ containing each vertex of $ G $ independently with probability $ 4n/m $, show that in fact $ t \geqslant m^{3}/64n^{2} $ .
+		
+		\begin{solution}
+			
+		\end{solution}
+	
+		\question Use the Janson inequalities and Harris’ lemma to determine, for each constant $ c \in \intoo{0,1} $, a function $ p = p(n) $ such that
+		\[ \mathbb{P}\del{K_r \subset G(n, p)} \to c \]
+		as $ n \to \infty $.
+		
+		\begin{solution}
+			
+		\end{solution}
+	
+		\question Use the Janson inequalities to prove Bollobás’ theorem, that
+		\[ \chi\del{G(n,1/2)}=\del{\dfrac{1}{2}+o(1)}\dfrac{n}{\log_2 n}. \]
+		
+		\begin{solution}
+			
+		\end{solution}
+		
+	\end{questions}
+\end{document}

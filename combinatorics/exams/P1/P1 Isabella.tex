@@ -1,0 +1,337 @@
+\documentclass[english]{IMTexam}
+
+\usepackage[enums,arrows]{IMTtikz}
+\colorlet{papercolor}{white}
+\usetikzlibrary{hobby}
+
+\givecredits
+\author{Isabella B. Amaral}
+%\USPN{118010773}
+\lecture{Combinatorics I}
+\examname{Exam I}
+\hwtype{Attempted solution}
+\lcode{}
+%\date{}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\DeclareMathOperator{\ex}{ex}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\makeatletter
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+\makeatother
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\makeatletter
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+\makeatother
+
+\begin{document}
+	
+	\maketitle
+	
+	\paragraph{Note:} I didn't really have the background to take on this course, so most solutions are \textbf{really} quite handwavy and mostly inspired by what was given in class.
+	
+	\begin{questions}
+		\question  Let $ G $ be a planar graph with no cycles of length $ 3, 4 $ or $ 5 $. Show that $ \chi(G) \leqslant 3 $.
+		
+		\begin{solution}
+			We can try to analyse such a construction which would need the most colours, and the first construction which comes to mind is the densest, as a denser graph has more edges, and thus more restrictions. We can see that a tree $ T $ would be the least dense planar graph, which has $ \chi(T)\leqslant 2 $, so we can try and close some of its branches. As the least cycle in this graph is a $ C_6 $, we end up in a honeycomb pattern with loose edges:
+			
+			\begin{center}
+				\begin{tikzpicture}[scale=0.75]
+					\clip ({cos(30)},0.5) circle (3);
+					\foreach \x in {-2,0,2}{
+						\foreach \y in {-2,0,2}{
+							\draw[] ({\x*cos(30)},{\y*(1+sin(30))}) -- ++(0,1) -- ++(30:1) -- ++(-30:1) -- ++(0,-1) -- ++({180+30}:1) -- cycle;
+						}
+					}
+					\foreach \x in {-3,-1,1,3}{
+						\foreach \y in {-1,1}{
+							\draw[] ({\x*cos(30)},{\y*(1+sin(30))}) -- ++(0,1) -- ++(30:1) -- ++(-30:1) -- ++(0,-1) -- ++({180+30}:1) -- cycle;
+						}
+					}
+					
+%					\draw[red,thick] (0,0) -- ++(0,1) -- ++(30:1) -- ++(-30:1) -- ++(0,-1) -- ++({180+30}:1) -- cycle;
+				\end{tikzpicture}
+			\end{center}
+		
+			It's quite trivial that this is the densest arrangement as, (1) if there were other edges they'd either have to be set inside the honeycombs (thus forming cycles of length $ <6 $) or (2) they'd have to cross other edges, and thus the graph wouldn't be planar any longer.
+			
+			So, any vertex can be shared with at most 3 other honeycombs, and we can colour such a graph using a rule of parity: if the distance $ \mu_u(v) $ from $ u $ to $ v $ is an even number, then we colour it in {\color{red}red}, otherwise, colour it in $ {\color{blue}blue} $. Starting at any vertex $ u $ with {\color{red}red} and it clearly works out:
+			
+			\begin{lemma}
+				A parity colouring is sufficient to colour honeycombs.
+			\end{lemma}
+		
+			\begin{proof}
+				For a single honeycomb we either walk $ k<3 $ edges by one side or $ n=6-k $ edges on the other, so we always have $ \set{1,5},\set{2,4} $ or $ \set{3,3} $ distances between vertices.
+				
+				As each honeycomb only shares a single edge with another, for us to get mismatched parities we'd have to cross \textit{some} honeycomb that has mismatched parities, for, if there were some multi-honeycomb path that gives is a parity mismatch we should be able to switch from a $ k- $edge long path to a $ (6-k)-$edge long path in any of the composing honeycombs without changing the path's parity, but that is impossible if they can only contain paths that match parity.
+			\end{proof}
+			
+			But then if we have a honeycomb which is not dense (i.e. it has a spare vertex), then we have a parity problem, for one of the honeycombs will have mismatched parities depending on which path you take:
+			
+			\begin{center}
+				\begin{tikzpicture}[scale=1.5]
+					
+					\draw[thick] (0,0) coordinate (a)
+					-- ++(0,1) coordinate (b)
+					-- ++(30:1) coordinate (c)
+					-- ++(-30:1) coordinate (d)
+					-- ++(0,-1) coordinate (e)
+					-- ++({180+30}:1) coordinate (f)
+					-- cycle;
+					
+					\coordinate (n) at ($ (d)!0.5!(e) $);
+					\node[left] at (b) {$ u $};
+					\node[right] at (d) {$ v $};
+					
+					\draw[blue,thick] (b) -- node[above] {$ 1 $} (c) -- node[above] {$ 2 $} (d);
+					\draw[red,thick] (b) -- node[left] {$ 1 $} (a) -- node[below] {$ 2 $} (f) -- node[below] {$ 3 $} (e) -- node[right] {$ 4 $} (n) -- node[right] {$ 5 $} (d);
+					
+					\draw[thick] (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- cycle;
+					
+					\fill 
+					(a) circle (2pt)
+					(b) circle (2pt)
+					(c) circle (2pt)
+					(d) circle (2pt)
+					(e) circle (2pt)
+					(n) circle (2pt)
+					(f) circle (2pt);
+					
+				\end{tikzpicture}
+			\end{center}
+			
+			Thus our proposed colouring becomes invalid!
+			
+			Now we could colour as if this vertex wasn't there, and then we come back to it:
+			If it's a single vertex we need to add a new colour (e.g. green). If we have 2 vertices we can add use the previous parity rule and add a new red-blue pair.
+			So for every odd addition we ignore $ 1 $ vertex, colour normally and then assign a 3rd colour to it, for any even addition we can continue using the previous parity colouring as an even path doesn't really change our parity.
+			
+			It's worth noting that this applies to less dense graphs trivially: imagine a vertex which is part of $ n\to\infty $ cycles, we could colour them trivially using 2 or 3 colours.
+			
+% todo			Generalize this.
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+		\question Prove that
+		\[ e(G)\geqslant \binom{\chi(G)}{2}. \]
+		
+		\begin{solution}
+%			Again, let's use the densest possible graph, which is (trivially) a clique of size $ k $: thus it needs $ k $ colours, as we draw $ k-1 $ edges from each vertex $ v $ and then need $ 1 $ more colour to be sure we're not repeating any.
+
+			Let's look at a random graph $ G $, it follows as a lemma that, no matter how dense $ G $ is, its chromatic number has to be $ \chi(G)\leqslant\Delta(G)+1 $:
+			
+			\begin{lemma}\label{lem:maxD}
+				Given any graph $ G $, it follows that $ \chi(G)\leqslant\Delta(G)+1 $.
+			\end{lemma}
+		
+			\begin{proof}
+				Take some vertex $ v\in V(G) $ such that $ d(v)=\Delta(G) $. Then we can colour $ v $'s neighbours with $ \Delta(G) $ colours with no repetitions (and, trivially, we can colour any of their neighbours with $ \leqslant\Delta(G) $ colours). Then we only need one more colour at most to guarantee we're not repeating any, and thus
+				$ \chi(G)\leqslant\Delta(G)+1 $.
+			\end{proof}
+			
+			As this happens to be the case for a $ K_k $, which has $ \chi(K_k)=k $ (trivial), and a clique has to be the graph with the largest degree per vertex for any set of $ k $ vertices (by definition!) it follows trivially that
+			\[ e(K_k)=\binom{k}{2}\geqslant e(G)\geqslant \binom{\chi(K_k)}{2}\geqslant \binom{\chi(G)}{2}\iff e(G)\geqslant \binom{\chi(G)}{2}. \]
+			
+			\hfill\qedsymbol
+			
+%	todo		Polish this maybe?
+		\end{solution}
+		
+		\question Let $ H $ be a $ k- $uniform hypergraph with $ m $ edges. Show that if $ m < 4^{k-1} /3^{k} $, then there exists a 4-colouring of the vertices of $ H $ such that every edge contains all four colours.
+		
+%		\begin{solution}
+%			First, recall that the Ramsey number for a $ s- $clique in an $ \ell- $uniform hypergraph coloured with $ r $ colours is denoted $ R^{(\ell)}_r(s) $. So we notice that that which we want is to show that:
+%			A vertex colouring (1-uniform hypergraph edge colouring) with four colours will form a monochromatic $ 2- $clique (as we need to guarantee all other colours have been used at least once) for at most $ k $ vertices (as we have $ k- $sized sets):
+%			\[ R^{(1)}_4(2)\leqslant k. \]
+%			 
+%			We know that we need $ k\geqslant 4 $.
+%			
+%			As $ f(k)=4^{k-1} /3^{k} $ is monotonously increasing and, as $ R^{(1)}_4(2)=5 $, it's trivial that for larger $ k $ we will have $ k\geqslant 5 $.
+
+			
+%		\end{solution}
+		
+		\question Use van der Waerden’s theorem to show that, for every $ r $ and $ k $, there exists a constant $ \delta = \delta(r, k) > 0 $ such that the following holds. In every colouring of $ \set{1, \ldots, n} $ (with $ n $ sufficiently large) with $ r $ colours, there are at least $ \delta n^{2} $ monochromatic $ k- $term arithmetic progressions.
+		
+%		\begin{solution}
+%			By van der Waerden’s (vdW) theorem we can guarantee there exists some $ n=W(r,k) $ such that there is a monochromatic $ k- $term arithmetic progression (AP) in a $ r- $colouring of $ [n] $. Define $ W^{-1}_r(n):=\max\set{s: \textup{so that we can guarantee a monochromatic $ s- $term AP in an $ r- $colouring of $ [n] $}} $.
+%			
+%			As we're guaranteed to have some $ n $ for any $ (r,s) $, then we're also guaranteed to have some $ s $ given $ (k,n) $.
+%			
+%			So, let $ n=W(r,s) $ such that $ \binom{s}{k}\geqslant \delta\,n^{2} $, so that we can get whatever many sequences we want. Then for some $ s=W^{-1}_r(n) $
+%%			\begin{align*}
+%%				\del{\dfrac{s}{k}}^{k}&\geqslant\binom{s}{k}\geqslant \delta\,n^{2}\\
+%%				\implies s&\geqslant k\del{\delta\,n^{2}}^{1/k}
+%%			\end{align*}
+%			\begin{align*}
+%				\del{\dfrac{s}{k}}^{k}&\geqslant\binom{s}{k}\geqslant \delta\,n^{2}\\
+%				\implies \delta&\leqslant \dfrac{1}{n^{2}}\del{\dfrac{W^{-1}_r(n)}{k}}^{k},
+%			\end{align*}
+%			which is guaranteed to exist and 
+%			
+%			must exist for some $ n=W(r,s) $
+%		\end{solution}
+		
+		\question Prove that $ r(K_r, T) = (r - 1)(k - 1) + 1 $ for every tree $ T $ with $ k $ vertices.
+		
+		\begin{solution}
+			
+			Take an $ (r-1)\times (k-1)- $clique disposed as a grid (rows $ \times $ columns). We can colour it in such a way as to form red $ (r-1)-$cliques in every column, and a non-branching blue tree in each row, spanning it entirely, so that no red $ (k-1)-$clique can complete all the edges it needs to form a $ k- $clique on another column:
+			
+			\begin{center}
+				\begin{tikzpicture}[rotate=90,yscale={9/5},xscale={5/9},scale=0.5]
+					\fill (-9,0) circle ({2*9/5pt and 2*5/9pt}) (-8,0) circle ({2*9/5pt and 2*5/9pt}) (0,0) node {$ \vdots $} (8,0) circle ({2*9/5pt and 2*5/9pt}) (9,0) circle ({2*9/5pt and 2*5/9pt});
+					\fill (-9,5) circle ({2*9/5pt and 2*5/9pt}) (-8,5) circle ({2*9/5pt and 2*5/9pt}) (0,5) node {$ \vdots $} (8,5) circle ({2*9/5pt and 2*5/9pt}) (9,5) circle ({2*9/5pt and 2*5/9pt});
+					
+					\draw[blue] (-9,0) -- node[fill=white] {$ \ldots $} (-9,5);
+					\draw[blue] (-8,0) -- node[fill=white] {$ \ldots $} (-8,5);
+					\draw[blue] (8,0) -- node[fill=white] {$ \ldots $} (8,5);
+					\draw[blue] (9,0) -- node[fill=white] {$ \ldots $} (9,5);
+					\draw[red] (0,0) circle (10 and 1);
+					\draw[red] (0,5) circle (10 and 1);
+					
+					\draw[decorate,decoration={brace,amplitude=10pt}] (-10,7) -- node[left=15pt] {$ r-1 $} (10,7);
+					\draw[decorate,decoration={brace,amplitude=10pt}] (-11,-1) -- node[below=15pt] {$ k-1 $} (-11,6);
+				\end{tikzpicture}
+			\end{center}
+		
+			The rest of the edges should be coloured red, so that no $ k- $vertex tree forms. As one can see, by adding any new edge we should be able to either build a blue $ k- $vertex tree or a red $ r-$clique.
+			
+			\hfill\qedsymbol
+			
+			\paragraph{Note:} I got inspired to do this by looking at the happy ending problem paper, which has this equation in it. This led me to look at the Wikipedia page for the Erdős–Szekeres theorem, which uses the idea of a rectangular grid $ +1 $ vertex.
+		\end{solution}
+		
+		\question Show that, for every $ p = p(n) $,
+		\[ \chi\del{G(n,p)}\geqslant \dfrac{p\,n}{2\log n} \]
+		with high probability as $ n\to\infty $.
+		
+		\begin{solution}
+			First, we need a theorem:
+			
+			\begin{theorem}
+				If $ p\geqslant (1+\varepsilon)\log n/n $ then $ G(n,p) $ is connected with high probability.
+			\end{theorem}
+		
+			\begin{proof}
+				If we define a random variable as the number of non-edges between some connected part of our graph and the rest of the graph (number of edges of a $ K_{k,n-k} $ bipartite graph in $ \overline{G(n,p)}=G(n,(1-p)) $), i.e.
+				\[ X_k=\# K_{k,n-k}\subset \overline{G(n,p)} \]
+				so that if the expected value of $ X_k $ goes to zero $ \forall k\in[n/2] $ with $ n $ increasing we have exactly what we want:
+				\begin{align*}
+					\mathbb{E}[X_k]&=\underbrace{\binom{n}{k}}_{\text{select $ k $ vertices for some $ k- $set}}(1-p)^{k(n-k)}\\
+					\intertext{approximating $ (1-p)^{k(n-k)} $ by $ \exp(-p\,k(n-k)) $ and $ \binom{n}{k} $ as $ \del{\mathrm{e}n/k}^{k} $ we have}
+					&=\del{\dfrac{\mathrm{e}n}{k}}^{k}\exp\del{-p\,k(n-k)}=\del{\dfrac{\mathrm{e}n}{k}\mathrm{e}^{-p(n-k)}}^{k}\\
+					\intertext{taking $ p\geqslant (1+\varepsilon)\log n/n $ we have}
+					\mathbb{E}[X_k]&\leqslant\del{\dfrac{\mathrm{e}n}{k}\exp\del{-(1+\varepsilon)\log n(n-k)/n}}^{k}\\
+					\intertext{as $ \mathrm{e}^{\log n}=n $ we have}
+					&\leqslant\del{\dfrac{\mathrm{e}n}{k}n^{-(1+\varepsilon)(n-k)/n}}^{k}
+				\end{align*}
+				we want this to be small, so we must analyse $ 2 $ cases:
+					\begin{enumerate}
+						\item $ k=o(n) $:
+						In this case, the exponential with $ (n-k)/n\approx 1 $, thus $ n^{1-(1+\varepsilon)}=n^{-\varepsilon} $ which is already small.
+						\item $ k=\Theta(n) $:
+						In this case the exponential is at most $ n^{-(1+\varepsilon)/2} $ (for $ k=n/2 $), and the fraction in $ (\mathrm{e}n/k)\cdot n^{-(1+\varepsilon)/2} $ is basically a constant, so we only need that the exponential term gets smaller than a constant. Then $ n $ is at most $ n^{1-(1+\varepsilon)/2}=n^{1/2-\varepsilon/2} $.
+					\end{enumerate}
+				Thus, taking only non-constant terms we have
+				\[ \mathbb{E}[X_k]\leqslant n^{-k\,\varepsilon/2}. \]
+				
+				Now we can analyse the probability $ G(n,p) $ isn't connected by the union bound:
+				\begin{align*}
+					\mathbb{P}\del{G(n,p)\textup{ isn't connected}}&\leqslant\sum_{k=1}^{n/2}\mathbb{P}\del{X_k\geqslant1}\\
+					&\leqslant\sum_{k=1}^{n/2}n^{-k\,\varepsilon/2}\\
+					\intertext{as this is a summation of a geometric series with ratio $ <1 $, let $ \alpha=n^{-\varepsilon/2} $ and set an upper bound as the summation from $ k=1 $ to $ \infty $:}
+					&\leqslant\sum_{k=1}^{\infty}\alpha^{k}=\alpha\del{\dfrac{1}{1-\alpha}}\leqslant 2\alpha
+				\end{align*}
+				as $ 1-\alpha\leqslant 1/2 $ for $ (1/n)^{\varepsilon/2}\overset{!}{\geqslant} 1/2 $ for any $ \varepsilon/2<1 $ and $ n>1 $.
+				
+				Thus
+				\[ \mathbb{P}\del{G(n,p)\textup{ isn't connected}}\leqslant 2n^{-\varepsilon/2}\overset{\textup{as }n\to\infty}{\to} 0. \]
+			\end{proof}
+		
+			So, by the theorem, if we take $ \mathbb{P}(e\in E(G(n,p(n))))= p(n)\geqslant (1+\varepsilon)\log n/n $ it is quite likely $ G(n,p) $ is connected.
+		
+			As $ p=p(n)=(1+\varepsilon)\log n/n $ is the least $ p $ for which the theorem holds, we can take this value of $ p $. Assuming we have at least one vertex we have $ \chi(G(n,p))\geqslant 1 \geqslant (1+\varepsilon)/2=\dfrac{p\,n}{2\log n} $.
+			Now we add another result:
+			\begin{lemma}\label{lem:l1trees}
+				Let $ G $ be a graph with average degree $ d $ then $ \exists G'\subset G $ with a minimum degree ($ \delta $) $ x=x(d)\geqslant d/2 $
+			\end{lemma}
+			
+			\begin{proof}
+				Dispose $ V(G) $ in a row, if every vertex has less than $ x $ edges going forwards ($ \rightarrow $) than we must have at most $ n\,d/2=e(G)\leqslant x\,n\implies x>d/2 $.
+			\end{proof}
+			So, as we can guarantee $ G(n,p) $ is connected and can always select a subgraph $ G'\subset G $ with $ \delta(G')\geqslant \bar{d}(G)/2\implies \chi(G)\geqslant \bar{d}(G)/2 $ we know that 
+%			, if they're all  By this equality, we should have some $ \varepsilon $ such that this holds. Thus
+			\[ \chi\del{G(n,p)}\geqslant \dfrac{\bar{d}(G)}{2}\approx \dfrac{\mathbb{E}\sbr{\bar{d}(G)}}{2}=\dfrac{n\,p}{2}\geqslant \dfrac{p\,n}{2\log n}, \]
+			as we wanted to show.
+			
+%			, by induction on $ n $, assume $ \chi(G(n,p))\geqslant \dfrac{p\,n}{2\log n} $ is valid for $ n=\ell $, thus
+%			\[ \chi(G(\ell,p))\geqslant \dfrac{p\,\ell}{2\log \ell} \]
+%			If we add another vertex $ v $, it can have at most $ d(v)=\ell $ and then, by lemma \ref{lem:maxD} we must have $ \chi(G(\ell+1,p))\geqslant \ell+1 $. As $ \chi(G(\ell+1,p))\geqslant \chi(G(\ell,p))\geqslant\dfrac{p\,\ell}{2\log \ell}=\dfrac{(1+\varepsilon)}{2} $ which is trivially as small as we make it.
+		\end{solution}
+		
+		\question Let $ r_k(H) $ be the smallest $ n $ such that every colouring of $ E(K_n) $ with $ k $ colours contains a monochromatic copy of $ H $. Show that
+		\[ k^{1+c} \leqslant r_k (C_4) \leqslant C \cdot k^{2} \]
+		for some constants $ C > c > 0 $ and all sufficiently large $ k $.
+		
+		\begin{solution}
+			We can get a lower bound by randomly colouring a graph. Thus, given a colouring $ c,\forall e\in E(K_n) $, let $ i\in [k] $ be the $ i- $th colour, then we have
+			\[ \mathbb{P}(c(e)=k_i)=\dfrac{1}{k}, \]
+			that is, the probability of colouring any edge with any colour in our graph is the same and is independent from any other edge.
+			
+			Then, we want to show that $ \mathbb{P}(\nexists \textup{ monochromatic }K_k)>0 $. Given $ X= $\# of monochromatic copies of $ K_k $ in $ K_n $ (i.e. $ X=\set{0,1,2,\ldots} $) then we want to show that the expected value of $ X $ is less than $ 1 $. Thus, what we want to evaluate can be written as
+			\[ \mathbb{E}[X]=\sum_{K_k\subset K_n}\mathbb{E}\sbr{\mathbb{1}\sbr{K_k \textup{ is monochromatic}}}=0, \]
+			where $ \mathbb{1} $ is the indicator function.
+			
+			So, we have that the probability of some $ K_k\subset K_n $ being monochromatic is such that each of its edges are the same color, that is $ \binom{4}{2}-1 $ edges ($ -1 $ because the first edge could be whatever and the others have to all be the same). As the probabilities are the same we have $ (1/k)^{\binom{4}{2}-1} $
+			\[ \mathbb{E}[X]=\sum_{K_k\subset K_n}\mathbb{P}\del{K_k \textup{ is monochromatic}}=\binom{n}{4}\del{\dfrac{1}{k}}^{\binom{4}{2}-1}. \]
+			
+			Given the inequality \[ \del{\dfrac{n}{m}}^{m}\leqslant\binom{n}{m}\leqslant\del{\dfrac{\mathrm{e}\,n}{m}}^{m} \]
+			then, if $ m\ll n $ it follows that $ \binom{n}{m}\approx\del{\mathrm{e}\,n/m}^{m} $ is a good approximation.
+			
+			Using this inequality we have that
+			\[ \mathbb{E}[X]=\del{\dfrac{\mathrm{e}\,n}{4}}^{4}\del{\dfrac{1}{k}}^{\sfrac{4(4-1)}{2}-1}=k\del{\dfrac{\mathrm{e}\,n}{4}k^{\sfrac{-3}{2}}}^{4}, \]
+			it is clear that, if we let $ n=k^{3/2-\varepsilon}=k^{1+c},c>0 $, we then get 
+			%			and, as we want to show that $ n\leqslant (\sqrt{2})^{k} $, so let $ n=(\sqrt{2})^{k} $, then
+			\[ \mathbb{E}[X]\leqslant k\del{\dfrac{\mathrm{e}}{4}k^{-\varepsilon}}^{4}=k^{1-4\varepsilon}\del{\dfrac{\mathrm{e}}{4}}^{4}<1\quad\textup{for some }0<c=1/2-\varepsilon<1/2\text{, as }(e/4)^{4}<1, \]
+			which implies that
+			\[ \mathbb{P}\sbr{X=0}>0. \]
+			
+			Select a vertex $ v\in V(K_n) $ and sort each of its neighbours edges into $ k $ groups. We notice that, if we have $ \geqslant 3 $ vertices in any group, we only need to iterate this process once more with at least $ 2 $ vertices connecting to have a $ C_4 $.
+			By the pigeonhole principle we need at least $ n=(3k+1)(2k+1) $ vertices in order to have $ 3 $ vertices of the same colour in each category in the first iteration and then $ 2 $ vertices on the second iteration. Then, we can set an upper bound as
+			\[ r_k(C_4) \leqslant 6k^{2}+5k+1 \leqslant C\,k^{2}, \]
+			for some $ C>c>0 $, and thus
+			\[ k^{1+c}\leqslant r_k(C_4)\leqslant C\,k^{2}. \]
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+		\question Define
+		\[ \hat{r}(H)\coloneq\min\set{e(G)\colon G\longrightarrow H}, \]
+		where $ G \longrightarrow H $ means that every two-colouring of the edges of $ G $ contains a monochromatic copy of $ H $. Prove that
+		\[ \hat{r}(K_t)=\binom{R(t)}{2}, \]
+		for every $ t\in\mathbb{N} $.
+		
+		\begin{solution}
+			As we cannot guarantee the density of $ G $ we must take notice that there are $ \binom{n}{2} $ possible graphs $ G $ for some $ \hat{r}(H) $ and, then, by the pigeonhole principle, if we take this many vertices we must end with a copy of $ H $, so our question becomes: what is this value $ n $?
+			
+			As the Ramsey number of $ k $ vertices is
+			\[ R(k)\coloneq\min\set{n:\forall c:E(K_n)\longrightarrow\set{R,B}\exists \textup{ monochromatic copy of }K_k}, \] if we cannot fix $ G=K_n $ and instead have a $ G\subset K_n $, then must take $ n=R(t) $ to guarantee we end with a copy of $ K_n $ amongst all of the possible $ G $'s.
+			
+			Thus we have
+			\[ \hat{r}(K_t)=\binom{R(t)}{2}. \]
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+	\end{questions}
+\end{document}

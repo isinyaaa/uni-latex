@@ -1,0 +1,94 @@
+\documentclass[tikz,border=5pt]{standalone}
+
+\usepackage{IMTtikz}
+\definecolor{papercolor}{HTML}{282828}
+\definecolor{textcolor}{HTML}{eeeeee}
+\RequirePackage[pagecolor={papercolor}]{pagecolor}
+\color{textcolor}
+
+% defining the new dimensions and parameters
+\newlength{\hatchspread}
+\newlength{\hatchthickness}
+\newlength{\hatchshift}
+\newcommand{\hatchcolor}{}
+% declaring the keys in tikz
+\tikzset{hatchspread/.code={\setlength{\hatchspread}{#1}},
+	hatchthickness/.code={\setlength{\hatchthickness}{#1}},
+	hatchshift/.code={\setlength{\hatchshift}{#1}},% must be >= 0
+	hatchcolor/.code={\renewcommand{\hatchcolor}{#1}}}
+% setting the default values
+\tikzset{hatchspread=3pt,
+	hatchthickness=0.4pt,
+	hatchshift=0pt,% must be >= 0
+	hatchcolor=papercolor}
+% declaring the pattern
+\pgfdeclarepatternformonly[\hatchspread,\hatchthickness,\hatchshift,\hatchcolor]% variables
+{custom north west lines}% name
+{\pgfqpoint{\dimexpr-2\hatchthickness}{\dimexpr-2\hatchthickness}}% lower left corner
+{\pgfqpoint{\dimexpr\hatchspread+2\hatchthickness}{\dimexpr\hatchspread+2\hatchthickness}}% upper right corner
+{\pgfqpoint{\dimexpr\hatchspread}{\dimexpr\hatchspread}}% tile size
+{% shape description
+	\pgfsetlinewidth{\hatchthickness}
+	\pgfpathmoveto{\pgfqpoint{0pt}{\dimexpr\hatchspread+\hatchshift}}
+	\pgfpathlineto{\pgfqpoint{\dimexpr\hatchspread+0.15pt+\hatchshift}{-0.15pt}}
+	\ifdim \hatchshift > 0pt
+	\pgfpathmoveto{\pgfqpoint{0pt}{\hatchshift}}
+	\pgfpathlineto{\pgfqpoint{\dimexpr0.15pt+\hatchshift}{-0.15pt}}
+	\fi
+	\pgfsetstrokecolor{\hatchcolor}
+	%    \pgfsetdash{{1pt}{1pt}}{0pt}% dashing cannot work correctly in all situation this way
+	\pgfusepath{stroke}
+}
+
+\begin{document}
+	\begin{tikzpicture}
+		\pgfmathsetmacro{\th}{0.25}
+		\pgfmathsetmacro{\tv}{10}
+		\pgfmathsetmacro{\rop}{50}
+		
+		\foreach \x in {1,...,\tv}{
+			\coordinate (p\x) at ({rand*7},{rand*7});
+		}
+		
+		\foreach \x in {1,...,\rop}{
+			\pgfmathsetmacro{\rando}{rand}
+			\pgfmathsetmacro{\randt}{rand}
+			\coordinate (pr\x) at ({360*\rando}:{2*\randt+7*sign(\randt)});
+		}
+		
+		\foreach \a in {1,...,\tv}{
+			\foreach \b in {2,4,...,\rop}{
+				\pgfmathparse{floor(rnd*3+1)}
+				\pgfmathsetmacro{\red}{ifthenelse(\pgfmathresult == 1, 1, 0)}
+				\pgfmathsetmacro{\blue}{ifthenelse(\pgfmathresult == 3, 1, 0)}
+				\pgfmathsetmacro{\green}{ifthenelse(\pgfmathresult == 2, 1, \blue)}
+				\definecolor{tmp}{rgb}{\red,\green,\blue}
+				\fill[inner color=tmp,outer color=papercolor
+				,pattern=custom north west lines,hatchspread=50pt,hatchthickness=1pt
+				] let \p1=(p\a), \p2=(pr\b), \p3=($ (p\a)!0.5!(pr\b) $), \p4=($ (\p3)+0.5*(\th pt,\th pt) $), \p5=($ (pr\b)+0.5*(\th pt,\th pt) $) in (p\a) parabola bend ($ (\p3)!{0.6*sign(\x2-\x1)}!90:(pr\b) $) (pr\b) -- +(\th pt,\th pt) -- ($ (pr\b)+(\th pt,\th pt) $) parabola bend ($ (\p4)!{0.6*sign(\x2-\x1)}!90:(\p5) $) ($ (p\a)+0.5*(\th pt,\th pt) $);
+			}
+		}
+		
+		\foreach \a in {1,...,\tv}{
+			\foreach \b in {1,...,\tv}{
+				\pgfmathparse{floor(rnd*3+1)}
+				\pgfmathsetmacro{\red}{ifthenelse(\pgfmathresult == 1, 1, 0)}
+				\pgfmathsetmacro{\blue}{ifthenelse(\pgfmathresult == 3, 1, 0)}
+				\pgfmathsetmacro{\green}{ifthenelse(\pgfmathresult == 2, 1, \blue)}
+				\definecolor{tmp}{rgb}{\red,\green,\blue}
+				\draw[tmp] let \p1=(p\a), \p2=(p\b), \p3=($ (p\a)!0.5!(p\b) $) in (p\a) parabola bend ($ (\p3)!{0.6*sign(\x2-\x1)}!90:(p\b) $) (p\b);
+			}
+		}
+		
+		\foreach \x in {1,...,\tv}{
+			\fill (p\x) circle (1.5pt);
+		}
+		
+		\foreach \x in {1,...,\rop}{
+			\foreach \y in {1,...,5} {
+				\fill (pr\x)+({rnd*0.5},{rnd*0.5}) circle (0.2pt);
+			}
+		}
+		
+	\end{tikzpicture}
+\end{document}
