@@ -1,0 +1,32 @@
+\documentclass[border=5pt]{article}
+
+\usepackage{IMTtikz}
+
+\begin{document}
+    Sendo o trabalho, por definição
+    \[ w = \int F\dif r\]
+    temos, então que, dado um deslocamento infinitesimal
+    \begin{align*}
+        \dif w = f \dif l
+    \end{align*}
+
+    Sendo $ P = F/A $, por definição, temos que
+    \[ \dif w = A\,P \dif l = P\dif V \]
+
+    Temos que
+    \[ w = \int^{V_f}_{V_i} P\dif V=P(V_f-V_i) \]
+
+    Para que igualemos as forças temos que tomar a diferença entre a pressão interna nos dois estados.
+    Sejam 
+    $P_p$ (o peso de um dos pesos),
+    $A$ (área do cilindro), temos
+    \[P_p = P\,A \implies \Delta P = A(2P_p-P_p)=A\,P_p\]
+
+    Sendo $ P = RT/V_m $, por definição, temos que
+    \[ \dif w = \dfrac{RT}{V_m}\dif V \]
+
+    Sendo $T$ constante e o aproveitamento do processo máximo (i.e. reversível), temos que
+    \[ w = \int^{V_f}_{V_i}\dfrac{RT}{V_m}\dif V = RT\del{\ln{V_f} - \ln{V_i}} = RT\ln{\del{\dfrac{V_f}{V_i}}}\]
+
+
+\end{document}

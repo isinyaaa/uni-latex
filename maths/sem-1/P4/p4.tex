@@ -1,0 +1,264 @@
+\documentclass{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\usepackage{polynom}
+
+\givecredits
+\author{Isabella B. Amaral}
+\USPN{118010773}
+\lecture{Matemática I}
+\examname{Prova IV}
+\hwtype{Resolução}
+\lcode{}
+\date{9 de janeiro}
+
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}[question]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand\restrict[1]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		% the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#1} % this is the delimiter
+}}
+
+\begin{document}
+	
+	\maketitle
+	
+	\paragraph{Nota:} Todos os teoremas e axiomas referenciados nessa prova são citados pelo Apostol nos capítulos abordados em aula, a não ser que seja explicitado o contrário.
+	
+	\begin{definition}
+		Uma função $ f:I\longrightarrow\mathbb{R} $ é dita Lipschtziana se, por definição, existe $ M\geqslant 0 $ tal que, para todos os $ x $ e $ y $ em $ I $, tem-se que $ |f(x)-f(y)|\leqslant M|x-y| $.
+	\end{definition}	
+
+	\begin{questions}
+		\question Suponha que $ f:\mathbb{R}\longrightarrow\mathbb{R} $ é derivável, periódica de período $ p>0 $ e que $ f'(x) $ é contínua. Prove que $ f $ é Lipschitziana.
+		
+		\begin{solution}
+			Pelo resultado da questão IV do grupo III da prova anterior, sabemos que uma função periódica é uniformemente contínua, dessa forma, temos que, dado um $\varepsilon$, haverá um $ \delta=\varepsilon/M,M\in\mathbb{R} $ para o qual vale a continuidade da função. Dessa forma, podemos tomar a razão
+			\[ \dfrac{|f(x)-f(y)|}{|x-y|}\leqslant\dfrac{\varepsilon}{\delta}=\dfrac{\varepsilon}{\varepsilon/M}=M\implies|f(x)-f(y)|\leqslant M|x-y| . \]
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+		\question Esboce o gráfico de $ f(x)=\dfrac{(x-1)^{3}}{x^{2}+1},x\in\mathbb{R} $.
+		
+		\begin{solution}
+			Analisando $ f(x)=0 $, temos
+			\begin{align*}
+				\dfrac{(x-1)^{3}}{x^{2}+1}&=0\\
+				\intertext{como $ x^{2}=-1\implies x\in\mathbb{C} $, podemos analisar somente o numerador sem perda de generalidade}
+				(x-1)^{3}&=0\\
+				\intertext{que, pelo teorema fundamental da álgebra deveria ter 3 raízes, porém só possui uma real:}
+				x&=1
+			\end{align*}
+		
+			Agora, analisamos o comportamento da primeira derivada da função. Sejam $ g=(x-1)^{3} $ e $ h=x^{2}+1 $, de tal forma que $ f=g/h $, temos, pelo teorema 4.1, temos
+			\begin{align*}
+				\dod{}{x}\sbr{\dfrac{(x-1)^{3}}{x^{2}+1}}&=\dfrac{g'\,h-g\,h'}{h^{2}}\\
+				\intertext{pela regra da cadeia}
+				=\dfrac{\dod{}{x}\sbr{(x-1)^{3}}\,h-g\,\dod{}{x}\sbr{x^{2}+1}}{h^{2}}&=\dfrac{3(x-1)^{2}\,h-g\,2x}{h^{2}}\\
+				\intertext{substituindo}
+				=\dfrac{3(x-1)^{2}\,(x^{2}+1)-(x-1)^{3}\,2x}{(x^{2}+1)^{2}}&=\dfrac{(x-1)^{2}\del{x^{2}+2x+3}}{\del{x^{2}+1}^{2}},
+			\end{align*}
+			fazendo $ f'=0 $, temos
+			\begin{align*}
+				\dfrac{(x-1)^{2}\del{x^{2}+2x+3}}{\del{x^{2}+1}^{2}}&=0\\
+				\intertext{como a análise está restrita à $ \mathbb{R} $ podemos analisar somente o numerador sem perda de generalidade}
+				(x-1)^{2}\del{x^{2}+2x+3}&=0
+			\end{align*}
+			\[ \implies (x-1)^{2}=0 \quad\text{ ou }\quad\del{x^{2}+2x+3}=0, \]
+			porém como para $ x^{2}+2x+3 $ o discriminante é menor que zero, não temos raízes reais, bastando analisar a parcela $ (x-1)^{2} $, a qual tem raíz dupla para $ x=1 $.
+			
+			Analisando o comportamento da função para os limites de $ x\to-\infty $ e $ x\to\infty $, temos que o polinômio de grau superior no numerador faz a função tender à $ -\infty $ e $ \infty $ respectivamente, de tal forma que $ (1,0) $ deve ser ponto de inflexão e raíz.
+			
+			Porém em se tratando de uma função racional, temos um comportamento assintótico que pode ser analisado através de divisão polinomial parcial, até a primeira potência negativa:
+			
+			\begin{center}
+				\polylongdiv[style=A]{x^3-3x^2+3x-1}{x^2+1}
+			\end{center}
+			
+			Como essa potência negativa desaparece no limite de $ x\to-\infty $ ou no limite de $ x\to\infty $ temos a assíntota $ y=x-3 $ para a função.
+			
+			Plotando, temos
+			
+			\begin{center}
+				\begin{tikzpicture}
+					\begin{axis}[
+						axis lines=middle,
+						xmin=-12,xmax=12,
+						ymin=-14,ymax=9,
+						]
+						\addplot[domain=-10:10,samples=300]{(x-1)^3/(x^2+1)};
+						\addplot[domain=-10:10,red,dashed]{x-3};
+						\coordinate (A) at (axis cs:2,-4);
+					\end{axis}
+				\node[right=-15pt,red] at (A) {$ y=x-3 $};
+				\end{tikzpicture}
+			\end{center}
+		\end{solution}
+		
+		\clearpage
+		
+		\question Seja $ f:\intoo{0,+\infty}\longrightarrow\mathbb{R} $ uma função contínua tal que $ f(1)=17 $ e, se $ x>0 $ e $ y>0 $,
+		\[ \int_{1}^{x\,y}f(t)\dif t=y\int_{1}^{x}f(t)\dif t+x\int_{1}^{y}f(t)\dif t. \]
+		Determine $ f(x) $, para $ x>0 $.
+		
+		\begin{solution}
+			Derivando a relação dada em termos de $ t $, temos
+			\begin{align*}
+				\dod{}{t}\sbr{\int_{1}^{x\,y}f(t)\dif t}&=\dod{}{t}\sbr{y\int_{1}^{x}f(t)\dif t+x\int_{1}^{y}f(t)\dif t}\\
+				\intertext{e, pelo primeiro teorema fundamental do cálculo}
+				f(t)&=\int_{1}^{x}f(t)\dif t+y\,f(t)+\int_{1}^{y}f(t)\dif t+x\,f(t)\\
+				\implies\del{1-y-x}f(t)&=\int_{1}^{x}f(t)\dif t+\int_{1}^{y}f(t)\dif t\\
+				\intertext{derivando novamente, temos}
+				\del{1-y-x}\dod{f(t)}{t}&=2f(t)\implies \dfrac{f'}{f}=\dfrac{2}{1-y-x}\\
+				\intertext{integrando ambos os lados com respeito a $ t $}
+				\int\dfrac{f'(t)}{f(t)}\dif t&=\int\dfrac{2}{1-y-x}\dif t\\
+				\intertext{à esquerda temos a definição de logaritmo}
+				\ln f(t)+C&=\dfrac{2}{1-y-x}t\\
+				\intertext{sendo $ \exp(x) $ a inversa de $ \ln x $, temos}
+				f(t)&=\exp\del{\dfrac{2}{1-y-x}t-C}=\underbrace{\exp(C)}_{=\gamma}\cdot\exp\del{\dfrac{2}{1-y-x}t}.
+			\end{align*}
+			
+			 Avaliando $ f(t=1) $ temos que
+			 \[ f(1)=17=\gamma\exp\del{\dfrac{2}{1-y-x}}\implies\gamma=\exp\del{-\dfrac{2}{1-y-x}}, \]
+			 dessa forma, temos
+			 \[ f(t)=\exp\del{\dfrac{2}{1-y-x}\del{t-1}}. \]
+		\end{solution}
+		
+%		\question Calcular $ \int_{1}^{3}\log^{3}t\dif t $.
+%		\question Calcule $ \int \cot x\dif x $.
+%		\question Calcular $ \int_{1}^{2}x^{3}\log^{2}x\dif x $.
+%		\question Calcule $ \int_{0}^{1}t^{2}\mathrm{e}^{-2t}\dif t $.
+		\question Dada uma esfera de raio $ R>0 $, determine o raio $ r $ e a altura $ h $ do cilindro circular reto inscrito nessa esfera cuja superfície lateral ($ 2\pi\,r\,h $) é máxima.
+		
+		\begin{solution}
+			
+			\begin{multi}
+				
+				Pela construção geométrica do problema temos que
+				\begin{equation}\label{eq:pit}
+					R^{2}=\del{\dfrac{h}{2}}^{2}+r^{2}.
+				\end{equation}
+			
+				Definindo uma função $ r(h) $ e substituindo na relação que deve ser maximizada, temos
+				
+				\begin{equation}\label{eq:max}
+					2\pi\,h\,\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}
+				\end{equation}
+			
+				Derivando podemos encontrar pontos de máximo e mínimo dessa função, portanto fazemos
+				
+				\nextcol
+				
+				\centerline{\scalebox{1}{\input{tikz1.tex}}}
+			\end{multi}
+			
+			\begin{align*}
+				\dod{}{h}\sbr{2\pi\,h\,\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}}&=2\pi\del{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}+h\dod{y}{h}\dod{}{y}\sbr{y}}\quad\text{onde } y=R^{2}-\del{\dfrac{h}{2}}^{2}\\
+				&=2\pi\del{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}+h\del{-\dfrac{h}{2}}\del{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}}^{-1}}\\
+				\intertext{igualando a zero, temos}
+				0&\overset{!}{=}2\pi\del{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}-\dfrac{h^{2}/2}{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}}}\\
+				\implies \sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}&=\dfrac{h^{2}/2}{\sqrt{R^{2}-\del{\dfrac{h}{2}}^{2}}}\\
+				\implies R^{2}-\del{\dfrac{h}{2}}^{2}&=\dfrac{h^{2}}{2}\\
+				\implies h^{2}&=2R^{2}\implies h=R\sqrt{2} 
+			\end{align*}
+			
+			substituindo em \ref{eq:pit}, temos
+			\[ R^{2}=\del{\dfrac{R\sqrt{2}}{2}}^{2}+r^{2}\implies r=R\dfrac{\sqrt{2}}{2}. \]
+			
+		\end{solution}
+	
+%		\question Sejam $ a>0,M<0 $ e $ f:\intcc{0,a}\longrightarrow\mathbb{R} $ duas vezes derivável, satisfazendo $ |f^{\prime\prime}|\leqslant M $, para todo $ x\in\intcc{0,a} $. Admita que $ f(a/2)>\max\set{f(0),f(a)} $ e prove que $ |f'(0)+f'(a)|\leqslant a\,M $.
+%		\question Para $ n\in\mathbb{N} $ considere $ f(n)=\int_{0}^{\pi/4}\tan^{n}x\dif x$ e demonstre que
+%		\begin{parts}
+%			\part $ f(n+1)<f(n),\forall n\in\mathbb{N} $.
+%			\part $ f(n+2)+f(n)=\dfrac{1}{n+1},\forall n\in\mathbb{N} $.
+%			\part $ \dfrac{1}{n+1}<2f(n)<\dfrac{1}{n-1},\forall n\in\mathbb{N},n>2$.
+%		\end{parts}
+%		\question Seja $ f:\mathbb{R}\longrightarrow\mathbb{R} $ tal que existem constante $ a>0 $ e $ b>0 $ para as quais $ f(x+a)=b\,f(x) $. Prove que existe uma função períodica $ g $ tal que $ b^{x/a}\,g(x)=f(x) $ para todo $ x $. Calcule o período de $ g $.
+		
+%		\clearpage
+
+		\question Demonstrar que $ \displaystyle\int_{0}^{x}\dfrac{\sin t}{1+t}\dif t\geqslant0 $, para todo $ x\geqslant0 $.
+		
+		\begin{solution}
+			Sendo $ \sin t $ uma função contínua e sendo
+			
+%			\clearpage
+			
+			\[ \dod{}{t}\sbr{\dfrac{1}{1+t}}=-\dfrac{1}{\underbrace{\del{1+t}^{2}}}_{\geqslant0}\leqslant 0. \]
+			e contínua no intervalo $ \intco{0,\infty} $, podemos aplicar o teorema 5.5, de tal forma que
+			\[ \int_{0}^{x}\dfrac{\sin t}{1+t}\dif t=\dfrac{1}{1+0}\int_{0}^{c}\sin t\dif t +\dfrac{1}{1+x}\int_{c}^{x}\sin t\dif t,\quad\text{onde }c\in\intcc{0,x}. \]
+			
+			Integrando $ \sin t $, temos
+			\begin{align*}
+				\dfrac{\del{1+x}\eval{\del{-\cos t}}_{0}^{c}+\eval{\del{-\cos t}}_{c}^{x}}{1+x}&=\dfrac{\del{1+x}\del{1-\cos c}+\del{\cos x-\cos c}}{1+x}\\
+				\implies \dfrac{x\del{1-\cos c}-\cancel{\cos c}+\cancel{\cos c}+\del{1-\cos x}}{1+x}
+			\end{align*}
+			e, como para $ x>0 $ segue que $ 1+x>0 $ e como
+			\[ -1\leqslant \cos x\leqslant 1\implies 0\leqslant -\cos x\leqslant 2, \]
+			a expressão
+			\[ \int_{0}^{x}\dfrac{\sin t}{1+t}\dif t=\dfrac{x\del{1-\cos c}+\del{1-\cos x}}{1+x}\geqslant0. \]
+			
+			\hfill\qedsymbol
+		\end{solution}
+	
+		\question Sejam $ f $ e $ g $ funções de $ \mathbb{R} $ em $ \mathbb{R} $ de classe $ \mathcal{C}^{1} $ tais que $ f(0)=0,g(0)=1 $, e $ f'(x)=g(x),g'(x)=-f(x) $, para todo $ x\in\mathbb{R} $. Prove que $ f(x)=\sin x $ e $ g(x)=\cos x $, para todo $ x\in\mathbb{R} $.
+		
+		Hmm... uma dica? Bem... comece provando que $ f^{2}(x)+g^{2}(x) $ é quem deveria ser se tudo fosse o que deveria ser, e depois...
+		
+		\begin{solution}
+			\paragraph{Nota:} Essa questão foi feita com o auxílio de um amigo da matemática.
+			
+			Dado que $f'= g , g'=-f\in \mathcal C^1$, temos que $f$ e $g$ são de classe $\mathcal C^2$. E, de fato, repetindo o procedimento podemos ver que são de classe $\mathcal C^\infty$. Então, a igualdade $f'' = g' = -f$ nos dá um sistema:
+			
+			$$\begin{cases}
+				f''+ f = 0\\
+				f(0) = 0\\
+				f'(0) = 1
+			\end{cases}$$
+			Uma possível solução para a primeira relação é dada da forma $e^{\lambda x}$ para algum $\lambda \in \mathbb C$. Note que
+			$$\forall\,x\in\mathbb R, (e^{\lambda x})'' + e^{\lambda x} = 0 \iff \lambda^2 + 1 = 0 \iff \lambda \in \{i,-i\}.$$
+			Então $x\longmapsto e^{ix}$ e $x\longmapsto e^{-ix}$ são soluções de $f''+f = 0$. Mais ainda, toda combinação linear da forma $ae^{ix}+be^{-ix}$ também é uma solução. Pelo enunciado, temos que
+			\begin{itemize}
+				\item $f(0)=0 \Rightarrow a+b=ae^{i\cdot 0}+be^{-i\cdot 0} = 0 \Rightarrow a +b=0.$
+				\item $f'(0)= 1 \Rightarrow ai - bi = aie^{i\cdot 0}- bi e^{-i\cdot 0}   = 1 \Rightarrow a-b  = -i.$
+			\end{itemize}
+			Basta, então, resolver o seguinte sistema. 
+			$$
+			\begin{cases}
+				a + b = 0\\
+				a - b = -i
+			\end{cases}\Rightarrow \boxed{a = -i/2 = -b}$$
+			
+			Ou seja: $f(x) = -\frac i2 e^{ix}+ \frac i2e^{-ix} = \sin x$ devido a \textit{famosa} relação de Euler $e^{ix}=\cos x + i\sin x$. Como $f' = g$, segue que $g(x) = \cos x$.
+		\end{solution}
+	
+%		\question Seja $ n\in\mathbb{N} $ e $ I_n=\int_{0}^{1}(1-t^{2})^{n}\dif t $. Prove que $ (2n+1)I_n=2n\,I_{n-1} $ e calcule $ I_g $.
+%		\question Seja $ Li:\intco{2,+\infty}\longrightarrow\mathbb{R} $ definida por $ Li(x):=\int_{2}^{x}\dfrac{\dif t}{\log t} $. Prove que:
+%		\begin{parts}
+%			\part $ Li(x)=\dfrac{x}{\log x}+\int_{2}^{x}\dfrac{\dif t}{\log^{2} t}-\dfrac{2}{\log 2} $.
+%			\part $ Li(x)=\dfrac{x}{\log x}+\sum_{k=1}^{n-1}\dfrac{k!\,x}{\log^{k+1}x}+n!\int_{2}^{x}\dfrac{\dif t}{\log^{n+1}t}+C_n$, com $ C_n=\ldots $.
+%			\part $ Li(x)$ é injetora e sua imagem é ...
+%			\part Existe $ b\in\mathbb{R} $ tal que $ \int_{b}^{\log x}\dfrac{\mathrm{e}^{t}}{t}\dif t = Li(x) $, e calcule $ b $.
+%		\end{parts}
+%	\question Seja $ f:\intcc{a,b}\longrightarrow\mathbb{R} $ de classe $ \mathcal{C}^{2} $. Prove que existe $ M\geqslant0 $ tal que $ g(x)=f(x)+M\,x^{2},x\in\intcc{a,b} $, é convexa.
+%	\question Sejam $ f:\mathbb{R}\longrightarrow\mathbb{R},u:\mathbb{R}\longrightarrow\mathbb{R} $ e $ v:\mathbb{R}\longrightarrow\mathbb{R} $, com $ f $ contínua, e $ u $ e $ v $ deriváveis.
+%	\begin{parts}
+%		\part Seja $ G(x)=\int_{0}^{v(x)} f(t)\dif t $, prove que $ G $ é derivável e calcule $ G'(x) $.
+%		\part Seja $ H(x)=\int_{u(x)}^{v(x)} f(t)\dif t $, prove que $ H $ é derivável e calcule $ H'(x) $.
+%	\end{parts}
+%	\question Seja $ f:\mathbb{R}\longrightarrow\mathbb{R} $ uma função integrável em todo intervalo $ \intcc{a,b} $ de $ \mathbb{R} $ e considere $ A(x)=\int_{0}^{x}f(t)\dif t $.
+%	\begin{parts}
+%		\part É verdade que $ A $ é derivável? JUSTIFIQUE!
+%		\part É verdade que, se $ f $ é derivável em $ c $ então $ A' $ é contínua em $ c $? JUSTIFIQUE!
+%	\end{parts}
+		
+	\end{questions}
+\end{document}

@@ -1,0 +1,270 @@
+@incollection{RAGintro,
+	abstract = {V(D)J recombination assembles immunoglobulin and T-cell receptor genes from the preexisting variable (V), diversity (D), and joining (J) gene segments by a cut and paste mechanism. While this receptor diversification strategy enables efficient immune responses against pathogens, it also poses a constant threat to the genome integrity. Tight regulation of this process at multiple levels is therefore critical to prevent genomic instability and neoplastic transformation. In this article, we discuss the temporal and spatial regulation of V(D)J recombination, in addition to the molecular mechanisms that regulate this process. Finally, we discuss the implication of V(D)J recombination in malignancies of the immune system.},
+	address = {Waltham},
+	author = {Lescale, C. and Deriano, L.},
+	booktitle = {Encyclopedia of Cell Biology},
+	doi = {10.1016/B978-0-12-394447-4.30073-6},
+	editor = {Bradshaw, Ralph A. and Stahl, Philip D.},
+	isbn = {978-0-12-394796-3},
+	keywords = {Antigen receptor diversification; cancer; double-strand break; DNA damage response; DNA repair; epigenetics; genomic instability; immunodeficiency; leukemia and lymphoma; lymphocyte; NHEJ; recombination activating genes (RAGs); V(D)J recombination},
+	localfile = {../../../../Downloads/PMC3530083.json; ../../../../Downloads/PMC3530083 (1).nbib; ../../../../Downloads/PMC3530083.ris},
+	pages = {550--566},
+	publisher = {Academic Press},
+	title = {V(D)J Recombination: Orchestrating Diversity without Damage},
+	url = {http://www.sciencedirect.com/science/article/pii/B9780123944474300736},
+	year = {2016}
+}
+
+@article{RAGintro2,
+	author = {Nishana, M. and Raghavan, S. C.},
+	journal = {Immunology},
+	month = {Dec},
+	number = {4},
+	pages = {271--281},
+	title = {{R}ole of recombination activating genes in the generation of antigen receptor diversity and beyond},
+	volume = {137},
+	year = {2012}
+}
+
+@article{main,
+	author = {Bergeron, Serge and Anderson, Dirk and Swanson, Patrick},
+	doi = {10.1016/S0076-6879(06)08032-3},
+	journal = {Methods in enzymology},
+	month = {02},
+	pages = {511--28},
+	title = {RAG and HMGB1 Proteins: Purification and Biochemical Analysis of Recombination Signal Complexes},
+	volume = {408},
+	year = {2006}
+}
+
+@article{introMain,
+	abstract = {V(D)J recombination is of fundamental importance to the generation of diverse antigen receptor repertoires. We review our current understanding of the V(D)J recombination reaction and how it is regulated during lymphocyte development. We also discuss how defects in the mechanism or regulation of V(D)J recombination can lead to human disease.},
+	author = {Bassing, Craig H and Swat, Wojciech and Alt, Frederick W},
+	doi = {10.1016/S0092-8674(02)00675-X},
+	issn = {0092-8674},
+	journal = {Cell},
+	number = {2, Supplement 1},
+	pages = {S45--S55},
+	title = {The Mechanism and Regulation of Chromosomal V(D)J Recombination},
+	url = {http://www.sciencedirect.com/science/article/pii/S009286740200675X},
+	volume = {109},
+	year = {2002}
+}
+
+@book{fig:RAGscheme,
+	author = {gustavocarra},
+	journal = {Wikipedia},
+	month = {Jul},
+	title = {Simplistic overview of V(D)J recombination of immunoglobulin heavy chains},
+	url = {https://en.wikipedia.org/wiki/V(D)J_recombination#/media/File:VDJ_recombination.png},
+	year = {2008}
+}
+
+@article{introMain2,
+	abstract = { V(D)J recombination proceeds through a series of protein:DNA complexes mediated in part by the RAG1 and RAG2 proteins. These proteins are responsible for sequence-specific DNA recognition and DNA cleavage, and they appear to perform multiple postcleavage roles in the reaction as well. Here we review the interaction of the RAG proteins with DNA, the chemistry of the cleavage reaction, and the higher order complexes in which these events take place. We also discuss postcleavage functions of the RAG proteins, including recent evidence indicating that they initiate the process of coding end processing by nicking hairpin DNA termini. Finally, we discuss the evolutionary and functional implications of the finding that RAG1 and RAG2 constitute a transposase, and we consider RAG protein biochemistry in the context of several bacterial transposition systems. This suggests a model of the RAG protein active site in which two divalent metal ions serve alternating and opposite roles as activators of attacking hydroxyl groups and stabilizers of oxyanion leaving groups. },
+	author = {Fugmann, Sebastian D. and Lee, Alfred Ian and Shockett, Penny E. and Villey, Isabelle J. and Schatz, David G.},
+	doi = {10.1146/annurev.immunol.18.1.495},
+	eprint = { https://doi.org/10.1146/annurev.immunol.18.1.495 },
+	journal = {Annual Review of Immunology},
+	note = {PMID: 10837067},
+	number = {1},
+	pages = {495--527},
+	title = {The RAG Proteins and V(D)J Recombination: Complexes, Ends, and Transposition},
+	url = { 
+        https://doi.org/10.1146/annurev.immunol.18.1.495
+    
+},
+	volume = {18},
+	year = {2000}
+}
+
+@article{coreXflRAG1,
+	author = {Akamatsu, Yoshiko and Monroe, Robert and Dudley, Darryll D and Elkin, Sheryl K and G{\"a}rtner, Frank and Talukder, Sadiqur R and Takahama, Yousuke and Alt, Frederick W and Bassing, Craig H and Oettinger, Marjorie A},
+	journal = {Proceedings of the National Academy of Sciences},
+	number = {3},
+	pages = {1209--1214},
+	publisher = {National Acad Sciences},
+	title = {Deletion of the RAG2 C terminus leads to impaired lymphoid development in mice},
+	volume = {100},
+	year = {2003}
+}
+
+@article{coreXflRAG2,
+	author = {Dudley, Darryll D and Sekiguchi, JoAnn and Zhu, Chengming and Sadofsky, Moshe J and Whitlow, Scott and DeVido, Jeffrey and Monroe, Robert J and Bassing, Craig H and Alt, Frederick W},
+	journal = {The Journal of experimental medicine},
+	number = {9},
+	pages = {1439--1450},
+	publisher = {Rockefeller University Press},
+	title = {Impaired V (D) J recombination and lymphocyte development in core RAG1-expressing mice},
+	volume = {198},
+	year = {2003}
+}
+
+@article{coreXflRAG3,
+	abstract = {Previous in vitro studies defined the minimal regions of RAG1 and RAG2 essential for V(D)J recombination. In order to characterize the role of the C-terminal ``dispensable'' portion of RAG2, we generated core-RAG2 knock-in mice. We found that the core-RAG2-containing recombinase complex is selectively defective in catalyzing V-to-DJ rearrangement at the IgH and TCR\ensuremath{\beta} loci, resulting in partial developmental blocks in B and T lymphopoiesis. Analysis of recombination intermediates showed defects at the cleavage phase of the reaction. We also observed a reduction in overall recombinase activity in core-RAG2-expressing thymocytes, leading us to suggest that the interaction of a defective recombinase with RSS sequences unique to VH and V\ensuremath{\beta} gene segments may underlie the specific V-to-DJ rearrangement defect in core-RAG2 mice.},
+	author = {Liang, Hong-Erh and Hsu, Lih-Yun and Cado, Dragana and Cowell, Lindsay G. and Kelsoe, Garnett and Schlissel, Mark S.},
+	doi = {10.1016/S1074-7613(02)00448-X},
+	issn = {1074-7613},
+	journal = {Immunity},
+	number = {5},
+	pages = {639--651},
+	title = {The ``Dispensable'' Portion of RAG2 Is Necessary for Efficient V-to-DJ Rearrangement during B and T Cell Development},
+	url = {http://www.sciencedirect.com/science/article/pii/S107476130200448X},
+	volume = {17},
+	year = {2002}
+}
+
+@article{coreXflRAG4,
+	author = {Talukder, Sadiqur R and Dudley, Darryll D and Alt, Frederick W and Takahama, Yousuke and Akamatsu, Yoshiko},
+	journal = {Nucleic acids research},
+	number = {15},
+	pages = {4539--4549},
+	publisher = {Oxford University Press},
+	title = {Increased frequency of aberrant V (D) J recombination products in core RAG-expressing mice},
+	volume = {32},
+	year = {2004}
+}
+
+@article{flRAGpur1,
+	author = {Elkin, Sheryl K and Matthews, Adam G and Oettinger, Marjorie A},
+	journal = {The EMBO journal},
+	number = {8},
+	pages = {1931--1938},
+	publisher = {John Wiley \& Sons, Ltd Chichester, UK},
+	title = {The C-terminal portion of RAG2 protects against transposition in vitro},
+	volume = {22},
+	year = {2003}
+}
+
+@article{flRAGpur2,
+	author = {Jiang, Hao and Ross, Ashley E and Desiderio, Stephen},
+	journal = {Journal of Biological Chemistry},
+	number = {9},
+	pages = {8478--8486},
+	publisher = {ASBMB},
+	title = {Cell cycle-dependent accumulation in vivo of transposition-competent complexes between recombination signal ends and full-length RAG proteins},
+	volume = {279},
+	year = {2004}
+}
+
+@article{flRAGpur3,
+	author = {Swanson, Patrick C and Volkmer, Dustin and Wang, Lei},
+	journal = {Journal of Biological Chemistry},
+	number = {6},
+	pages = {4034--4044},
+	publisher = {ASBMB},
+	title = {Full-length RAG-2, and not full-length RAG-1, specifically suppresses RAG-mediated transposition but not hybrid joint formation or disintegration},
+	volume = {279},
+	year = {2004}
+}
+
+@article{flRAGpur4,
+	author = {Tsai, Chia-Lun and Schatz, David G},
+	journal = {The EMBO journal},
+	number = {8},
+	pages = {1922--1930},
+	publisher = {John Wiley \& Sons, Ltd Chichester, UK},
+	title = {Regulation of RAG1/RAG2-mediated transposition by GTP and the C-terminal region of RAG2},
+	volume = {22},
+	year = {2003}
+}
+
+@article{figuraabencoada,
+	abstract = {During V(D)J recombination, RAG targeting to correct sites versus off-target sites relies on both DNA sequence features and on chromatin marks. Kinetic analysis using the first highly active full-length purified RAG1/RAG2 complexes has now allowed us to define the important catalytic features of this complex. We found that the overall rate of nicking, but not hairpinning, is critical for the discrimination between correct (optimal) versus off-target (suboptimal) sites used in human T-cell lymphomas, and we show that the C-terminal portion of RAG2 is required for this. This type of kinetic analysis permits us to analyze only the catalytically active RAG complex, in contrast to all other methods, which are unavoidably confounded by mixture with inactive RAG complexes. Moreover, we can distinguish the two major features of any enzymatic catalysis: the binding constant (KD) and the catalytic turnover rate, kcat. Beyond a minimal essential threshold of heptamer quality, further suboptimal heptamer deviations primarily reduce the catalytic rate constant kcat for nicking. Suboptimal nonamers reduce not only the binding of the RAG complex to the recombination site (KD) but also the catalytic rate constant, consistent with a tight interaction between the RAG complex and substrate during catalysis. These features explain many aspects of RAG physiology and pathophysiology.},
+	author = {Shimazaki, Noriko and Askary, Amjad and Swanson, Patrick C. and Lieber, Michael R.},
+	doi = {10.1128/MCB.06187-11},
+	eprint = {https://mcb.asm.org/content/32/2/365.full.pdf},
+	issn = {0270-7306},
+	journal = {Molecular and Cellular Biology},
+	number = {2},
+	pages = {365--375},
+	publisher = {American Society for Microbiology Journals},
+	title = {Mechanistic Basis for RAG Discrimination between Recombination Sites and the Off-Target Sites of Human Lymphomas},
+	url = {https://mcb.asm.org/content/32/2/365},
+	volume = {32},
+	year = {2012}
+}
+
+@article{refcleavage,
+	abstract = {Formation of double-strand breaks at recombination signal sequences is an early step in V(D)J recombination. Here we show that purified RAG1 and RAG2 proteins are sufficient to carry out this reaction. The cleavage reaction can be divided into two distinct steps. First, a nick is introduced at the 5′ end of the signal sequence. The other strand is then broken, resulting in a hairpin structure at the coding end and a blunt, 5′-phosphorylated signal end. The hairpin is made as a direct consequence of the cleavage mechanism. Nicking and hairpin formation each require the presence of a signal sequence and both RAG proteins.},
+	author = {McBlane, J.Fraser and {van Gent}, Dik C. and Ramsden, Dale A. and Romeo, Charles and Cuomo, Christina A. and Gellert, Martin and Oettinger, Marjorie A.},
+	doi = {10.1016/0092-8674(95)90116-7},
+	issn = {0092-8674},
+	journal = {Cell},
+	number = {3},
+	pages = {387--395},
+	title = {Cleavage at a V(D)J recombination signal requires only RAG1 and RAG2 proteins and occurs in two steps},
+	url = {http://www.sciencedirect.com/science/article/pii/0092867495901167},
+	volume = {83},
+	year = {1995}
+}
+
+@article{impRAG2,
+	abstract = {In V(D)J recombination, the RAG1 and RAG2 proteins are the essential components of the complex that catalyzes DNA cleavage. RAG1 has been shown to play a central role in DNA binding and catalysis. In contrast, the molecular roles of RAG2 in V(D)J recombination are unknown. To address this, we individually mutated 36 evolutionarily conserved basic and hydroxy group containing residues within RAG2. Biochemical analysis of the recombinant RAG2 proteins led to the identification of a number of basic residue mutants defective in catalysis in vitro and V(D)J recombination in vivo. Five of these were deficient in binding of the RAG1-RAG2 complex to its cognate DNA target sequence while interacting normally with RAG1. Our findings provide support for the direct involvement of RAG2 in DNA binding during all steps of the cleavage reaction.},
+	author = {Fugmann, Sebastian D and Schatz, David G},
+	doi = {10.1016/S1097-2765(01)00352-5},
+	issn = {1097-2765},
+	journal = {Molecular Cell},
+	number = {4},
+	pages = {899--910},
+	title = {Identification of Basic Residues in RAG2 Critical for DNA Binding by the RAG1-RAG2 Complex},
+	url = {http://www.sciencedirect.com/science/article/pii/S1097276501003525},
+	volume = {8},
+	year = {2001}
+}
+
+@article{impRAG1,
+	author = {Ko, Jung Eun and Kim, Choong Won and Kim, Deok Ryong},
+	journal = {Journal of Biological Chemistry},
+	number = {9},
+	pages = {7715--7720},
+	publisher = {ASBMB},
+	title = {Amino acid residues in RAG1 responsible for the interaction with RAG2 during the V (D) J recombination process},
+	volume = {279},
+	year = {2004}
+}
+
+@article{RAG1cof,
+	author = {Akamatsu, Yoshiko and Oettinger, Marjorie A},
+	journal = {Molecular and Cellular Biology},
+	number = {8},
+	pages = {4670--4678},
+	publisher = {Am Soc Microbiol},
+	title = {Distinct roles of RAG1 and RAG2 in binding the V (D) J recombination signal sequences},
+	volume = {18},
+	year = {1998}
+}
+
+@article{newandcool,
+	author = {Zhang, Yu-Hang and Shetty, Keerthi and Surleac, Marius D and Petrescu, Andrei J and Schatz, David G},
+	journal = {Journal of Biological Chemistry},
+	number = {19},
+	pages = {11802--11817},
+	publisher = {ASBMB},
+	title = {Mapping and quantitation of the interaction between the recombination activating gene proteins RAG1 and RAG2},
+	volume = {290},
+	year = {2015}
+}
+
+@article{phthymo,
+	author = {Grinstein, S and Cohen, S and Lederman, Howard M and Gelfand, EW},
+	journal = {Journal of cellular physiology},
+	number = {1},
+	pages = {87--95},
+	publisher = {Wiley Online Library},
+	title = {The intracellular pH of quiescent and proliferating human and rat thymic lymphocytes},
+	volume = {121},
+	year = {1984}
+}
+
+@article{phmes,
+	author = {Llopis, Juan and McCaffery, J Michael and Miyawaki, Atsushi and Farquhar, Marilyn G and Tsien, Roger Y},
+	journal = {Proceedings of the National Academy of Sciences},
+	number = {12},
+	pages = {6803--6808},
+	publisher = {National Acad Sciences},
+	title = {Measurement of cytosolic, mitochondrial, and Golgi pH in single living cells with green fluorescent proteins},
+	volume = {95},
+	year = {1998}
+}
+

@@ -1,0 +1,16 @@
+1. 
+
+A equação proposta é só a equação de van der Waals sem o parâmetro a, que corrige valores para levar em conta interações intermoleculares atrativas. Essas interações são as resposáveis pela liquefação, então não se espera que os gases se liquefaçam. 
+
+Em particular, as isotermas da equação proposta são só uma translação por b das isotermas de gases ideais. A informação sobre liquefação contida na equação de van der Waals (regiões físicamente "incorretas" onde P e V aumentam juntos) só existe pelo seu caráter cúbico, mas as isotermas de gases ideais e da equação proposta são lineares. Logo, não devem conter informação sobre ou prever liquefação.
+
+3. 
+
+PV & = nRT \\
+& = \frac{m}{MM}RT \\ 
+P & = \frac{\rho RT}{MM} \\
+\frac{P}{\rho} & = \frac{RT}{MM} \\
+\lim_{P \xrightarrow[]{} 0}{0,700510 - 6,732} \cdot 10^{-4}P & = \frac{RT}{MM} \\
+0,700510 & = \frac{RT}{MM} \\
+R & = \frac{0,700510 \cdot 32}{273,15}\\
+R & = 0,082066 \frac{L\;atm}{mol\;K}

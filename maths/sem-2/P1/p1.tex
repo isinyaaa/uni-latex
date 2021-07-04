@@ -1,0 +1,323 @@
+\documentclass{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\usepackage{booktabs}
+\usepackage{stackengine,collcell}
+\let\endminwd\relax
+%\newcolumntype{L}[1]{>{\collectcell\xminwd l{#1}$}l<{$\endminwd\endcollectcell}}
+\newcolumntype{C}[1]{>{\collectcell\xminwd c{#1}$}c<{$\endminwd\endcollectcell}}
+%\newcolumntype{R}[1]{>{\collectcell\xminwd r{#1}$}r<{$\endminwd\endcollectcell}}
+\def\minwd#1#2#3\endminwd{\stackengine{0pt}{#3}{\rule{#2}{0pt}}{O}{#1}{F}{F}{L}}
+\newcommand\xminwd[1]{\minwd#1}
+
+\givecredits
+\author{Isabella B. Amaral}
+\USPN{11810773}
+\lecture{Matemática II}
+\examname{Prova I}
+\hwtype{Resolução}
+\lcode{}
+\date{20 de maio}
+
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}[question]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand\restrict[1]{{% we make the whole thing an ordinary symbol
+        \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+        % the function
+        \vphantom{\big|} % pretend it's a little taller at normal size
+        \right|_{#1} % this is the delimiter
+}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand{\decSep}{,}
+\newcommand{\decNum}[3]{\rlap{\ensuremath{\phantom{#1\mathord{\decSep}#2}\overline{\phantom{#3}}}}\num{#1.#2#3}}
+%\newcommand{\decSI }[4]{\rlap{\ensuremath{\phantom{#1\mathord{\decSep}#2}\overline{\phantom{#3}}}}\SI{#1.#2#3}{#4}}
+
+
+\begin{document}
+
+    \maketitle
+
+    \begin{questions}
+        \question Se o seu número USP for par demonstre que $ \cos 1 $ é
+        irracional, mas se o seu número USP for ímpar demonstre que $ \sin 1 $ é
+        irracional.
+
+        \begin{solution}
+            Sabemos, por 7.1, uma função $ f $ pode ser aproximada unicamente por um polinômio em
+            torno de um ponto $ a $ por
+            \[ f(x) = T(f, a)(x) = f(a) + \dfrac{f'(a)}{1!}(x - a) +
+            \dfrac{f^{\prime\prime}(a)}{2!}(x - a)^2 + ... = \sum_{n = 0}^\infty
+            \dfrac{f^{(n)}}{n!}(x - a)^n. \]
+            Dessa forma podemos fazer
+            \begin{align*}
+                \sin 1 = T(\sin, 0)(1) &= \sin 0 +
+                \dfrac{\sin'(0)}{1!}(x - 0) +
+                \cancel{\dfrac{\sin^{\prime\prime}(0)}{2!}(x - 0)^2} + \cdots\\
+                &= 1 - \dfrac{1}{3!} + \dfrac{1}{5!} - \cdots,
+            \end{align*}
+            portanto, supondo que $ \alpha=\sin 1 $ é da forma $ a/b $, onde $
+            a,b\in\mathbb{Z} $, devemos ter $b!\alpha$ como um inteiro. Vamos
+            separá-lo em duas porções $b!\alpha = C+D$. Defina
+            \[s=\begin{cases}
+                b-1,&\textup{para $b$ ímpar}\\
+                b,&\textup{para $b$ par}
+            \end{cases}\]
+            fazemos, então
+            \[ C =  1 - \dfrac{1}{3!} + \cdots + (-1)^{-(s+1)/2}\dfrac{b!}{s!} \]
+            de tal forma que é claramente formado por inteiros e, portanto, a
+            porção restante, $D$, também deve ser inteira.
+            Porém verificamos que
+            \[ D = \begin{cases}
+                (-1)^{-(s+1)/2+1}\del{\dfrac{1}{(b+1)}-\dfrac{1}{(b+1)(b+3)}+\cdots},&\textup{para $b$ par}\\
+                (-1)^{-(s+1)/2+1}\del{\dfrac{1}{(b+2)}-\dfrac{1}{(b+2)(b+4)}+\cdots},&\textup{para $b$ ímpar}
+            \end{cases}\]
+            e, sendo o segundo caso estritamente menor que o primeiro, temos que as somas são limitadas por
+            \[ \dfrac{1}{(b+1)}-\dfrac{1}{(b+1)(b+3)}+\cdots <
+            \dfrac{1}{(b+1)}+\dfrac{1}{(b+1)(b+3)(b+5)}+\cdots <
+            \sum_{n=1}^\infty (b+1)^{-1} \]
+            que é uma série geométrica convergente.
+            Como essa série converge para
+            \[ \sum_{n=1}^\infty (b+1)^{-1} = \dfrac{1/(b+1)}{1-1/(b+1)} = \dfrac{1}{b} < 1 \]
+            e, como os termos são não nulos, temos uma contradição, pois $D\notin \mathbb{Z}$.
+
+            \hfill\qedsymbol
+        \end{solution}
+        \clearpage
+
+        \question Suponha que $ f \colon (−1, 1) \longrightarrow \mathbb{R} $
+        e $ g \colon (−1, 1) \longrightarrow \mathbb{R} $ são funções
+        cinco vezes deriváveis, $ f $ é ímpar,
+        \[ \lim\limits_{x\to0} \dfrac{f(x)−\sin(x)}{x^5} = 0 \]
+        e $ T_3(g;0)(x) = 1 − x+x^3$.
+
+        Suponha que $ h(x) = f (x)g(x) $ satisfaz $ h^{(5)}(0) = 1 $
+        e calcule $ T_4(g; 0)(x) $.
+
+        \begin{solution}
+            Pelo limite, temos que $f(x)$ é bem aproximado por um seno, até um
+            polinômio de quinto grau, de tal forma que $f(0)=0, f'(0)=1,
+            f^{\prime\prime}(0)=0, f^{(3)}(0)=-1, f^{(4)}(0)=0, f^{(5)}(0)=1$, e
+            portanto, temos
+            \begin{align*}
+            h^{(5)}(0)&= \cancelto{1}{f^{(5)}g(0)}+ \cancel{5f^{(4)}(0)g'(0)}+
+            \cancelto{-1}{f^{(3)}}10g^{\prime\prime}(0)+
+            \cancel{10f^{\prime\prime}(0)g^{(3)}(0)}+
+            \cancelto{1}{f'(0)}5g^{(4)}(0)+ \cancel{f(0)\,g^{(5)}(0)}\\
+            1&=1-10g^{\prime\prime}(0)+5g^{(4)}(0)\\
+            \intertext{pelo formato de $T_3(g;0)(x)$ notamos que $g^{\prime\prime}(0)=0$, portanto}
+            0&=g^{(4)}(0),
+            \end{align*}
+            e, dessa forma, $T_4(g; 0)(x)=T_3(g;0)(x) = 1 − x+x^3$.
+        \end{solution}
+
+        \question Calcule as integrais abaixo:
+
+        \begin{enumerate}[label=(\roman*)]
+            \item \[ \int \dfrac{3x^2+2}{(x-1)(x^2+4)^2}\dif x \]
+            \begin{solution}
+                Por decomposição em frações parciais, temos que
+                \begin{align*}
+                    \dfrac{3x^2+2}{(x-1)(x^2+4)^2} &=
+                    \dfrac{A}{x-1}+\dfrac{Bx+C}{x^2+4}+\dfrac{Dx+E}{(x^2+4)^2}\\
+                    &=\dfrac{A(x^2+4)^2+(Bx+C)(x-1)(x^2+4)+(Dx+E)(x-1)}{(x-1)(x^2+4)^2}\\
+                    %&=\dfrac{(A+B)x^4+(C-B)x^3+(8A+4B-C+D)x^2+(4C-4B+E-D)x+(16A-4C-E)}{(x-1)(x^2+4)^2}
+                \end{align*}
+                e, comparando coeficientes, temos
+                \[ \begin{cases}
+                    A+B=0\implies A=-B\\
+                    C-B=0\implies B=C\\
+                    8A+4B-C+D=3\implies -5C+D=3\\
+                    4C-4B+E-D=0\implies D=E\\
+                    16A-4C-E=2\implies -20C-D=2
+                \end{cases} \]
+                o que implica em $ B=C=-A=-1/5 $ e $ D=E=2 $.
+                Agora temos um problema mais simples
+                \begin{align*}
+                    \int \dfrac{3x^2+2}{(x-1)(x^2+4)^2}\dif
+                    x&=\int\dfrac{1/5}{x-1}+\dfrac{-x/5-1/5}{x^2+4}+\dfrac{2x+2}{(x^2+4)^2}\dif
+                    x\\
+                    &=\dfrac{1}{5}\underbrace{\int\dfrac{1}{x-1}\dif
+                    x}_{(1)}-\dfrac{1}{5}\underbrace{\int\dfrac{x+1}{x^2+4}\dif
+                    x}_{(2)}+2\underbrace{\int\dfrac{x+1}{(x^2+4)^2}\dif
+                    x}_{(3)}
+                \end{align*}
+                Substituindo $ u = x-1 \implies \dif u = \dif x $
+                notamos que a integral (1) se trata de um $ \ln x $ (por definição).
+                Para a segunda integral, podemos fazer
+                \begin{align*}
+                    \int \dfrac{x+1}{x^2+4}\dif x&=\int \dfrac{(x/2)/2+1/4}{\del{x/2}^2+1}\dif x\\
+                    \intertext{tomando $\tan t = x/2 \implies \dif x = \sec^2 t \dif t$}
+                    &=\int \dfrac{\tan t/2+1/4}{\tan^2 t+1}\sec^2 t \dif t\\
+                    &=\int \dfrac{1}{2}\dfrac{\sin t}{\cos t}\dif t+\int\dfrac{1}{4}\dif t\\
+                    \intertext{seja $v = \cos t \implies \dif v = -\sin t \dif t$}
+                    &=\int \dfrac{1}{2}\dfrac{-\dif v}{v}+\dfrac{\arctan (x/2)}{4}\\
+                    &=-\dfrac{1}{2}\ln \cos\arctan (x/2)+\dfrac{\arctan (x/2)}{4}.
+                \end{align*}
+                Pela relação fundamental da trigonometria temos que
+                \[ \sin^2\theta+\cos^2\theta = 1\implies \cos^2 \theta=\del{\tan^2 \theta+1}^{-1} \]
+                substituindo $\theta = \arctan \alpha$ temos
+                \begin{equation}\label{eq:cosarctan}
+                    \cos\arctan \alpha=\del{\alpha^2 + 1}^{-1/2}.
+                \end{equation}
+                Dessa forma a segunda integral iguala
+                \[ \int \dfrac{x+1}{x^2+4}\dif x=\dfrac{1}{4}\del{\ln \del{(x/2)^2+1}+\arctan (x/2)} \]
+                Por semelhança, notamos que a substituição trigonométrica na terceira integral nos dá
+                \begin{align*}
+                    \int\dfrac{\tan t/8+1/16}{(\tan^2 t+1)^2}\sec^2 t\dif
+                    t&=\dfrac{1}{8}\int\dfrac{\tan t}{\sec^2 t}\dif t+
+                    \dfrac{1}{16}\int\dfrac{1}{\sec^2 t} \dif t\\
+                    &=\dfrac{1}{8}\int\underbrace{\sin t}_{=w} \cos t\dif t+ \dfrac{1}{16}\int \cos^2 t \dif t\\
+                    &=\dfrac{1}{8}\int w \dif w +\dfrac{1}{32}\int 1 + \cos \underbrace{2t}_{=x} \dif t\\
+                    &=\dfrac{1}{16} w^2 +\dfrac{1}{32}\del{t+\int \cos x \dif x}\\
+                    \int\dfrac{x+1}{(x^2+4)^2}\dif x&=\dfrac{1}{16}\del{\sin^2
+                    (x/2)+\dfrac{1}{2}\sin x +\dfrac{1}{4}x}
+                \end{align*}
+                Dessa forma, adotando que $C$ é uma constante arbitrária, temos:
+                \[ \begin{split}
+                    \int \dfrac{3x^2+2}{(x-1)(x^2+4)^2}\dif x=
+                    \dfrac{1}{5}\ln\del{\dfrac{x-1}{\del{x^2/4+1}^{1/4}}}+
+                    &\dfrac{1}{20}\arctan\del{\dfrac{x}{2}}+\\
+                    \dfrac{1}{8}&\del{\sin^2\del{\dfrac{x}{2}}+\dfrac{1}{2}\sin x+\dfrac{1}{4}x} + C
+                \end{split}
+                 \]
+            \end{solution}
+            \item \[ \int \dfrac{1}{1+ a\sin x}\dif x\textup{, em que }0<a<1 \]
+            \begin{solution}
+                Fazendo $a\sin x = \tan^2 t \implies a\cos x \dif x = 2\tan t\sec^2 t\dif t$, portanto
+                \begin{align*}
+                    \int \dfrac{1}{1+ a\sin x}\dif x&=\int \dfrac{1}{1+\tan^2
+                    t}\dfrac{2\tan t\sec^2 t}{a\cos t}\dif t=\int \dfrac{2\sin
+                    t}{a\cos^2 t}\dif t\\
+                    \intertext{fazendo $u = \cos t\implies \dif u = - \sin t \dif t$}
+                    &=-\dfrac{2}{a}\int
+                    \dfrac{\dif u}{u^2}=\dfrac{2}{au}\\
+                    \intertext{adotando que $C$ é uma constante arbitrária, temos}
+                    \int \dfrac{1}{1+ a\sin x}\dif x&=\dfrac{2}{a\cos
+                    \sqrt{\arccos \del{a\sin x}}} + C
+                \end{align*}
+            \end{solution}
+            \item \[ \int \dfrac{\sqrt{4-x-x^2}}{x^2}\dif x \]
+            \item \[ \int \dfrac{\arctan{\sqrt{x}}}{(1+x)\sqrt{x}}\dif x \]
+            \begin{solution}
+                Primeiro, precisamos de alguns resultados parciais, como
+                \begin{align*}
+                    f\circ f^{-1}(x)=x\implies \dod{}{x}f^{-1}&=\dfrac{1}{\dod{}{u}f(u)},\quad u=f^-1\\
+                    \implies \dod{}{x}\arctan(x)&=\dfrac{1}{\dod{}{u}\tan u},\quad u=\tan^{-1}\\
+                        &=\dfrac{1}{\sec^2\tan^{-1}x}\\
+                    \intertext{substituindo \ref{eq:cosarctan}}
+                        \dod{}{x}\arctan(x)&=\cos^2\tan^{-1}x=\dfrac{1}{1+x^2}.
+                \end{align*}
+                Dessa forma, substituindo $ u = \arctan \sqrt x\implies \dif u = (1+x)^{-1}\od{}{x}\sqrt x = \dif x/(2(x+1)\sqrt x) $, temos
+                \begin{align*}
+                    \int \dfrac{\arctan{\sqrt{x}}}{(1+x)\sqrt{x}}\dif x&=\int 2u\dif u=u^2\\
+                    \intertext{adotando que $C$ é uma constante arbitrária, temos}
+                    \int \dfrac{\arctan{\sqrt{x}}}{(1+x)\sqrt{x}}\dif x&=\del{\arctan\sqrt x}^2 + C
+                \end{align*}
+            \end{solution}
+        \end{enumerate}
+
+        \question Justifique suas afirmações e cálculos.
+
+        \begin{enumerate}[label=(\roman*)]
+            \item Prove que a equação $ \cos x = x $ tem apenas uma solução
+            positiva.
+
+            \begin{solution}
+                Sendo $f(x)=\cos x-x$ segue que $f'(x)=\sin x - 1\leqslant 0$,
+                de tal forma que sempre $f(x)$ é estritamente decrescente e,
+                dessa forma, sendo $f(0)=1>-\pi/2=f(\pi/2)$, pelo teorema do
+                valor intermediário deve possuir uma solução única e positiva.
+            \end{solution}
+            \item Use que $ \num{1.7320} < \sqrt{3} < \num{1.7321} $
+            e o polinômio de Taylor de ordem... de
+            $ \cos x $ em zero para provar que $ r = \sqrt{3} − 1 $
+            satisfaz $ \envert{\cos r − r} < \num{0.012} $.
+
+            \begin{solution}
+                Sendo a derivação da função $\cos x$ ``periódica", i.e.
+                \begin{center}
+                    \begin{tabular}{lr}\toprule
+                        $f'(0)=$ & $\eval{\sbr{-\sin x}}_{x=0}=0$ \\
+                        $f^{\prime\prime}(0)=$ & $\eval{\sbr{-\cos x}}_{x=0}=-1$ \\
+                        $f^{(3)}(0)=$ & $\eval{\sbr{\sin x}}_{x=0}=0$ \\
+                        $f^{(4)}(0)=$ & $\eval{\sbr{\cos x}}_{x=0}=1$ \\
+                        \bottomrule
+                    \end{tabular}
+                \end{center}
+                podemos tomar a expansão de Taylor de ordem 4
+                \[ T_4(\cos; 0)(x) = 1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}, \]
+                e, substituindo o valor desejado, temos:
+                \begin{align*}
+                    T_4(\cos; 0)(r = \sqrt{3} − 1) &= 1-\dfrac{\del{\sqrt{3} − 1}^2}{2!}+\dfrac{\del{\sqrt{3} − 1}^4}{4!}\\
+                    &=1-\dfrac{3+1-2\sqrt 3}{2!}+\dfrac{\del{4-2\sqrt 3}^2}{4!}\\
+                    &=\del{\sqrt 3 - 1}+\dfrac{16-16\sqrt 3 + 12}{4!}\\
+                    T_4(\cos; 0)(r)&=\del{\sqrt 3 - 1}+\dfrac{7-4\sqrt 3}{6}
+                \end{align*}
+                de tal forma que a expressão desejada nos deixa com
+                \[ \cos r - r \approx \del{\sqrt 3 - 1}+\dfrac{7-4\sqrt 3}{6}-\del{\sqrt 3 - 1}=\dfrac{7-4\sqrt 3}{6}, \]
+                portanto, temos
+                \begin{align*}
+                    \num{1.7320} &< \sqrt{3} < \num{1.7321}\\
+                    -\num{1.7320} &> -\sqrt{3} > -\num{1.7321}\\
+                    \dfrac{7-4\cdot \num{1.7320}}{6}&> \dfrac{7-4\sqrt 3}{6} > \dfrac{7-4\cdot \num{1.7321}}{6}\\
+                    \num{0.012}&> \dfrac{7-4\sqrt 3}{6} > \decNum{0}{0119}{3}\\
+                    \implies \envert{\dfrac{7-4\sqrt 3}{6}}=\envert{\cos r − r}&< \num{0.012}.
+                \end{align*}
+
+                \hfill\qedsymbol
+            \end{solution}
+            \item Decida se $ r $ é maior ou menor do que a raiz
+            positiva da equação $ \cos x = x $.
+
+            \begin{solution}
+                Sabemos que a função $f(x)=\cos x - x$ é estritamente
+                decrescente, dessa forma, dado que $\num{0.012}>\cos
+                r-r=f(r)>\decNum{0}{0119}{3}$,
+                $r$ é maior que a raíz positiva de $f(x)=0$.
+            \end{solution}
+        \end{enumerate}
+
+        \question Use as duas primeiras derivadas não nulas de
+        $ f(x) = \sin(x^2) $ em zero e obtenha uma
+        aproximação de $ \int f (x) \dif x$ com o uso do polinômio de
+        Taylor correspondente.
+
+        Apresente a melhor estimativa de erro que conseguir para sua
+        aproximação.
+
+        \begin{solution}
+            Derivando a função $f(x)$, temos
+            \begin{center}
+                \begin{tabular}{lr}\toprule
+                    $f'(0)=$ & $\eval{\sbr{2x\cos(x^2)}}_{x=0}=0$\\
+                    $f^{\prime\prime}(0)=$ & $\eval{\sbr{2\cos(x^2)-4x^2\sin (x^2)}}_{x=0}=2$ \\
+                    $f^{(3)}(0)=$ & $\eval{\sbr{-4x\del{3\sin(x^2)+x^2\cos(x^2)}}}_{x=0}=0$ \\
+                    $f^{(4)}(0)=$ & $\eval{\sbr{4\del{-3\sin(x^2)+15x^2\cos (x^2)+8x^4\sin(x^2)}}}_{x=0}=-12$\\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+            portanto, temos a integral da expansão de Taylor
+            \[ \int T_4(f;0)(x)\dif x=\int \dfrac{2}{2!}x^2+\dfrac{-12}{4!}x^4\dif x=\dfrac{1}{3}x^3-\dfrac{1}{2}\dfrac{1}{5}x^5+C,\quad C\in\mathbb{R}, \]
+            e, conforme a aproximação seria melhorada usando $T_5(f;0)(x)$, temos que
+            \[ f(x)= \sum_{n = 0}^\infty \dfrac{f^{(n)}}{n!}(x - a)^n=
+            T_4(f;0)(x) + \cdots\]
+            De tal forma que, utilizando o próximo termo não nulo da série, i.e.
+            \begin{align*}
+                f^{(6)}(0)&=\eval{\dod[2]{}{x}\sbr{4\del{-3\sin(x^2)+15x^2\cos (x^2)+8x^4\sin(x^2)}}}_{x=0}\\
+                &=\eval{\dod{}{x}\sbr{4\del{-3\cdot 2x\cos(x^2)+15\del{2x\cos (x^2)+x^2(-2x\sin(x^2))}+8\del{4x^3\sin(x^2)+x^4\cdot 2x\cos(x^2)}}}}_{x=0}\\
+                &=\eval{\dod{}{x}\sbr{8\del{12x\cos (x^2)+x^3\sin(x^2)+8x^5\cos(x^2)}}}_{x=0}\\
+                &=\eval{\sbr{8\del{12\del{\cos (x^2)-x\cdot 2x\sin(x^2)}+3x^2\sin(x^2)+x^3\cdot 2x\cos(x^2)+8\del{5x^4\cos(x^2)-x^5\cdot 2x\sin(x^2)}}}}_{x=0}\\
+                f^{(6)}(0)&=\eval{\sbr{8\del{12\cos (x^2)-9x^2\sin(x^2)+42x^4\cos(x^2)-16x^6\sin(x^2)}}}_{x=0}=48
+            \end{align*}
+            podemos estimar um erro de
+            \[\int f(x)-T_4(f;0)(x)\dif x \approx \int \dfrac{f^{(6)}(0)}{6!}x^6 \dif x=\int \dfrac{48}{6!}x^6\dif x=\dfrac{48}{7!}x^7+C,\quad C\in\mathbb{R}. \]
+
+        \end{solution}
+    \end{questions}
+\end{document}

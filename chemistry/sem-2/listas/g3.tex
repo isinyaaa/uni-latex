@@ -1,0 +1,21 @@
+\documentclass[border=5pt]{article}
+
+\usepackage{IMTtikz}
+
+\begin{document}
+    \begin{align*}
+        P&=\dfrac{RT}{V_m - b}\\
+        V_m&=\dfrac{RT+bP}{P}
+    \end{align*}
+    de tal forma que
+    \begin{align*}
+        Z=\dfrac{V_m}{V_m^0}&>1\\ 
+        \implies  \dfrac{RT/P}{RT/P^0} + \dfrac{b}{RT/P^0} =\dfrac{P^0}{P} + \dfrac{bP^0}{RT}&>1\\ 
+        \implies P^0\del{\dfrac{1}{P} + \dfrac{b}{RT}}&>1\\
+        \implies P^0 &> P\del{1- \dfrac{bP}{RT}} \\ 
+        \implies \dfrac{bP^0}{RT}P &> 1 - P^0 \\
+        \implies P &> (1 - P^0) \dfrac{RT}{bP^0}\\
+        \implies P &> RT\del{\dfrac{1}{P^0} - 1}\dfrac{1}{b}\\
+        \implies P &> \underbrace{RT}_\text{const.}\del{\dfrac{V_m^0}{RT} - 1}\dfrac{1}{b} \\ 
+    \end{align*}
+\end{document}

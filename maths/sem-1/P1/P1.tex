@@ -1,0 +1,408 @@
+\documentclass{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+
+\givecredits
+\author{Isabella B. Amaral}
+\USPN{118010773}
+\lecture{Matemática I}
+\examname{Prova I}
+\hwtype{Resolução}
+\lcode{}
+\date{27 de Setembro}
+
+\newtheorem{theorem}{Teorema}[question]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\begin{document}
+	
+	\maketitle
+	
+	\paragraph{Nota:} Todos os teoremas e axiomas referenciados nessa prova são citados pelo Apostol no capítulo introdutório, a não ser que seja explicitado o contrário.
+	
+	\begin{questions}
+		\titledquestion{Grupo I --- Q1}
+		
+		Seja $ A \subset \mathbb{R}^{+}, A \neq \emptyset $ e considere $ B = \set{x \in \mathbb{R} : x = \dfrac{1}{y}, y \in A} $.
+		
+		\begin{parts}
+			\part Prove que $ A $ tem ínfimo.
+			
+			\begin{solution}
+				Dado um elemento $ c\in C $, para $ C\subset \mathbb{R} $, seja $ C $ limitado superiormente por $ a\in A $, temos que quaisquer $ a,c $ satisfazem $ c\leqslant a $. Pelo teorema 1.34, os conjuntos $ A $ e $ C $ possuem ínfimo e supremo, respectivamente, que satisfazem $ \sup C\leqslant\inf A $. (Resolução inspirada por comentários de colegas).
+				
+				\hfill\qedsymbol
+			\end{solution}
+		
+			\part Prove que $ \inf A \geqslant 0 $.
+			\begin{solution}
+				Seja $ n=\inf A $, suponha $ n<0 $:
+				Temos que, para $ \varepsilon>0 $ tão pequeno quanto se queira, é possível termos $ n+\epsilon<0 $. Porém, pelo teorema 1.32, $ n+\varepsilon>a $, para algum $ a\in A $. Absurdo! Porque qualquer $ a\in A $ deve ser estritamente positivo por definição. (Resolução inspirada por comentários de colegas.)
+				
+				\hfill\qedsymbol
+			\end{solution}
+			
+			\part Prove que, se $ \inf A > 0 $ então $ B $ tem supremo.
+			\begin{solution}
+				Começarei demonstrando 3 lemas:
+				
+				\begin{lemma}\label{lemma:lem1}
+					Dado $ a $ real, $ a>0\iff a^{-1}>0 $.
+				\end{lemma}
+				
+				\begin{proof}
+					Seja $ b=a^{-1}\cdot a^{-1}=(a^{-1})^{2} $, pelo teorema 1.20 temos que $ b>0 $ e, dessa forma, $ a\cdot b=a(a^{-1}\cdot a^{-1})=(a\cdot a^{-1})a^{-1}=a^{-1} $ que também deve pertencer a $ \mathbb{R}^{+} $ (axioma 7). (Note que automaticamente vale a recíproca)
+				\end{proof}
+				
+				\begin{lemma}\label{lemma:lem2}
+					Dados $ a,b\in\mathbb{R}^{+} $ tais que $ 0<a<b $, teremos que seus inversos obedecem $ 0<b^{-1}<a^{-1} $.
+				\end{lemma}
+				
+				\begin{proof}
+					Sendo $ b>a $ vale que $ b^{-1}\cdot b = 1 > b^{-1}\cdot a $, e disso, temos $ a^{-1}\cdot 1 > (a^{-1}\cdot a)\cdot b^{-1}=b^{-1} $. E pelo lema \ref{lemma:lem1}, temos que $ 0<b^{-1}<a^{-1} $.
+				\end{proof}
+				
+				\begin{lemma}
+					Dado um real positivo $ x $, vale que, (a) se $ x>1 $, temos $ 0<x^{-1}<x $ e (b) se $ 0<x<1 $, temos $ 0<x<x^{-1} $.
+				\end{lemma}
+				
+				\begin{proof}
+					Pelo axioma 6, o inverso de 1 é ele mesmo (trivial), dessa forma, pelo teorema 1.21, no primeiro caso (a) do lema, temos $ 0<1<x $, e pelo lema \ref{lemma:lem2} vale que $ 0<x^{-1}<1<x $ e, automaticamente, vale que $ 0<x^{-1}<x $. Para o segundo caso (b) temos uma demonstração equivalente ($ 0<x<1\overset{\textup{\small lema \ref{lemma:lem2}}}{\implies}0<x<1<x^{-1} $).
+				\end{proof}
+			
+				Dessa forma, segue que, para $ a>1,a\in A $, temos $ 0<a^{-1}<1<a $, de tal forma que, para $ a_2>a_1>1 $, os respectivos $ b_1=a_1^{-1} $ e $ b_2=a_2^{-1} $ ficam na ordem $ b_2>b_1>1>b_1^{-1}>b_2^{-1}>0 $, e para $ a_n $, com $ n $ grande o suficiente, conseguimos um $ b $ tão perto de zero quanto se queira (definitivamente não é um supremo, mas pode ser um ínfimo).
+				
+				Para $ a=1 $ segue que $ b=1 $, porém, para $ 0<a<1 $ temos o comportamento inverso do parágrafo anterior. Sendo $ 0<a<1<a^{-1} $, dados $ 0<a_2<a_1<1 $, teremos $ 0<a_2<a_1<1<a_1^{-1}<a_2^{-1} $, e a sequência de elementos de $ B $ poderá ser tão grande quanto menor seja $ a\in A $. Se $ \inf A>0 $, existe somente um $ a_m\in A $ tal que $ \inf A=a_m $, e como $ 0<a_m<a_n $ para qualquer $ a_n\in A $, $ b_m=a_m^{-1} $ deve ser o maior $ b\in B $ (i.e. seu supremo).
+				
+				Para $ \inf A=0 $ não existe $ a\in A $ cumprindo o papel de $ a_m $, e não deve haver majorante para $ B $, pois sempre haverá um $ 0<k<a_n $ tal que $ k^{-1}>a_n^{-1} $. 
+				
+				\hfill\qedsymbol
+			\end{solution}
+			
+			\part Prove que, se $ B $ tem supremo então $ \inf A > 0 $.
+			\begin{solution}
+				Pela resolução do item anterior, podemos notar que $ B $ só tem supremo quando $ \inf A>0 $.
+			\end{solution}
+		\end{parts}
+		
+		\titledquestion{Grupo I --- Q3} Sejam $ k \in \mathbb{N} $ e $ \varepsilon > 0 $, prove que existe $  n \in \mathbb{N} $ tal que $ \dfrac{n^{k}}{n!} < \varepsilon $.
+		
+		\begin{solution}
+			Assumindo $ n\neq 0, n\in\mathbb{N} $. Começarei demonstrando 2 lemas:
+			
+			\begin{lemma}\label{lemma:lem4}
+				Para qualquer $ \varepsilon > 0 $ tão pequeno quanto se queira, podemos ter um $ x\in\mathbb{R}^{+} $ tal que $ 0<x < \varepsilon $.
+			\end{lemma}
+			
+			\begin{proof}
+				Pelo teorema 1.30, sempre há um $ n $ inteiro positivo tal que, dados $ x,y $ reais, $ x>0 $, temos $ nx>y $. Restringindo para $ y>0 $, temos, pelo teorema 1.19, que pode-se introduzir uma variável $ c>0 $ real tal que $ c(nx)=\varepsilon $ e, então, teremos $ cy<c(nx)=\varepsilon $. Fixando $ n=1 $, temos que $ x $ e $ c $ são reais positivos arbitrariamente pequenos (o que nos permite gerar qualquer $ \varepsilon $ de interesse), e está provado o lema.
+			\end{proof}
+		
+			\begin{lemma}
+				Dado um inteiro positivo qualquer $ n $, podemos conseguir um real $ x=1/n $ tão pequeno quanto se queira.
+			\end{lemma}
+		
+			\begin{proof}\label{lemma:lem6}
+				Admitindo-se a existência de reais $ r $ que possuem valor análogo aos inteiros $ n $, de tal forma que $ n=r $. Porém, como $ r $ possui inverso, o lema é trivial.
+			\end{proof}
+		
+			Se, para qualquer real $ x>1 $ existe seu inverso $ 0<a=x^{-1}<x $, dado um $ \varepsilon>0 $ arbitrário, podemos escolher $ a<\varepsilon $ (garantido pelo lema \ref{lemma:lem4}). Dessa forma, tomando $ a=\dfrac{1}{n} $ (lema \ref{lemma:lem6}), temos
+			\[ \dfrac{n^{k}}{n!}<a=\dfrac{1}{n}<\varepsilon\iff \dfrac{n^{k}}{n!}-\dfrac{1}{n}<0\iff \dfrac{n\cdot n^{k}-n!}{n\cdot n!}=\dfrac{\del{n^{k}-(n-1)!}}{n!}<0, \]
+			multiplicando por $ -1 $, ficamos com
+			\[ \dfrac{1}{n!}\del{(n-1)!-n^{k}}>0 .\]
+			Dessa forma, como $ (n!)^{-1}>0 $ (garantido pelo lema \ref{lemma:lem1}), pelo teorema 1.24 devemos ter $ (n-1)!-n^{k}>0\iff (n-1)!>n^{k} $.
+			
+%			Agora demonstrarei mais dois lemas:
+%			
+%			\begin{lemma}\label{lemma:lem7}
+%				Dados $ n, m\in\mathbb{N}^{\star} $ e $ a $ inteiro, a desigualdade $ n^{m} > a n^{m-1} $ sempre possui solução.
+%			\end{lemma}
+%			
+%			\begin{proof}
+%				Sabemos que os naturais não são limitados superiormente (teorema 1.28). Sendo $ m-1 < m $, a desigualdade que queremos provar é equivalente à sentença de que existe $ n > a $, que segue automaticamente do teorema (se $ -a\in\mathbb{N}^{\star} $, qualquer $ n $ satisfaz a desigualdade, e se $ a\in\mathbb{N}^{\star} $, pelo teorema vale a desigualdade).
+%			\end{proof}
+%		
+%		
+%			\begin{lemma}\label{lemma:lem8}
+%				Dado um polinômio genérico nos naturais na forma $ p(n)=-n^{k}+n^{n-1}-a_1 n^{n-2}+\cdots+(-1)^{n-p} a_p n^{n-(p+1)}+\cdots+(-1)^{n-1}a_{n-1} $, $ a_j\in\mathbb{N} $ e $ k $ é arbitrário, sempre teremos uma solução para $ p(n)>0 $.
+%			\end{lemma}
+%		
+%			\begin{proof}
+%				Note que sempre vale \begin{equation}\label{eq:eq1}
+%					c_j=(-1)^{n-j} a_j n^{n-(n-j)} > -(-1)^{n-(j-1)} a_{j-1} n^{n-(n-j+1)}=d_j,
+%				\end{equation} para $ n-j $ par (pelo lema \ref{lemma:lem7}, pois basta tomar um $ a=a_{j-1}/a_j $). Pelo teorema 1.18, podemos compor a desigualdade $ p(n)+n^{k}>0 $ somando $ n-1 $ desigualdades na forma de \ref{eq:eq1}. Seja $ \ell_n \in\mathbb{N} $ igual ao somatório das diferenças: $ \ell_n=\sum_{j=n-1}^{1} c_j - d_j=p(n)+n^{k} $, temos, então, que existe solução para $ p(n)>0 $ se, e somente se, existe solução para $ \ell_n > n^{k} $. Se fixamos $ k $, a desigualdade equivale à afirmar a existência de um $ z_n=\sqrt[k]{\ell_n}-n>0 $, o que é equivalente à demonstração da divergência da sequência $ z_n $. Avaliando termos $ g_j=(c_j-d_j) $, percebemos que, pelo lema \ref{lemma:lem7} a diferença $ g_j $ pode ser arbitrariamente grande para $ j $ grande o suficiente (recai sempre em $ n-a>0 $, e para $ a $ fixado, $ n $ é arbitrariamente grande). Dessa forma, é trivial que a soma desses termos é arbitrariamente grande, e vale a desigualdade.
+%			\end{proof}
+%		
+%			Sabemos que o fatorial de $ n-1 $ se expande em um polinômio conforme
+%			\[ (n-1)!=\underbrace{(n-1)(n-2)\cdots\del{n-(n-1)}}_{\text{\small $ n-1 $ termos}}=n^{n-1}-a_1 n^{n-2}+\cdots+(-1)^{n-p} a_p n^{n-(p+1)}+\cdots+(-1)^{n-1}a_{n-1}, \]
+%			e, portanto, a desigualdade avaliada equivale ao \ref{lemma:lem8}.
+			
+			Sendo os inteiros positivos um conjunto indutivo, provarei por indução finita que a desigualdade $ h(k):(n-1)!>n^{k} $ possui solução para todo $ k $. Tomemos $ h(k=1) $ como nosso caso inicial:
+			\[ h(1):(n-1)!>n \implies n > 3. \]
+			
+			Tomando, agora, um $ k $ arbitrário, temos
+			\[ \underbrace{(n-1)!>n^{k}}_{h(k)}\iff n(n-1)!>n\cdot n^{k}\iff \underbrace{ n!> n^{k+1}}_{h(k+1)}. \]
+			
+			Como se queria demonstrar.
+		\end{solution}
+		
+		\titledquestion{Grupo II --- Q1} Considere números reais estritamente positivos $ a_1, a_2, \ldots, a_n, \ldots $ tais que, para todo natural $ n \geqslant 1 $ tem-se $ a_{n+1}\leqslant\dfrac{a_n}{2} $. Prove que $ a_n \leqslant \dfrac{a_1}{2^{n-1}} $, para todo $ n \in \mathbb{N}^{\star} $.
+		
+		\begin{solution}
+			Avaliando $ a_{n+1}\leqslant\dfrac{a_n}{2} $ para $ n=1 $, temos $ a_{2}\leqslant\dfrac{a_1}{2} $. Como $ a_3\leqslant \dfrac{a_2}{2}\leqslant\dfrac{1}{2}\dfrac{a_1}{2} $ (pelo teorema 1.19), vale que $ a_3\leqslant \dfrac{a_{1}}{2^{3-1}} $. Sendo os naturais um conjunto indutivo e tomando $ n=1 $ como caso base, temos, por indução finita:
+			\begin{gather*}
+				a_{k}\leqslant \dfrac{a_{k-1}}{2}\leqslant\dfrac{1}{2}\dfrac{a_{k-2}}{2}\leqslant \dfrac{1}{2^{2}}\dfrac{a_{k-2}}{2}\leqslant \cdots \leqslant \dfrac{1}{2^{k-2}}\dfrac{a_1}{2}=\dfrac{a_1}{2^{k-1}}\\
+				\implies a_{k+1}\leqslant\dfrac{1}{2}a_{k}\leqslant\dfrac{1}{2}\dfrac{a_{k-1}}{2}\leqslant \cdots \leqslant \dfrac{1}{2^{k-1}}\dfrac{a_1}{2}=\dfrac{a_1}{2^{k}}.
+			\end{gather*}
+			
+			\hfill \qedsymbol
+		\end{solution}
+		
+		\titledquestion{Grupo III --- Q2} Mostre que se $ u, v $ e $ w $ são reais estritamente positivos e $ u + v + w = 1 $ então $ (1 − u)(1 − v)(1 − w) \geqslant 8uvw $.
+		
+		\begin{solution}
+			Antes de iniciar, provarei três lemas:
+			
+			\begin{lemma}\label{lemma:lem9}
+				Dados reais $ a $ e $ b $, segue que $ \sqrt{a}\sqrt{b}=\sqrt{a\cdot b} $.
+			\end{lemma}
+		
+			\begin{proof}
+				Sejam $ x^{2}=a, y^{2}=b, z^{2}=(x\cdot y)^{2} $. Queremos mostrar que $ z^{2}=x^{2}\cdot y^{2} $. Segue, pela definição de expoente, que $ z^{2}=(x\cdot y)^{2}=(x\cdot y)(x\cdot y)=x^{2}\cdot y^{2} $.
+			\end{proof}
+		
+			\begin{lemma}
+				Para qualquer $ a $ real não negativo, vale que $ \sqrt{a^{2}}=\del{\sqrt{a}}^{2} $.
+			\end{lemma}
+			
+			\begin{proof}
+				Pela definição de expoente temos que $ \sqrt{a^{2}}=\sqrt{a\cdot a} $, e pelo lema \ref{lemma:lem9}, temos que $ \sqrt{a\cdot a}=\sqrt{a}\sqrt{a}=\del{\sqrt{a}}^{2} $.
+			\end{proof}
+		
+			\begin{lemma}\label{lemma:lem10}
+				Para qualquer $ a $ real não negativo, $ \del{\sqrt{a}}^{2}=a $.
+			\end{lemma}
+		
+			\begin{proof}
+				Pelo teorema 1.35, dado que $ a\geqslant 0 $, há somente uma solução para a equação $ a^{2}=a^{2} $, nomeadamente a solução $ a=\sqrt{a^{2}} $($ =\del{\sqrt{a}}^{2} $ pelo lema \ref{lemma:lem9}).
+			\end{proof}
+			
+			Pela desigualdade entre médias, temos três relações independentes:
+			\begin{gather}
+				\dfrac{u+v}{2}\geqslant \sqrt{u\,v}\\
+				\dfrac{u+w}{2}\geqslant \sqrt{u\,w}\\
+				\dfrac{v+w}{2}\geqslant \sqrt{v\,w}
+			\end{gather}
+			E pela relação dada no enunciado, vale que $ u+v = 1-w $ (análogo para as outras relações).
+			
+			Realizando a substituição descrita, pelo teorema 1.19 podemos multiplicar as 3 desigualdades, de tal forma que:
+			\begin{align*}
+				\del{\dfrac{1-w}{2}}\del{\dfrac{1-v}{2}}\del{\dfrac{1-u}{2}}&\geqslant \sqrt{u\,v}\sqrt{u\,w}\sqrt{v\,w}\\
+				\intertext{pelo lema \ref{lemma:lem9}, temos}
+				\implies \dfrac{1}{8}\del{1-w}\del{1-v}\del{1-u}&\geqslant \sqrt{\del{u\,v}\del{u\,w}\del{v\,w}}\\
+				\intertext{pelo teorema 1.19 e pela definição de expoente, temos}
+				\implies \del{1-w}\del{1-v}\del{1-u}&\geqslant 8\sqrt{\del{u\, v\, w}^{2}}\\
+				\intertext{finalmente, pelo lema \ref{lemma:lem10}, vale a desigualdade enunciada}
+				\implies \del{1-w}\del{1-v}\del{1-u}&\geqslant 8u\, v\, w.
+			\end{align*}
+			
+			\hfill \qedsymbol
+		\end{solution}
+		
+		\titledquestion{Grupo IV ---  Q2}  Sejam $ a_1, \ldots, a_n, b_1, \ldots, b_n $ números reais estritamente positivos tais que, $ a_1 + a_2 + \cdots + a_n = b_1 + b_2 + \cdots + b_n $.
+		
+		Demonstre que \[ \dfrac{a_1^{2}}{a_1+b_1}+\dfrac{a_2^{2}}{a_2+b_2}+\cdots+\dfrac{a_n^{2}}{a_n+b_n}\geqslant \dfrac{a_1+a_2+\cdots + a_n}{2}. \]
+		
+		\begin{solution}
+			Antes de prosseguir, segue um lema:
+			
+			\begin{lemma}\label{lemma:lem11}
+				Para $ x $ real positivo, $ \del{x^{-1}}^{1/2}=\del{x^{1/2}}^{-1} $.
+			\end{lemma}
+			
+			\begin{proof}
+				Defina $ y=x^{-1} $, a demonstração é trivial pois basta que $ y^{1/2}=(y)^{1/2} $, o que segue do lema \ref{lemma:lem9}.
+			\end{proof}
+			
+			Pela desigualdade de Cauchy-Schwarz, temos que
+			\[ \del{\sum_{k=1}^{n}x_k\,y_k}^{2}\leqslant \del{\sum_{k=1}^{n}x_k^{2}}\del{\sum_{k=1}^{n}y_k^{2}}. \]
+			
+			Defina as sequências $ x_j=a_j/\del{a_j+b_j}^{1/2} $ e $ y_j=\del{a_j+b_j}^{1/2} $. Por Cauchy-Schwarz e pelo lema \ref{lemma:lem11} segue que
+			\begin{align*}
+				\begin{split}
+					\del{\del{\dfrac{a_1}{\sqrt{a_1+b_1}}}^{2}+\cdots+\del{\dfrac{a_n}{\sqrt{a_n+b_n}}}^{2}}&\del{\del{\sqrt{a_1+b_1}}^{2}+\cdots+\del{\sqrt{a_n+b_n}}^{2}}\geqslant\\
+					 &\del{a_1\dfrac{\sqrt{a_1+b_1}}{\sqrt{a_1+b_1}}+\cdots+a_n\dfrac{\sqrt{a_n+b_n}}{\sqrt{a_n+b_n}}}^{2}
+				\end{split}\\
+				\intertext{pelo lema \ref{lemma:lem10} e pelo axioma 6, temos que}
+				\implies\del{\dfrac{a_1^{2}}{a_1+b_1}+\cdots+\dfrac{a_n^{2}}{a_n+b_n}}\del{a_1+b_1+\cdots+a_n+b_n}&\geqslant\del{a_1+\cdots+a_n}^{2}\\
+				\intertext{pela relação dada no enunciado e pela definição de expoente,}
+				\implies\del{\dfrac{a_1^{2}}{a_1+b_1}+\cdots+\dfrac{a_n^{2}}{a_n+b_n}}2\del{a_1+\cdots+a_n}&\geqslant\del{a_1+\cdots+a_n}\del{a_1+\cdots+a_n}\\
+				\intertext{multiplicando pelo inverso do dobro da soma de $ a_1+\cdots+a_n $ em ambos os lados da desigualdade (garantido pelo lema \ref{lemma:lem1} e pelo teorema 1.19), temos}
+				\implies\dfrac{a_1^{2}}{a_1+b_1}+\cdots+\dfrac{a_n^{2}}{a_n+b_n}&\geqslant\del{a_1+\cdots+a_n}\dfrac{\del{a_1+\cdots+a_n}}{2\del{a_1+\cdots+a_n}}\\
+				\implies \dfrac{a_1^{2}}{a_1+b_1}+\cdots+\dfrac{a_n^{2}}{a_n+b_n}&\geqslant\dfrac{1}{2}\del{a_1+\cdots+a_n}
+			\end{align*}
+		
+		\hfill\qedsymbol
+		\end{solution}
+		
+		\titledquestion{Grupo V --- Q2}
+		
+		\begin{parts}
+			\part Suponha que $ r \in \mathbb{Q} \backslash {0} $ e que $ x \in \mathbb{R} \backslash \mathbb{Q} $. Demonstre que $ rx $ não é racional.
+			
+			\begin{solution}
+				Suponha que $ rx $ é racional. Isso implica na existência de um número da forma $ a/b $ ($ a,b $ números inteiros, $ b $ não nulo) que possa representar $ rx $. Ou seja, $ rx=a/b $ para algum par $ a,b $. Sendo $ r $ um racional não nulo, podemos tomar um $ a=cr $, ($ c $ também inteiro) de tal forma que, multiplicando pelo inverso de $ r $ em ambos os lados da igualdade $ rx=cr/b $, ficamos com $ x=c/b $ sendo uma fração racional irredutível, porém isso viola a condição de $ x $ ser irracional. Absurdo!
+				
+				\hfill\qedsymbol
+			\end{solution}
+			\part Prove que, se $ \varepsilon > 0 $, existe $ x \in \mathbb{R} \backslash \mathbb{Q} $ tal que $ 0 < x < \varepsilon $.
+			
+			\begin{solution}
+				Por raciocínio similar ao do item anterior, temos facilmente que $ x+r\in\mathbb{R}\backslash\mathbb{Q} $:
+				
+				\begin{lemma}\label{lemma:lem12}
+					A soma de racional com irracional é irracional.
+				\end{lemma}
+			
+				\begin{proof}
+					Seja $ r $ um racional (não nulo) e $ x $ um número irracional, por hipótese, suponhamos que $ x+r $ é racional e, portanto, deve ter uma notação na forma $ a/b $ com $ a $ e $ b $ inteiros e $ b\neq 0 $, dessa forma:
+					\[ x+r=\dfrac{a}{b}\iff x=\dfrac{a}{b}-r\iff \dfrac{a-b\,r}{b}=\dfrac{c}{b},c\in\mathbb{Z}.\quad\text{Absurdo!} \]
+				\end{proof}
+				
+				Dessa forma, o conjunto dos irracionais não deve ser limitado superiormente, pois, se fosse limitado por $ b $, poderíamos sempre tomar $ b+x,x $ irracional e estaríamos dentro do conjunto ainda. Absurdo!
+				
+				Além disso, temos que para um $ x $ irracional arbitrário, seu inverso é irracional também, pois, supondo que não fosse, haveria um $ x $ que não pode igualar um racional $ a/b $, mas seu inverso pode igualar $ b/a $, porém como $ a $ e $ b $ são inteiros não nulos arbitrários isso é claramente absurdo.
+				
+				Dessa forma, dado um $ \varepsilon>0 $, sabemos que sempre haverá $ x>1>\varepsilon $ irracional e, pelos lemas \ref{lemma:lem1} e \ref{lemma:lem2}, $ 0<x^{-1}<\varepsilon<1<\varepsilon^{-1} $ (para isso basta selecionar $ x $ grande o suficiente) onde $ x^{-1} $ tem que ser irracional pelo que foi demonstrado anteriormente.
+				
+				\hfill\qedsymbol
+			\end{solution}
+			\part Provar que se $ a $ e $ b $ são reais, com $ a < b $, então existe um irracional $ \xi $ tal que $ a < \xi < b $.
+			
+			\begin{solution}
+				Tomando um $ \varepsilon=b-a $, temos que existe um $ x $ irracional que satisfaz $ 0<x<\varepsilon $, conforme provado no item anterior. Pelo teorema 1.18, podemos somar $ a $ a essa desigualdade, tal que $ a<x+a=\xi<b-a+a=b $ é satisfeita, e pelo lema \ref{lemma:lem12}, $ \xi $ é irracional.
+				
+				\hfill\qedsymbol
+			\end{solution}
+		\end{parts}
+		
+		\titledquestion{Grupo VI --- Q1} Um subconjunto $ G \subset \mathbb{R} $ diz–se subgrupo aditivo de $\mathbb{R}$ se valerem as seguintes propriedades:
+		\begin{itemize}
+			\item $ 0 \in G $;
+			\item Se $ a\in G $ e $ b\in G $ então $ a+b\in G $;
+			\item Se $ a\in G $, então $ -a\in G $.
+		\end{itemize}
+		Suponha que $ G $ é um subgrupo aditivo de $\mathbb{R}$ e prove que:
+		\begin{enumerate}[label=(\roman*)]
+			\item Se $ a \in G $ e $ m \in \mathbb{Z} $ então $ ma \in G $.
+			
+			\begin{solution}
+				Podemos notar que, se $ a+b\in G $ e $ -a\in G $, se podemos expressar $ m\,a $ como uma soma ou como o oposto de uma soma, então $ m\,a\in G $.
+				
+				\begin{lemma}
+					Existe uma relação direta entre soma de reais e multiplicação por inteiros.
+				\end{lemma}
+			
+				\begin{proof}
+					Sendo $ m $ um inteiro e $ a\in G $, queremos demonstrar que, para $ m>0, m\,a=\underbrace{a+a+\cdots+a}_{\textup{$ m $ vezes}} $. %Para $ m=0,m\,a=0 $ e para $ m<0, m\,a=\underbrace{-a-a-\cdots-a}_{\textup{$ m $ vezes}} $.
+					
+					Sendo os inteiros positivos um conjunto indutivo, podemos demonstrar a hipótese por indução finita. Para o caso base $ m=1 $ vale que $ 1\cdot a=a $. Tomando um $ m>1 $ arbitrário, temos que
+					\[ m\,a=\underbrace{a+a+\cdots+a}_{\textup{$ m $ vezes}}\implies m\,a+a=(m+1)a=\underbrace{a+a+\cdots+a}_{\textup{$ m+1 $ vezes}}. \]
+					
+					Para o caso $ m=0 $ o lema é trivial, e para $ m<0 $ basta realizarmos o procedimento subtraindo ao invés de somando.
+				\end{proof}
+			
+				Dessa forma, se $ a+b\in G $, $ m\,a\in G $.
+			\end{solution}
+			\item Se $ a $ e $ b $ estão em $ G $ então $ a − b \in G $.
+			
+			\begin{solution}
+				Se $ b\in G $ segue que $ c=-b\in G $ e, portanto, $ a-b=a+c\in G $.
+				
+				\hfill\qedsymbol
+			\end{solution}
+			\item Se $ G \neq \{0\} $ então $ G^{+} = \set{g \in G : g > 0} \neq \emptyset $ e existe $ \inf G^{+} $.
+			
+			\begin{solution}
+				Se $ G\neq\set{0} $, existe um conjunto $ H\subset G $ disjunto de $ G^{+} $ ($ H=\set{h\in G : h<0} $). Como para quaisquer $ g\in G^{+} $ e $ h\in H $ temos $ h < g $, vale o teorema 1.34, portanto, existe $ \inf G^{+} $.
+			\end{solution}
+			\item Se $ G \neq \{0\} $ e $ \mu = \inf G^{+} > 0 $ então $ G = \set{x = m\mu : m \in \mathbb{Z}} $
+			
+			\begin{solution}
+				Como $ G^{+} $ possui ínfimo positivo, este deve ser o menor elemento do conjunto, pois deve ser igual à um $ a-b=c\in G $ tal que $ 0<c=a-b $, e como $ a\neq b, b<a $ para qualquer $ a\in G $, logo $ b=c=\inf G^{+} $.
+				
+				Dessa forma, vale a Arquimediana do conjunto, pois:
+				
+				Como $ \mathbb{Z} $ não possui cota superior, então vale, pelo teorema 1.30 que, tomando $ g\in G $ arbitrário, sempre existe um $ m\in \mathbb{Z} $ tal que $ m\mu>g $. De forma análoga, $ \mathbb{Z} $ também não possui cota inferior e, portanto, sempre temos $ m\mu<g $ para qualquer $ g\in G $ (basta usar o argumento do teorema 1.30 para $ m(-\mu)>-g\iff m\mu<g $). E pelos itens anteriores sabemos que um elemento de $ G $ multiplicado por um inteiro deve pertencer à $ G $.
+			\end{solution}
+			\item Se $ G \neq \{0\} $ e $ \inf G^{+} = 0 $, então, para todos os reais $ x $ e $ y $, com $ x < y $, existe $ g \in G $ tal que $ x < g < y $.
+			
+			\begin{solution}
+				Se o ínfimo do conjunto $ G^{+} $ é zero, como todos os seus membros são maiores que zero, dado qualquer $ \varepsilon>0 $ existe um $ g\in G^{+} $ tal que $ 0<g<\varepsilon $ pois, caso contrário, teríamos um ínfimo igual à $ g $. Como $ G $ não possui cota superior, sempre é possível encontrar um $ \ell\in G $ maior que $ x $. Definindo $ 0<\varepsilon=y-x $, como é possível ter um $ g $ arbitrariamente pequeno e menor que $ \varepsilon $, podemos sempre construir a desigualdade $ \ell+g<y $, e dessa forma, somando $ 0<g<\varepsilon $ e $ x<\ell $ (teorema 1.25), temos $ x<g+\ell<y $ (note que mostrar que $ g+\ell\in G $ é trivial).
+				
+				\hfill\qedsymbol
+			\end{solution}
+		\end{enumerate}
+		
+		\titledquestion{Grupo VII --- Q1} Seja $ n \in \mathbb{N}^{\star} $ e considere um polinômio	$ p(x) = a_0 + a_1 x + \cdots + a_n x^{n} $ com coeficientes reais, i.e. $ a_j \in \mathbb{R} $, para todo $ j \in \set{0, 1, \ldots, n} $, de grau $ n $, ou seja $ a_n \neq 0 $.
+		\begin{parts}
+			\part Suponha que $ a_0 > 0 $ e mostre que existe $ \varepsilon > 0 $ tal que, se $ |x| < \varepsilon $ então $ p(x) > 0 $.
+			
+			\begin{solution}
+				Mostrarei esse item avaliando o pior caso possível:
+				
+				Dado o polinômio $ p(x) $, suponhamos que todos os seus coeficientes, com exceção de $ a_0 $, sejam negativos, dessa forma, para que $ p(x)>0 $ devemos ter $ a_0>\del{a_0-p(x)}=q(x) $. Fixemos um $ 0<a_0<1 $. Daí surge a necessidade de limitar $ x<1 $, pois $ a_0 $ deve ser maior que $ q(x) $, e para quaisquer coeficientes $ |a_j|>1 $ o valor de $ q(x) $ explode rapidamente. Sendo $ x $ limitado, podemos reduzir nosso problema notando que, dados expoentes naturais $ m>n $ vale que, para $ 0<x<1, x^{n}<x^{m} $. Para demonstrar isso basta notar que $ 0<x<1\iff x\cdot x<1\cdot x < 1 $, etc.
+				
+				Dessa forma, para $ x $ pequeno o suficiente, todos os termos de expoentes maior que $ 1 $ podem ser arbitrariamente pequenos, e podemos simplificar nosso polinômio por
+				\[ -x+b\geqslant 0,\quad b=\dfrac{1}{a_1}\del{a_0+\sum_{k=2}^{n}-a_k x^{k}}>0. \]
+				
+				Agora, para chegar à desigualdade desejada, basta notar que, pela desigualdade triangular podemos chegar à chamada \textit{desigualdade triangular reversa}:
+				\begin{align*}
+					|a|=|a-b+b|&\leqslant |a-b|+|b|\implies& &|a|-|b| \leqslant |a-b|\\
+					|b|=|b-a+a|&\leqslant |a-b|+|a|\implies& -|a-b| \leqslant &|a|-|b|
+				\end{align*}
+				juntando as duas, temos, então
+				\[ -|a-b|\leqslant |a|-|b| \leqslant |a-b| \]
+				e pelo teorema 1.38 vale que
+				\[ |a-b|\geqslant ||a|-|b||. \]
+				
+				Aplicando a desigualdade triangular reversa na desigualdade $ b-x\geqslant 0 $, temos
+				\[ |b-x|\geqslant ||b|-|x||>0\implies |x| < |b|=\varepsilon \]
+				
+				\hfill\qedsymbol
+			\end{solution}
+			\part Prove que existe $ L > 0 $ em $ \mathbb{R} $ tal que $ p(x) $ tem o mesmo sinal de $ a_n $ para todo $ x > L $.
+			
+			Sugestão: Lembre que se $ x > 0 $ então $ p(x) $ e $ p(x)/x^{n} $ têm o mesmo sinal, agora...
+			
+			\begin{solution}
+				Analisando o polinômio $ p(x) $, temos que se $ x>0 $, então $ p(x)/x^{n} $ tem o mesmo sinal que $ p(x) $, e definindo
+				\[ \dfrac{p(x)}{x^{n}}=\dfrac{a_{n-1}x^{n-1}+\cdots+a_0}{x^{n}}+a_n=y+a_n=q(y). \]
+				Agora podemos analisar o sinal de $ q(y) $. Como queremos que $ q(y) $ tenha o mesmo sinal que $ a_n $, é necessário tornar $ y $ arbitrariamente pequeno. Como dados $ n,m $ naturais tais que $ n<m $ Sendo $ x>1, x^{m}>x^{n}\iff x^{m}/x^{n}=1/x^{n-m}>1 $ (trivial), por argumento semelhante ao item anterior podemos fazer $ y=\del{\sum_{k=n-1}^{0}a_{k}x^{k}}/x^{n}=\ell/x $ (já que o termo de maior expoente no numerador é $ a_{n-1}x^{n-1} $, tomando o resto da expressão como constante e arbitrariamente pequena, basta analisarmos a diferença dos expoentes $ n-(n-1)=1 $).
+				
+				Pelo lema \ref{lemma:lem4}, temos que $ \ell/x $ é arbitrariamente pequeno para $ x $ grande, e dado um $ \varepsilon>0 $, pelo mesmo lema podemos ter um $ 0<\ell/x<\varepsilon\iff x>\ell/\varepsilon=L $ para  o qual vale que $ q(x) $ tem o mesmo sinal de $ a_n $, como se queria demonstrar.
+			\end{solution}
+		\end{parts}
+		
+%		\titledquestion{Grupo VII --- Q2}
+%		\begin{parts}
+%			\part Faça a questão VII-1.
+%			\part Se $ x_0 \in \mathbb{R} $ e $ p(x_0) \neq 0 $ mostre que existe $ \varepsilon > 0 $ tal que, se $ |x − x_0| < \varepsilon $ então $ p(x) $ tem o mesmo sinal de $ p(x_0) $.
+%			
+%			Sugestão: Considere $ q(x) = p(x + x_0) $, veja que $ q(x) $ é um polinômio com $ q(0) = p(x_0) $ e use...
+%			
+%			\begin{solution}
+%				
+%			\end{solution}
+%			\part Prove que se existirem reais $ x $ e $ y $ tais que $ p(x)p(y) < 0 $ então existe um $ z \in \mathbb{R} $ tal que $ p(z) = 0 $.
+%			
+%			\begin{solution}
+%				
+%			\end{solution}
+%		\end{parts}
+		
+	\end{questions}
+\end{document}

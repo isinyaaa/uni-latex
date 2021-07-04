@@ -1,0 +1,323 @@
+\documentclass{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+
+\givecredits
+\author{Isabella B. Amaral}
+\USPN{118010773}
+\lecture{Matemática I}
+\examname{Prova III}
+\hwtype{Resolução}
+\lcode{}
+\date{30 de novembro}
+
+\newtheorem{theorem}{Teorema}[question]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand\restrict[1]{{% we make the whole thing an ordinary symbol
+		\left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+		% the function
+		\vphantom{\big|} % pretend it's a little taller at normal size
+		\right|_{#1} % this is the delimiter
+}}
+
+\begin{document}
+	
+	\maketitle
+	
+	\paragraph{Nota:} Todos os teoremas e axiomas referenciados nessa prova são citados pelo Apostol nos capítulos abordados em aula, a não ser que seja explicitado o contrário.
+	
+	\begin{questions}
+		\titledquestion{Grupo I --- Q1}
+		
+		Calcule os seguintes limites:
+		
+		\begin{parts}
+			\part $ \lim\limits_{x\to0}x^{p}\cos\dfrac{1}{x^{q}}, p $ e $ q $ naturais.
+			
+			\begin{solution}
+				Seja $ \alpha = 1/x^{q} $, $\alpha\to\infty$ quando $ x\to0 $, porém sendo a função cosseno limitada, pelo teorema 3.3, nós temos que
+				\begin{align*}
+					-1\leqslant&\cos\alpha\leqslant1\\
+					-x^{p}\leqslant&x^{p}\cos\alpha\leqslant x^{p}\\
+					\intertext{e quando $ x\to0 $, temos}
+					0\leqslant&\lim\limits_{x\to0}x^{p}\cos\alpha\leqslant 0
+				\end{align*}
+			o que nos dá \[ \lim\limits_{x\to0}x^{p}\cos\dfrac{1}{x^{q}}=0. \]
+			\end{solution}
+		
+			\part $\lim\limits_{t\to1}\dfrac{x^{3}-1}{x-1}$.
+			
+			\begin{solution}
+				Assumindo um erro de digitação no limite, temos, pela fatoração $ a^{3}-b^{3}=\del{a-b}\del{a^{2}+a\,b+b^{2}} $ que
+				\begin{align*}
+					\lim\limits_{x\to1}\dfrac{x^{3}-1}{x-1}&=\lim\limits_{x\to1}\dfrac{\del{x-1}\del{x^{2}+x+1}}{x-1}\\
+					&=\lim\limits_{x\to1}x^{2}+x+1,
+				\end{align*}
+			que pode ser calculado substituindo $ x $ por $ 1 $, simplesmente, e nos dá
+			\[ 1^{2}+1+1=3. \]
+			\end{solution}
+			
+			\part $ \lim\limits_{t\to0}\dfrac{\sqrt{2+t}-\sqrt{2-t}}{t}. $
+			
+			\begin{solution}
+				Manipulando a expressão, temos
+				\begin{align*}
+					\lim\limits_{t\to0}\dfrac{\sqrt{2+t}-\sqrt{2-t}}{t}&=\lim\limits_{t\to0}\dfrac{\del{\sqrt{2+t}-\sqrt{2-t}}\del{\sqrt{2+t}+\sqrt{2-t}}}{t\del{\sqrt{2+t}+\sqrt{2-t}}}\\
+					&=\lim\limits_{t\to0}\dfrac{2+t-\del{2-t}}{t\del{\sqrt{2+t}+\sqrt{2-t}}}\\
+					&=\lim\limits_{t\to0}\dfrac{2}{\sqrt{2+t}+\sqrt{2-t}}\\
+					\intertext{novamente, substituindo $ t $ por $ 0 $, temos}
+					&=\dfrac{2}{2\sqrt{2}}=\dfrac{\sqrt{2}}{2}.
+				\end{align*}
+			\end{solution}
+			
+			\part $ \lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\sin x} $.
+			\begin{solution}
+				Manipulando a expressão temos que
+				\begin{align*}
+					\lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\sin x}\cdot\dfrac{\tan x}{\tan x}&=\lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\tan x}\cdot\dfrac{1}{\cos x}\\
+					\intertext{e pelo teorema 3.1, temos que}
+					\lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\tan x}\cdot\dfrac{1}{\cos x}&=\del{\lim\limits_{x\to0}\dfrac{1}{\cos x}}\cdot\del{\lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\tan x}}.
+				\end{align*}
+				Sendo $ \lim\limits_{x\to0}\tan x=0 $ temos o limite fundamental $ \lim\limits_{x\to0}\sin\del{\tan x}{\tan x}=1 $, e como $ x\to0 \implies \cos x\to 1 $, o limite desejado é
+				\[ \del{\lim\limits_{x\to0}\dfrac{1}{\cos x}}\cdot\del{\lim\limits_{x\to0}\dfrac{\sin\del{\tan x}}{\tan x}}=1\cdot1=1. \]
+			\end{solution}
+		\end{parts}
+	
+		\titledquestion{Grupo II --- Q2}
+		
+		Sejam $ p $ e $ q $ naturais, calcule $ \lim\limits_{x\to0}\dfrac{\sin px-\sin qx}{x} $.
+		
+		\begin{solution}
+			Primeiramente, temos um lema
+			
+			\begin{lemma}
+				Seja $ \lim\limits_{x\to0}\dfrac{\sin x}{x}=1 $ o limite fundamental. Aplicando um fator linear $ \alpha\neq 0 $ qualquer no seno, temos
+				$ \lim\limits_{x\to0}\dfrac{\sin \alpha x}{x}=\alpha $.
+			\end{lemma}
+		
+			\begin{proof}
+				Basta manipular o limite de tal forma que
+				\[ \lim\limits_{x\to0}\dfrac{\sin \alpha x}{x}\cdot\dfrac{\alpha}{\alpha}, \]
+				e pelo teorema 3.1, podemos remover a constante do limite de tal forma que
+				\[ \alpha\cdot\del{\lim\limits_{x\to0}\dfrac{\sin \alpha x}{\alpha x}}. \]
+				Como o produto $ \alpha x $ tende a zero da mesma forma que $ x $ sozinho, o limite fundamental permanece inalterado e temos
+				\[ \lim\limits_{x\to0}\dfrac{\sin \alpha x}{x}=\alpha\cdot1=\alpha. \]
+%				como se queria demonstrar.
+			\end{proof}
+			
+			Pelo teorema 3.1, temos que
+			\[ \lim\limits_{x\to0}\dfrac{\sin px-\sin qx}{x}=\lim\limits_{x\to0}\dfrac{\sin px}{x}-\lim\limits_{x\to0}\dfrac{\sin qx}{x} \]
+			que é, trivialmente, a subtração de dois limites como o discutido no lema acima, portanto, temos
+			\[ \lim\limits_{x\to0}\dfrac{\sin px}{x}-\lim\limits_{x\to0}\dfrac{\sin qx}{x}=p-q. \]
+			
+			Note que a restrição no lema de $ \alpha\neq0 $ também se aplica ao limite desejado e, portanto, caso $ p=0 $ ou $ q=0 $ teremos uma indeterminação.
+		\end{solution}
+	
+		\titledquestion{Grupo II --- Q3}
+		
+		Determine todas as funções $ f\colon \mathbb{R}\longleftrightarrow\mathbb{R} $ contínuas tais que existe $ \lim\limits_{x\to0}f(x)\sin\dfrac{1}{x}. $
+		
+		\begin{solution}
+			Seja $ \alpha = 1/x^{q} $, $\alpha\to\infty$ quando $ x\to0 $, porém sendo a função seno limitada, pelo teorema 3.3, nós temos que
+			\begin{align*}
+				-1\leqslant&\sin\alpha\leqslant1\\
+				-f(x)\leqslant&f(x)\sin\alpha\leqslant f(x).
+			\end{align*}
+			Dessa forma, podemos notar que o limite desejado só existe se $ \lim\limits_{x\to0}-f(x)=\lim\limits_{x\to0}f(x) $, e isso só deve ocorrer para o caso em que $ \lim\limits_{x\to0}f(x)=0 $, pois caso esta tenda à $ \infty $ ou $ -\infty $ teremos uma descontinuidade em $ x=0 $.
+		\end{solution}
+		
+		\titledquestion{Grupo III --- Q4}
+		
+		Seja $ f : \mathbb{R} \to \mathbb{R} $ contı́nua e periódica de perı́odo $ p > 0 $. Prove que $ f $ é uniformemente contı́nua.
+		
+		\begin{solution}
+			Sendo a função $ f $ contínua, para um intervalo $ \intcc{0,p} $ esta deve ser uniformemente contínua pois, dados $ x,y $ quaisquer no intervalo, pela continuidade da função sempre haverá $ \delta_i $ tal que, dado um $ \varepsilon_i>0, $
+			\[ \envert{y-x}<\delta_i\implies\envert{f(y)-f(x)}<\varepsilon_i, \]
+			pois, pelo teorema 3.13, podemos subdividir os valores da função em partições menores que $ \varepsilon $, e isso nos permite escolher o menor $ \delta_i(\varepsilon_i) $, o qual satisfará todas as inequações simultaneamente\footnote{Alternativamente, basta assumir um intervalo fechado e compacto, para o qual, então, será possível encontrar finitos $ \delta_i(\varepsilon_i) $ e, então, escolher o melhor/menor dentre eles para garantir a uniformidade da função no intervalo.}.
+			
+			Dessa forma, sendo a função periódica, devemos ter que é uniformemente contínua para qualquer intervalo $ \intcc{k\,p,(k+1)p},k\in\mathbb{Z} $, pois, dados $ x_k=x+k\,p,y_k=y+k\,p, $ temos
+			\[ \envert{y_{k}-x_k}=\envert{y+k\,p-\del{x+k\,p}}=\envert{y-x}<\delta\implies\envert{f(y)-f(x)}<\varepsilon. \]
+			
+			Dada a validade da afirmação para qualquer $ k\in\mathbb{Z} $, a função $ f $ é uniformemente contínua em todo o seu domínio ($ k $ vezes um intervalo fechado de interesse gera todo o domínio real) como se queria demonstrar.
+		\end{solution}
+		
+		\titledquestion{Grupo IV --- Q7}
+		
+		Seja $ f : \mathbb{R} \to \mathbb{R} $ definida por $ f(x) = \cos(3x) $,
+		se $ x \leqslant \alpha $, e $ f(x) = x − \alpha $, se $ x > \alpha $. Determine os $ \alpha\in\mathbb{R} $ para os quais $ f $ fica contı́nua em todos os pontos de $ \mathbb{R} $.
+		
+		\begin{solution}
+			Como $ \cos(3x) $ é contínua e $ x-\alpha $ também, $ f(x) $ será contínua se, para $ x=\alpha $, tivemos $ f(\alpha)=\cos(3\alpha)=\alpha-\alpha=0 $.
+			
+			Dessa forma, $ f(x) $ será contínua para $ \alpha=\dfrac{1}{3}\arccos\del{\cos0}+2n\,\pi\implies \alpha=\dfrac{\pi}{6}+2n\,\pi$ ou $\alpha=\dfrac{\pi}{2}+2n\,\pi,n\in\mathbb{Z} $.
+		\end{solution}
+		
+		\titledquestion{Grupo V --- Q11}
+		
+		Seja $ f : \intcc{a,b} \to \mathbb{R} $ convexa.
+		\begin{enumerate}[label=\roman*.]
+			\item Prove que $ f $ tem máximo e esse máximo é $ f(a) $ ou $ f(b) $.
+			\item Prove que $ f $ é limitada inferiormente.
+		\end{enumerate}
+	
+		\begin{solution}
+			Primeiro assumimos a continuidade de funções convexas.
+			
+			Sendo a função convexa, podemos dividí-la em duas porções monotônicas, as quais chamarei de $ \ell $ e $ r $, respectivamente. $ \ell\colon\intcc{a,c}\longrightarrow\mathbb{R} $ a parte monotonicamente decrescente e $ r\colon\intcc{c,b}\longrightarrow\mathbb{R} $ a parte monotonicamente crescente.
+			
+			Dessa forma, temos que para dois pontos subsequentes $ x<y $ no domínio de $ \ell $, $ \ell(x)>\ell(y) $ e, portanto, $ \ell(a)>\ell(c) $ e, de forma análoga, $ r(c)< r(b) $. 
+			
+			Portanto (i), $ \max f $ no intervalo $ \intcc{a,b} $ deve ser $ f(a)=\ell(a) $ ou $ f(b)=r(b) $, e (ii) a função é limitada inferiormente por $ L\leqslant f(c)=\ell(c)=r(c), L\in\mathbb{R} $ (o que também pode ser garantido pelo teorema 3.12).
+		\end{solution}
+		
+		\titledquestion{Grupo VI --- Q12}
+		
+		Sejam $ a, b, c, h $ em $ \mathbb{R} $, com $ h > 0 $, e $ f(t) = a\,t^{2} + b\,t + c \geqslant 0 $, para $ 0 \leqslant t \leqslant h $. Considere um sólido convexo $ S $ contido na região $ \set{(x, y, z) \in \mathbb{R}^{3} : 0 \leqslant x \leqslant h} $. Suponha que a seção de $ S $ perpendicular ao eixo dos $ x $ que passa por $ (\xi, 0, 0) $, para $ 0 \leqslant \xi \leqslant h $, tem área $ f(\xi) $. Sejam $ B_1, M $ e $ B_2 $ as áreas das seções de $ S $ perpendiculares ao eixo dos $ x $ que passam respectivamente por $ (0, 0, 0), (h/2, 0, 0) $ e $ (h, 0, 0) $. Determine o volume de $ S $ em função de $ B_1, M $ e $ B_2 $.
+		
+		\begin{solution}
+			Podemos encontrar o volume desejado $ v\coloneq v(S) $ integrando as áreas de seção do sólido entre $ 0 $ e $ h $, portanto
+			\begin{align}
+				v&=\int_{0}^{h}f(t)\dif t=\int_{0}^{h}a\,t^{2}+b\,t+c\dif t\nonumber\\
+				&=\eval{\dfrac{1}{3}a\,t^{3}+\dfrac{1}{2}b\,t^{2}+c\,t}_{0}^{h}\nonumber\\
+				v&=\dfrac{1}{3}a\,h^{3}+\dfrac{1}{2}b\,h^{2}+c\,h.\label{eq:int}
+			\end{align}
+			
+			Para expressar o resultado em termos de $ B_1,M $ e $ B_2 $ devemos avaliar os pontos dados:
+			\begin{gather}
+%				\begin{numcases}
+				B_1=f(0)=\eval{\del{a\,t^{2}+b\,t+c}}_{t=0}=c,\label{eq:cc} \\
+				M=f\del{\dfrac{h}{2}}=a\del{\dfrac{h}{2}}^{2}+b\del{\dfrac{h}{2}}+c,\text{ e}\label{eq:c2}\\
+				B_2=f(h)=a\,h^{2}+b\,h+c.\label{eq:c3}
+%				\end{numcases}
+			\end{gather}
+			Fazendo $ B_2-2M $ e substituindo \ref{eq:cc}, temos
+			\begin{equation}\label{eq:ca}
+				B_2-2M=a\,\dfrac{h^{2}}{2}-B_1\implies a=\dfrac{2}{h^{2}}\del{B_2+B_1-2M}.
+			\end{equation}
+			Substituindo \ref{eq:ca} e \ref{eq:cc} em \ref{eq:c3}, temos
+			\begin{equation}\label{eq:cb}
+				B_2=\dfrac{2}{h^{2}}\del{B_2+B_1-2M}\,h^{2}+b\,h+B_1=2B_2+3B_1-4M+b\,h\implies b=\dfrac{1}{h}\del{4M-B_2-3B_1}.
+			\end{equation}
+		
+			Dessa forma, temos o volume dado pelo sólido como sendo
+			\begin{align*}
+				v&=h\del{\dfrac{1}{3}\dfrac{2}{h^{2}}\del{B_2+B_1-2M}h^{2}+\dfrac{1}{2}\dfrac{1}{h}\del{4M-B_2-3B_1}h+B_1}\\
+				&=h\del{\dfrac{2}{3}\del{B_2+B_1-2M}\cdot\dfrac{2}{2}+\dfrac{1}{2}\del{4M-B_2-3B_1}\cdot\dfrac{3}{3}+B_1}\\
+				&=h\dfrac{1}{6}\del{4B_2+4B_1-8M+12M-3B_2-9B_1+6B_1}\\
+				v&=\dfrac{h}{6}\del{B_1+4M+B_2}.
+			\end{align*}
+		
+%			e, dessa forma, substituindo 
+%			Pela definição da função temos
+%			\[ v=\int_{0}^{h}a\,t^{2}+b\,t+c\dif t. \]
+		\end{solution}
+		
+		\titledquestion{Grupo VII --- Q15}
+		
+		Seja $ f : \mathbb{R} \to \mathbb{R} $ contı́nua. Suponha que existem reais $ a_1, a_2, \ldots, a_p $ diferentes $ (p \geqslant 2) $, tais que $ f(a_k) =a_{k+1} $, se $ 1 \leqslant k \leqslant p-1 $ e $ f(a_p) = a_1 $. Prove que existe pelo menos um $ \bar{x} \in \mathbb{R} $ tal que $ f(\bar{x}) = \bar{x} $.
+		
+		\begin{solution}
+			\paragraph{Nota:} essa resolução foi feita em conjunto com um colega do curso de matemática.
+			
+			Sejam ${i_1}, \ldots, i_p$ um rearranjo dos índices $1,\ldots,p$ de modo que $a_{i_{k}} \leqslant a_{i_{k+1}}$ para todo $k<p$.
+		
+			\input{GrupoVIIQ15.tex}
+			
+			Considere uma função $g\colon \mathbb{R} \longrightarrow\mathbb{R}$ dada por $g(x) \coloneqq f(x)-x$. Como $f$ é contínua, é claro que $g$ também é. Sejam $a,b\in\intcc{a_{i_1},a_{i_p}}$ tais que
+			$$f(a) = \max\limits_{x\in\intcc{a_{i_1},a_{i_p}} } f(x) \quad\text{e}\quad f(b) = \min\limits_{x\in\intcc{a_{i_1},a_{i_p}} } f(x).$$
+			Tais números existem pois $f$ é contínua e $\intcc{a_{i_1},a_{i_p}}$ é um intervalo fechado. 	Dessa forma, note que $f(a) \geqslant a_{i_p} \geqslant x$  e $f(b)\leqslant a_{i_1} \leqslant x$ para todo $x\in \intcc{a_{i_1},a_{i_p}}$. Ou seja: $g$ atinge tanto valores não-negativos ($g(a)\geqslant 0$) quanto não-positivos ($g(b)\leqslant 0$). 
+			
+			Supondo, sem perda de generalidade, que $a<b$, decorre do \textit{teorema do valor intermediário} que existe um $\bar x\in \intcc{a,b} \subseteq \intcc{a_{i_1},a_{i_p}}$ tal que $g(\bar x) = 0$. Dessa forma, $\bar x$ é tal que $0 =  f(\bar x) - \bar x$, i.e., $f(\bar x) = \bar x$.
+			
+			\hfill\qedsymbol
+		\end{solution}
+		
+		\clearpage
+		
+		\titledquestion{Grupo VIII --- Q17}
+		
+		Provar que $ \dfrac{79}{160}\leqslant\displaystyle\int_{0}^{1/2}\sqrt{1-\xi^{4}}\dif \xi \leqslant \dfrac{79}{600}\sqrt{15}. $
+		
+		\begin{solution}
+			Sabemos que
+			\begin{align*}
+				\dfrac{1}{\sqrt{1-0^{4}}}\leqslant&\dfrac{1}{\sqrt{1-\xi^{4}}}\leqslant \dfrac{1}{\sqrt{1-\del{\dfrac{1}{2}}^{4}}}\\
+				\intertext{que não se altera caso multipliquemos por $ 1-\xi^{4} $}
+				1-\xi^{4}\leqslant&\dfrac{1-\xi^{4}}{\sqrt{1-\xi^{4}}}\leqslant \dfrac{4}{\sqrt{15}}\del{1-\xi^{4}}\\
+				\intertext{integrando $ \xi $ de $ 0 $ a $ 1/2 $, temos}
+				\int_{0}^{1/2}1-\xi^{4}\dif \xi\leqslant&\int_{0}^{1/2}\dfrac{1-\xi^{4}}{\sqrt{1-\xi^{4}}}\dif \xi\leqslant\int_{0}^{1/2}\dfrac{4}{\sqrt{15}}\del{1-\xi^{4}}\dif \xi\\
+				\eval{\xi-\dfrac{1}{5}\xi^{5}}_{0}^{1/2}\leqslant&\int_{0}^{1/2}\sqrt{1-\xi^{4}}\dif \xi\leqslant\dfrac{4}{\sqrt{15}}\eval{\del{\xi-\dfrac{1}{5}\xi^{5}}}_{0}^{1/2}\\
+				\dfrac{1}{2}-\dfrac{1}{5}\del{\dfrac{1}{2}}^{5}\leqslant&\int_{0}^{1/2}\sqrt{1-\xi^{4}}\dif \xi\leqslant\dfrac{4}{\sqrt{15}}\del{\dfrac{1}{2}-\dfrac{1}{5}\del{\dfrac{1}{2}}^{5}}\\
+				\dfrac{80-1}{160}\leqslant&\int_{0}^{1/2}\sqrt{1-\xi^{4}}\dif \xi\leqslant\dfrac{4\cdot\sqrt{15}}{15}\del{\dfrac{80-1}{160}}\\
+				\dfrac{79}{160}\leqslant&\int_{0}^{1/2}\sqrt{1-\xi^{4}}\dif \xi\leqslant\dfrac{79}{600}\sqrt{15}.
+			\end{align*}
+		\hfill\qedsymbol
+		\end{solution}
+		
+		\titledquestion{Grupo IX --- Q18}
+		
+		Prove que se $ f $ é integrável em $ \intcc{a, b} $, $ \int_{a}^{b}(f(x))^{2} \dif x = 0 $ e $ f $ é contı́nua em $ c \in \intcc{a,b} $, então $ f(c) = 0 $.
+		
+		\begin{solution}
+			Sendo a integral, vulgarmente, uma soma de infinitos termos, ao tomarmos \[ \int_{a}^{b} (f(x))^{2}\dif x=\int_{a}^{b} |f(x)|^{2}\dif x=0, \]
+			como $ |f|\geqslant 0 $, essa soma somente será nula se todos os termos forem nulos, dessa forma é garantido que, para $ c\in\intcc{a,b},f(c)=0 $.
+		\end{solution}
+		
+		\titledquestion{Grupo X --- Q20}
+		
+		Suponha que $ S $ é uma esfera de raio $ R > 0 $ e	que $ u : S \to R $ é a função temperatura (num determinado instante $ T $ fixado), isto é $ u(p) $ é a temperatura do ponto $ p $ no instante $ T $. Suponha que $ u $ é contı́nua e mostre que existem pontos antı́podas que tem mesma temperatura.
+		
+		\begin{solution}
+			\paragraph{Nota:} essa resolução foi feita em conjunto com um colega do curso de matemática.
+			
+			Dado um ponto $p \in S$, identifique por $-p \in S$ seu \textit{antípoda}. Considere
+			\begin{equation*}
+				\begin{array}{lccc}
+					\Delta : & S & \longmapsto & \mathbb{R}\\
+					& p & \longmapsto & u(p)-u(-p)
+				\end{array}
+				%			\function \Delta{S}{\R}{p}{u(p)-u(-p)}
+			\end{equation*}
+			Como $u$ é contínua, $\Delta$ obviamente também é. Restrinja $\Delta$ a um círculo máximo $C$, i.e. uma circunferência de raio $R$ inteiramente contida em $S$. Denote esta restrição de função por $\restrict{C}$. 
+			
+			Um círculo máximo $C$ contido em um plano $\alpha$ pode ser parametrizado por uma função $f_{\alpha} : [0,2\pi] \longrightarrow C$ contínua, dado que basta transladar e inclinar o conjunto $\set{(R\cos(t),R\sin(t), 0) \mid t\in \intcc{0,2\pi}}$.
+			
+			Dessa forma, $ u\restrict{C} \circ f_{\alpha} \colon [0,2\pi] \longrightarrow \mathbb{R}$ é uma função contínua. Dado $[0,2\pi]$ é um intervalo fechado, existem instantes  $t_{\text{max}},t_{\text{min}}\in [0,2\pi]$ tais que:
+			\begin{itemize}[label=\textbullet]
+				\item $(u \restrict{C} \circ f_{\alpha})(t_{\text{max}})$ é um valor de máximo.
+				\item $(u \restrict{C} \circ f_{\alpha})(t_{\text{min}})$ é um valor de mínimo.
+			\end{itemize}
+			Note que $u(f_\alpha(t_{\text{max}}))\geqslant u(-f_\alpha(t_{\text{max}}))$ e $u(f_\alpha(t_{\text{min}}))\geqslant u(-f_\alpha(t_{\text{min}}))$. Ou seja $\Delta\restrict{C}$ possui valores positivos e negativos. Supondo sem perda de generalidade que $t_{\text{max}} < t_{\text{min}}$, o \textit{teorema do valor intermediário} garante que existe um ponto $t\in [t_{\text{max}},t_{\text{min}}]\subset [0,2\pi]$ tal que $(\Delta \restrict{C} \circ f_{\alpha})(t) = 0$. No ponto $p\coloneqq  f_{\alpha}(t)$,  por construção, $u(p)=u(-p)$. 
+			
+			Dessa forma, em cada círculo máximo $C\subset S$, existe um par de pontos antipodais com mesma temperatura.
+		\end{solution}
+		
+%		\titledquestion{Grupo Festa --- Q21}
+%		Sejam $ n\in\mathbb{N} $ e $ f\colon\intcc{a,b}\longrightarrow \intoo{0,+\infty} $ integrável.
+%		
+%		\begin{enumerate}[label=(\roman*)]
+%			\item\label{item:qi} Prove que existe uma partição $ a=c_0<c_1<c_2<\cdots<c_n=b $ de $ \intcc{a,b} $ tal que, para todo $ j\in\set{1,\ldots,n} $, tem-se $ \int_{c_{j-1}}^{c_j}f(x)\dif x=\dfrac{1}{n}\int_{a}^{b}f(x)\dif x. $
+%		
+%			\item Prove que existe uma única partição de $ \intcc{a,b} $ com a propriedade enunciada em \ref{item:qi}.
+%		\end{enumerate}
+%	
+%		\begin{solution}
+%			Pelo teorema 3.15 temos que a integral no intervalo completo pode ser escrita como
+%			\[ \int_{a}^{b}f(x)\dif x=f(c)(b-a), \]
+%			para algum $ c\in\intcc{a,b} $.
+%			
+%			De maneira análoga, defina as integrais de cada uma das partições
+%			\[ S_j \coloneq \int_{c_{j-1}}^{c_{j}}f(x)\dif x=f(c_i)(c_j-c_{j-1}), \]
+%			para $ c_i\in\intcc{c_{j-1},c_j} $.
+%			
+%			Seja $ f(c'_j)(c_j-c_{j-1}) $ um produto da forma $ f(c)\Delta_j $, onde $ f(c) $ é o mesmo da aplicação de 3.15 à integral de $ f(x) $ entre $ a $ e $ b $ e $ \Delta_j $ é um produto $ \lambda_j(c_j-c_{j-1}) $, com $ \lambda_j=1/m_j, m_j\cdot f(c'_j)=f(c) $. É notável que $ \Delta_j/\lambda_j=c_j-c_{j-1}=f(c'_j)/f(c) $ possui somente uma solução, pois $ a $ e $ b $ (extremos) são fixados (a solução única para $ c_1=f(c'_1)/f(c)+c $ implica na solução única para $ c_2 $, etc.).
+%			
+%			Somando todos os $ n $ termos $ S_j $, temos
+%			\[ \sum_{j=0}^{n}f(c'_j)(c_j-c_{j-1})=\sum_{j=0}^{n}f(c)\Delta_j= \]
+%		\end{solution}
+		
+	\end{questions}
+\end{document}

@@ -1,0 +1,108 @@
+% arara: xelatex: {synctex: true}
+% arara: indent: {overwrite: yes}
+\documentclass[]{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\usepackage{cases}
+
+\givecredits
+\author{Isabella B.}
+\USPN{11810773}
+\date{}
+\lecture{Física I} % disciplina
+\lcode{CM0112}
+\hwtype{Resolução} % o que é
+\examname{Lista 3} % prova
+
+\begin{document}
+
+\maketitle
+
+\begin{questions}
+
+	\question Uma arma está formada por uma mola que inicialmente está em repouso sobre uma superfície horizontal e lança uma bola fazendo um ângulo de elevação $ \theta $. A massa da arma é $ M $, a massa da bola é $ m $ e a velocidade de saída da bola é $ v_0 $. Qual é a velocidade inicial da arma? Quais são as velocidades inicial e final do centro de massa do sistema arma-bola?
+
+	\begin{solution}
+		Adotando o referencial com origem na posição inicial da bola (imediatamente antes de ser lançada), considerando os sentidos vertical e horizontal crescentes para cima e para a esquerda, respectivamente, e considerando que o momento do sistema é conservado --- pois mesmo sob o efeito gravitacional a força exercida pela mola nesse instante é muito maior ---, temos, por diferença de momento linear, que
+		\[ \Delta \vec{p} = \vec{v_0}\,m + \vec{v_0'}\,M\implies \vec{v_0'}=-\dfrac{m}{M}\vec{v_0}, \]
+		onde $ \Delta\vec{p} $ é a variação de momento (que é nula) e $ \vec{v_0'} $ é a velocidade inicial da arma.
+		
+		A partir disso podemos encontrar a velocidade inicial do centro de massa $ \vec{V_{CM\,0}} $:
+		\[ \del{M+m}\vec{V_{CM\,0}}=M\,\vec{v_0'}+m\,\vec{v_0}\iff \vec{V_{CM\,0}}=\dfrac{\cancel{M}\del{-m\vec{v_0}/\cancel{M}}+m\,\vec{v_0}}{M+m}=\vec{0}, \]
+		e também sua função de velocidade no tempo:
+		\[ \vec{V_{CM}}(t)=\dfrac{M\,\vec{v'}(t)+m\,\vec{v}(t)}{M+m}, \]
+		onde $ \vec{v}(t) $ e $ \vec{v'}(t) $ indicam as funções horárias das velocidades da bola e da arma, respectivamente.
+		
+		Adotemos a notação $ a=|\vec{a}| $ para o resto das resoluções na lista.
+		
+		Na ausência de atrito e de forças externas, podemos considerar a velocidade da arma constante, e sua componente na vertical nula, sobrando somente $ \vec{v'}(t)=-\dfrac{m}{M}v_0\cos\theta\,\ihat $, onde $ (\ihat,\jhat) $ são os versores da base canônica e $ \theta $ é o ângulo da velocidade inicial com a horizontal.
+		
+		Da mesma forma, vale que
+		\[ \vec{v}(t)=\vec{v_0}-g\,t\,\jhat=\underbrace{\del{v_0\sin\theta-g\,t}}_{=v_y(t)}\jhat+\underbrace{v_0\cos\theta}_{=v_x(t)}\,\ihat, \]
+		pois existe uma aceleração não nula atuando sobre a bola $ -g $ (aceleração da gravidade). Considerando o momento final do movimento da bola quando ela toca o chão após ser lançada, podemos encontrar a velocidade final vertical da bola $ v_{f\,y} $ pelo teorema trabalho energia
+		\begin{align}
+			\dfrac{1}{2}m\del{v_{f\,y}^{2}-v_{0\,y}^{2}}&=\int_{0}^{-h} -m\,g\dif x \nonumber\\
+			\intertext{onde $ v_{0\,y} $ é a decomposição vertical da velocidade inicial da bola e $ -h $ é a diferença de altura entre a origem do referencial e o chão. Portanto, temos}
+			v_{f\,y}&=\sqrt{\del{v_0\sin\theta}^{2}+2g\,h}. \label{eq:vfb}
+		\end{align}
+		substituindo \ref{eq:vfb} em $ v_y(t) $, ficamos com a velocidade final da bola $ \vec{v_f}=\jhat\,\sqrt{\del{v_0\sin\theta}^{2}+2g\,h}+v_0\cos\theta\,\ihat $ e $ \vec{v_f'}=-\dfrac{m}{M}v_0\cos\theta\,\ihat $. Substituindo na equação da velocidade do centro de massa, podemos encontrar sua velocidade final:
+		\begin{align*}
+			\vec{V_{CM\,f}}&=\dfrac{M\del{-\dfrac{m}{M}v_0\cos\theta\,\ihat}+m\del{\sqrt{\del{v_0\sin\theta}^{2}+2g\,h}\jhat+v_0\cos\theta\,\ihat}}{M+m}\\
+			&=\dfrac{m}{M+m}\jhat\,\sqrt{\del{v_0\sin\theta}^{2}+2g\,h}
+		\end{align*}
+	\end{solution}
+
+	\question Uma pequena bola de massa $ m $ é colocada no topo de uma ``super bola'' de massa $ M $ e as dois bolas são soltadas de uma altura $ h $ do chão. Qual é a altura da massa $ m $ depois do choque? Assuma que os choques são elásticos, $ m \ll M $ e que as massas estão separadas por uma distância muito pequena ao momento da super bola chocar com o chão.
+
+	\begin{solution}
+		Considerando as esferas puntiformes, temos, por energia, devido à gravidade, uma velocidade final de $ v=-\sqrt{g\,h} $ no referencial do chão (adotando o sentido positivo na vertical para cima). Por conservação de momento linear e de energia (colisão elástica), temos que, sendo a massa do chão muito maior do que a massa das bolas, ele não tem sua velocidade alterada durante a colisão e, portanto, a bola mais pesada retorna com velocidade $ -v $ após a colisão. Da mesma forma, a bola mais leve colide com a bola maior que tem massa muito superior do que ela (pelo enunciado) e retorna com velocidade $ -v $ em relação à ela. Por transformações de Galileu temos, então, que a bola mais leve terá velocidade $ -2v=2\sqrt{g\,h} $ em relação ao chão.
+		
+		Pelo teorema trabalho energia, adotando a velocidade inicial da bola mais leve como $ v_i=-2v $ e a força peso $ P=m\,g $ sofrida por ela, temos que sua velocidade final será $ v_f=0 $ (momento em que para de subir), e sua altura final $ h_f $ será dada por
+		\[ \dfrac{1}{2}m\del{v_f^{2}-v_i^{2}}=\int_{0}^{h_f}-m\,g\dif y\implies h_f=2h. \]
+	\end{solution}
+
+	\question\label{ques:q11} $ N $ homens cada um de massa $ m $ estão sobre um carro de massa $ M $. Eles saltam de um extremo do carro com velocidade $ u $ relativa ao carro. O carro recua na direção oposta sem atrito.
+
+	\begin{parts}
+		\part\label{part:q11a} Qual é a velocidade final do carro se todos os homens saem ao mesmo tempo?
+
+		\begin{solution}
+			Adotando o referencial do carro, considerando a ausência de forças externas ao sistema carro-homens temos, por conservação de momento linear
+			\begin{equation}\label{eq:dpa}
+				\Delta p = -N\,u\,m + M\,\Delta v\implies \Delta v = \dfrac{N\,m}{M}u,
+			\end{equation}
+			onde adotei o sentido positivo na direção do deslocamento do carro, $ \Delta v $ a velocidade adquirida pelo carro e $ \Delta p $ a variação no momento durante o movimento (nula).
+		\end{solution}
+
+		\part\label{part:q11b} Qual é a velocidade final do carro se os homens saem um por um em diferentes tempos?
+
+		\begin{solution}
+			Adotando as mesmas considerações da questão anterior quanto à notação e referencial, dessa vez teremos $ N $ passos discretos em que os homens pulam do carro e, portanto, podemos considerar $ N $ alterações de velocidade do carro:
+			\begin{gather}
+				\cancelto{0}{\Delta p_1} = -u\,m + \del{M+(N-1)m}\Delta v\implies \Delta v = \dfrac{m}{M+(N-1)m}u\\
+				\cancelto{0}{\Delta p_2} = -u\,m + \del{M+(N-2)m}\Delta v\implies \Delta v = \dfrac{m}{M+(N-2)m}u\\
+				\vdots\\
+				\cancelto{0}{\Delta p_i} = -u\,m + \del{M+(N-i)m}\Delta v\implies \Delta v = \dfrac{m}{M+(N-i)m}u.
+			\end{gather}
+			E, somando todas, temos a variação total $ \Delta v_t $ da velocidade do carro:
+			\begin{equation}\label{eq:dptb}
+				\Delta v_t=\sum_{i=1}^{N}\dfrac{m}{M+(N-i)m}u.
+			\end{equation}
+		\end{solution}
+
+		\part Qual velocidade dos casos \ref{ques:q11}.\ref{part:q11a} e \ref{ques:q11}.\ref{part:q11b} é maior?
+
+		\begin{solution}
+			Subtraindo as equações \ref{eq:dpa} e \ref{eq:dptb}, temos
+			\begin{align*}
+				\Delta v_t - \Delta v &= \sum_{i=1}^{N}\del{\dfrac{m}{M+(N-i)m}u} - \dfrac{N\,m}{M}u\\
+				\intertext{note que $ \sum_{i=1}^{N}(m/M)u=N(m/M)u $}
+				&= \sum_{i=1}^{N}\dfrac{m}{M+(N-i)m}u - \dfrac{m}{M}u=\sum_{i=1}^{N}\dfrac{\cancel{M}-\cancel{M}-(N-i)m}{M+(N-i)m}m\,u\\
+				&=\sum_{i=1}^{N}\del{\dfrac{M}{i-N}-m}^{-1}m^{2}\,u<0.
+			\end{align*}
+			Logo, podemos conferir que $ \Delta v > \Delta v_t $, o que confere com nossa intuição física, pois para cada pequeno incremento quando uma pessoa pula, a massa do carro com as pessoas que restaram é menos sensível à uma mudança de velocidade (as pessoas que restaram aceleram junto com ele).
+		\end{solution}
+	\end{parts}
+
+\end{questions}
+\end{document}
