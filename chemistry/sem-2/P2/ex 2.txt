@@ -1,0 +1,47 @@
+\section*{Exercicio 2}
+
+\begin{enumerate}
+\item 
+Calculamos $\mu^{o}$ a partir das propriedades de formação da espécie:
+$$\mu^{o} = \Delta G^{o}_{f} = \Delta H^{o}_{f} - TS^{o}_{m}$$
+
+$$\mu^{o}(SnO_{2}(s)) = -580,7 - (298 \times  52,3 \times  10^{-3}) = -596,3 \, kJ \, mol^{-1}$$
+$$\mu^{o}(SnO(s)) = -285,8 - (298 \times  56,5 \times  10^{-3}) = -302,6 \, kJ \, mol^{-1}$$
+$$\mu^{o}(O_{2}(s)) = 0 - (298 \times  205,1 \times  10^{-3}) = -61,1 \, kJ \, mol^{-1}$$
+
+\item 
+No equilíbrio,
+
+$$\Delta \mu^{o} = -RT \, \ln{K}$$
+$$\Delta \mu^{o} = \mu^{o}_{prod} - \mu^{o}_{reag}$$
+$$\Delta \mu^{o} = -302,6 + (-61,1 \times  0.5) - (-596,3) = 263,15 \, kJ \, mol^{-1}$$
+
+Assim,
+
+$$\ln{K} = -\frac{263,15 \times  10^{3}}{8,314 \times  298} = -106,2 \implies K \approx 7,5 \times 10^{-47}$$
+
+Pelo $\Delta \mu^{o}$ positivo, sabemos que a reação não é espontânea no sentido direto.
+
+A dependência de $\Delta \mu^{o}$ em $T$ e $ln{K}$ permite que analisemos como a espontaneidade da reação muda com mudanças de temperatura na vizinhança de 298 K. Nesse caso, o $ln{K}$ negativo indica que um aumento na temperatura torna o sentido direto ainda mais não espontâneo, enquanto uma diminuição o torna mais espontâneo. 
+
+Também podemos extender a análise de ensino médio sobre a predominância de produtos e reagentes. No ensino médio, vemos que $K > 1$ indica predominância de produtos e $K < 1$ indica predominância de reagentes, com uma justificativa algébrica. Isso faz sentido termodinâmico: para $K > 1$, $ln{K} > 0$, logo $\Delta \mu^{o} > 0$ e a reação direta (que forma produtos) é a mais favorável. Análogamente, $K < 1$ implica em $\Delta \mu^{o} < 0$, em qual caso a reação inversa (que forma reagentes) é a mais favorável.
+
+\item
+Fases condensadas não contribuem para o valor de $K$ (o termo em $RT$ delas é constante para $T$ fixo e entra no seu $\mu^{o}$). Assim, temos que 
+$$K = \sqrt{\frac{P(O_{2})}{P(O_{2})^{o}}} = \sqrt{\frac{P(O_{2})}{1 \, bar}}$$
+$$P(O_{2}) \approx (7,5 \times 10^{-47})^{2}$$
+$$P(O_{2}) \approx 5,625 \times 10^{-93} bar$$
+
+\item
+Cp constante com a temperatura implica que a derivada de $\Delta H^{o}$ é constante. Logo, podemos achar sua dependência na temperatura:
+$$\Delta Cp = (\frac{\delta \Delta H^{o}}{\delta T})_{P}$$
+$$\Delta Cp = Cp^{prod} - Cp^{reag}$$
+$$\Delta Cp = 44,31 + 0,5 \times 26,36 - 52,59 = 4,9\,J\,mol^{-1}\,K^{-1}$$
+$$\Delta H^{o}(T) = \Delta H^{o}(298) + \int_{298}^{T} \Delta Cp\,T'dT'$$
+$$\Delta H^{o}(T) = \Delta H^{o}(298) + \Delta Cp \frac{T^{2} - 298^{2}}{2}$$
+
+O $\Delta H^{o}(298)$ é simples de calcular, é só produtos menos reagentes:
+$$\Delta H^{o} (298)= -285,8 + 0 - (-580,7) = 294,9 kJ \, mol^{-1}$$
+
+Assim, podemos construir a equação:
+$$\ln{\frac{K(500)}{K(298)}} = \frac{1}{R} \int_{298}^{500}\frac{\Delta H^{o}(298) + \Delta Cp \frac{T^{2} - 298^{2}}{2}}{T^{2}}dT$$

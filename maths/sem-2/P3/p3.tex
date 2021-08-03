@@ -1,0 +1,622 @@
+\documentclass{IMTexam}
+
+\usepackage[enums]{IMTtikz}
+\usepackage{booktabs}
+\usepackage{stackengine,collcell}
+\let\endminwd\relax
+%\newcolumntype{L}[1]{>{\collectcell\xminwd l{#1}$}l<{$\endminwd\endcollectcell}}
+\newcolumntype{C}[1]{>{\collectcell\xminwd c{#1}$}c<{$\endminwd\endcollectcell}}
+%\newcolumntype{R}[1]{>{\collectcell\xminwd r{#1}$}r<{$\endminwd\endcollectcell}}
+\def\minwd#1#2#3\endminwd{\stackengine{0pt}{#3}{\rule{#2}{0pt}}{O}{#1}{F}{F}{L}}
+\newcommand\xminwd[1]{\minwd#1}
+
+\givecredits
+\author{Isabella B. Amaral}
+\USPN{11810773}
+\lecture{Matemática II}
+\examname{Prova III}
+\hwtype{Resolução}
+\lcode{}
+\date{10 de Agosto}
+
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}[question]
+\newtheorem{corollary}{Corolário}[theorem]
+\newtheorem{lemma}[theorem]{Lema}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand\restrict[1]{{% we make the whole thing an ordinary symbol
+        \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+        % the function
+        \vphantom{\big|} % pretend it's a little taller at normal size
+        \right|_{#1} % this is the delimiter
+}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\newcommand{\decSep}{,}
+\newcommand{\decNum}[3]{\rlap{\ensuremath{\phantom{#1\mathord{\decSep}#2}\overline{\phantom{#3}}}}\num{#1.#2#3}}
+%\newcommand{\decSI }[4]{\rlap{\ensuremath{\phantom{#1\mathord{\decSep}#2}\overline{\phantom{#3}}}}\SI{#1.#2#3}{#4}}
+
+
+\begin{document}
+
+    \maketitle
+
+    \begin{questions}
+        \question Suponha que $f\colon\mathbb{R}\longrightarrow\mathbb{R}$ seja
+        contínua e prove que a EDO $y^{\prime\prime}-y=f(x)$ tem no máximo uma solução
+        limitada.
+
+        \begin{solution}
+            \paragraph{Nota:} Essa solução foi inspirada por colegas.
+
+            \begin{theorem}\label{thm:difSolution}
+                Se $ \varphi_1\colon\mathbb{R}\longrightarrow\mathbb{R}$ e
+                $\varphi_2\colon\mathbb{R}\longrightarrow\mathbb{R}$ compõe uma solução de
+                $y^{\prime\prime}-y=f(x)$ então $\varphi_1-\varphi_2$ é solução de
+                $y^{\prime\prime} - y = 0$.
+            \end{theorem}
+
+            \begin{proof}
+                Pela linearidade do operador diferencial, segue que
+                $(\varphi_1-\varphi_2)^{\prime\prime} =
+                \varphi_1^{\prime\prime}-\varphi_2^{\prime\prime}$ de tal forma
+                que, tomando a diferença
+                \[ (\varphi_1-\varphi_2)^{\prime\prime}-(\varphi_1-\varphi_2)
+                =\varphi_1^{\prime\prime}-\varphi_1-\del{\varphi_2^{\prime\prime}-\varphi_2}
+                = f(x) - f(x)=0. \]
+            \end{proof}
+
+            \begin{lemma}\label{lem:difLimit}
+                $\varphi(x) = a\,\mathrm{e}^x+b\,\mathrm{e}^{-x}$ é limitada
+                se, e somente se, $a=b=0$.
+            \end{lemma}
+
+            \begin{proof}
+                Para $a=b=0$ a expressão é limitada trivialmente (i.e. é
+                constante e igual à zero). Para provar a volta, notamos
+                primeiramente que $\varphi$ pode ser escrita como
+                \[
+                    \varphi(x)=\mathrm{e}^x\del{a+\dfrac{b}{\mathrm{e}^{2x}}} =
+                    \mathrm{e}^{-x}\del{b+a\,\mathrm{e}^{2x}},
+                \]
+                de tal forma que, avaliando os limites da expressão
+                \begin{align*}
+                    \lim\limits_{x\to\infty} \varphi(x)&=\lim\limits_{x\to\infty}
+                    \mathrm{e}^x\del{a+\dfrac{b}{\mathrm{e}^{2x}}}\\
+                    \lim\limits_{x\to0^+} \varphi(x)&=\lim\limits_{x\to0^+}
+                    \mathrm{e}^{-x}\del{b+a\,\mathrm{e}^{2x}},
+                \end{align*}
+                notamos que, para o primeiro limite, será $\pm\infty$ de acordo
+                com o sinal de $a$, assim como no segundo caso, de acordo com o
+                sinal de $b$, implicando que $\varphi$ não é limitada para
+                $a\neq0$ ou $b\neq0$.
+            \end{proof}
+
+            Caso a equação admita duas soluções limitadas $f$ e $g$, por
+            \ref{thm:difSolution} temos que $f-g$ também é solução limitada da
+            equação homogênea associada.
+            $y^{\prime\prime} - y=0$. Pelo teorema 8.6 do Apostol, toda solução
+            da equação homogênea é da forma
+            $a\,\mathrm{e}^x+b\,\mathrm{e}^{-x}$, com $a,b\in\mathrm{R}$,
+            então, por \ref{lem:difLimit}, a única solução limitada dessa
+            equação é a função identicamente nula. Dessa forma, temos
+            $f-g=0\implies f=g$, i.e. deve existir somente uma solução
+            limitada.
+        \end{solution}
+
+        \question Determine a família de curvas ortogonais às circunferências
+        do plano que passam pelos pontos $(4,0)$ e $(-4,0)$.
+
+        \begin{solution}
+            Sendo a circunferência simétrica, temos que seu centro deve estar
+            localizado entre os pontos $(4,0)$ e $(-4,0)$ e, portanto, no eixo
+            $y$. Seja, então, $P=(0,C)$ o centro da circunferência, devemos ter
+            um raio que obedeça $R^2=4^2+C^2$ e, também a equação da
+            circunferência a seguir
+            \begin{equation}\label{eq:circEq}
+            x^2+(y-C)^2=16+C^2.
+            \end{equation}
+            A partir desta podemos encontrar as retas tangentes à
+            circunferência, utilizando sua derivada
+            \begin{equation}\label{eq:circDif}
+                \dod{\sbr{x^2+(y-C)^2}}{x}=\dod{\sbr{16+C^2}}{x}\implies
+                2x+2(y-C)y'=0,
+            \end{equation}
+            e, isolando $C$ em \ref{eq:circEq}, temos
+            \begin{equation}\label{eq:circCenter}
+                x^2+(y-C)^2=16+C^2\implies C=\dfrac{x^2+y^2-16}{2y}.
+            \end{equation}
+            O que nos permite resolver \ref{eq:circDif} em termos mais gerais:
+            \begin{align*}
+                x+y\,y'-\del{\dfrac{x^2+y^2-16}{2y}}y'&=0\\
+                \implies\del{x^2-y^2-16}y'-2x\,y&=0.
+            \end{align*}
+            De tal forma que as trajetórias ortogonais devem obedecer
+            \begin{align*}
+                y'&=\dfrac{2x\,y}{y^2-x^2+16}
+                \intertext{e, por frações parciais, temos}
+                &=\dfrac{x^2-16}{2x\,y}-\dfrac{y}{2x}\\
+                \implies y'+\dfrac{1}{2x}y&=\dfrac{x^2-16}{2x}y^{-1}.
+            \end{align*}
+
+            É sabido que uma EDO como a acima, da forma
+            $y'+P(x)y=Q(x)y^n+q\,n\neq0$ e $n\neq1$ (i.e. de Bernoulli) pode
+            ser transformada em uma equação linear de primeira ordem por uma
+            substituição em $y$: $v=y^k$, com $k=1-n$, como foi
+            visto na questão 13 da seção 8.5 do Apostol (veja \ref{thm:apostol8.6.13}).
+
+            Sendo $n=-1$, temos $k=2$, o que implica em
+            \[
+                v'+2\del{\dfrac{1}{2x}}v=2\del{\dfrac{x^2-16}{2x}}\implies
+                v'+\dfrac{1}{x}v=x-\dfrac{16}{x},
+            \]
+            e, pelo teorema 8.3 do Apostol, temos que a equação $y'+P(x)y=Q(x)$
+            com $f(a)=b$ no intervalo aberto $I$ tem como solução
+            \[
+                f(x)=b\,\mathrm{e}^{-A(x)}+\mathrm{e}^{-A(x)}
+                \int_a^xQ(t)\mathrm{e}^{A(t)}\dif t\quad\text{onde }A(x)=\int_a^x P(t)\dif t.
+            \]
+            Substituindo por valores, temos que
+            $v'+\dfrac{1}{x}v=x-\dfrac{16}{x}$, $ P(x)=\dfrac{1}{x}$ e
+            $Q(x)=x-\dfrac{16}{x}$. Assim:
+            \[ A(x)=\int_a^x \dfrac{1}{t}\dif t=\log\del{\dfrac{x}{a}}\implies f(x)=b\del{\dfrac{x}{a}}+\del{\dfrac{x}{a}}\int_a^x t-\dfrac{16}{t}\del{\dfrac{x}{a}}\dif t \]
+            Portanto, temos
+            \[ y^2=v=\dfrac{b\,a}{x}+16x\dfrac{\log (x/a)}{a}+\dfrac{a^2-x^2}{2}. \]
+        \end{solution}
+
+        \question Considere a EDO
+        \[ y'=\dfrac{2y^2+x}{3y^2+5}, x\in\mathbb{R}, \]
+        e seja $\varphi(x), x\in\mathbb{R}$ a única solução desta equação tal que
+        $\varphi(0)=0$.
+
+        \begin{parts}
+            \part Decidir se 0 é ponto de máximo, de mínimo ou não é um ponto
+            de extremo local de $\varphi$.
+
+            \begin{solution}
+                Plugando a condição inicial na equação, temos $\varphi'(0)=0$,
+                o que implica em $0$ ser um ponto crítico de $\varphi$. Além
+                disso, por ser composta de duas funções deriváveis, $\varphi'$
+                é derivável e, pela regra do quociente, temos
+                \[
+                    \varphi^{\prime\prime} =
+                    \dfrac{
+                        \del{4\varphi\,\varphi'+1}\del{3\varphi^2+5} -
+                        \del{2\varphi^2+x}6\varphi\,\varphi'}
+                    {\del{3\varphi^2+5}^2}.
+                \]
+                Dessa forma, temos $\varphi^{\prime\prime}(0)=1/5>0$ e,
+                portanto, $0$ é ponto de mínimo local de $\varphi$.
+            \end{solution}
+
+            \part Determine reais $a>0$ e $b>0$ tais que $\varphi(x)> ax -b$, para
+            todo $x \geqslant \sfrac{10}{3}$. (Mostre inicialmente que
+            $\varphi'(x)\geqslant \sfrac{2}{3}$, se $x\geqslant \sfrac{10}{3}$.)
+
+            \begin{solution}
+                Observe que, se $x\geqslant 10/3$, então
+                \[ 2\varphi^2(x)+x\geqslant
+                2\varphi^2(x)+\dfrac{10}{3}=\dfrac{2}{3}\del{3\varphi^2(x)+5},
+                \]
+                e, portanto, $\varphi'(x)>0$. Nessa condição,
+                $\varphi(x)$ será estritamente maior que a reta cujo
+                coeficiente angular é $a=2/3$ e que possui $x=10/3$ como raiz, já
+                que $\varphi(10/3)>0$ inequivocadamente, o que nos dá uma reta
+                da forma $g(x)=2x/3-20/9$ (i.e. $b=20/9$), e temos a desigualdade
+                $\varphi(x\geqslant 10/3)>2x/3-20/9$.
+
+                \hfill\qedsymbol
+            \end{solution}
+
+            \part Prove que $\lim\limits_{x\to\infty}\dfrac{x}{\varphi^2(x)}=0$.
+
+            \begin{solution}
+                Tomamos, novamente, $a=2/3$ e $b=20/9$. Do item anterior, temos que
+                $\varphi(x)>a\,x-b\geqslant0$ para todo $x\geqslant 10/3$.
+                Segue, então, que
+                $\varphi^2(x\geqslant 10/3)>\del{a\,x-b}^2=a^2x^2-2a\,b\,x+b^2$, e, dessa forma, temos
+                \[ 0<\dfrac{x}{\varphi^2(x)}<\dfrac{x}{a^2x^2-2a\,b\,x+b^2}, \]
+                e, no limite
+                \[ 0\leqslant \lim\limits_{x\to\infty}
+                \dfrac{x}{\varphi^2(x)}\leqslant \lim\limits_{x\to\infty}
+                \dfrac{1}{a^2x-2a\,b+b^2/x}=0, \]
+                e, pelo teorema do confronto, $\lim\limits_{x\to\infty}\dfrac{x}{\varphi^2(x)}=0$.
+            \end{solution}
+
+            \part Calcular $\lim\limits_{x\to\infty}\dfrac{\varphi(x)}{x}$.
+
+            \begin{solution}
+                Considere $x\geqslant 10/3$ e, portanto, $\varphi(x)>0$.
+                Tomemos $\varphi'(x)$ na forma
+                \[ \varphi'(x)=\dfrac{2+x/\varphi^2(x)}{3+5/\varphi^2(x)}, \]
+                segue daí que
+                \[ \lim\limits_{x\to\infty}
+                \varphi(x)=\dfrac{2+\lim\limits_{x\to\infty}x/\varphi^2(x)}
+                {3+\lim\limits_{x\to\infty}5/\varphi^2(x)}.
+                \]
+
+                Sendo
+                \[ \lim\limits_{x\to\infty}\varphi(x)=\lim\limits_{x\to\infty}\varphi^2(x)=+\infty\]
+                já que $\varphi(x\geqslant 10/3)>a\,x-b$ e, então, como
+                $\lim\limits_{x\to\infty}a\,x-b=+\infty$ segue que
+                $\lim\limits_{x\to\infty} \varphi(x)=+\infty$.
+
+                Notamos, então, que
+                \[ \lim\limits_{x\to\infty} \varphi(x)=+\infty \implies
+                \lim\limits_{x\to\infty} \varphi^2(x)=+\infty. \]
+
+                Temos, então, que $\lim\limits_{x\to\infty}\varphi'(x)=2/3$.
+                Ora, como $\lim\limits_{x\to\infty}$ existe e é igual a $2/3$
+                e
+                $\lim\limits_{x\to\infty}\varphi(x)=\lim\limits_{x\to\infty}x=+\infty$,
+                segue-se da regra de l'hôpital que
+                $\lim\limits_{x\to\infty}\varphi(x)/x=2/3$.
+            \end{solution}
+
+        \end{parts}
+
+        \question Considere $p\colon\mathbb{R}\longrightarrow\mathbb{R}$ e
+        $q\colon\mathbb{R}\longrightarrow\mathbb{R}$ funções contínuas e
+        considere $u$ e $v$ soluções de $y^{\prime\prime}+p(x)y'+q(x)y=0$ com
+        $u(0)=1,u'(0)=0,v(0)=0,v'(0)=1$.
+
+        \begin{parts}
+            \part Prove uqe, se $\alpha$ e $\beta$ são reais, a solução de
+            $y^{\prime\prime}+p(x)y'+q(x)y=0,y(0)=\alpha,y'(0)=\beta$ é
+            $y(x)=\alpha\,u(x)+\beta\,v(x)$.
+
+            \part Seja $a\in\mathbb{R}$. Prove que se $u(a)=0$ então
+            $u'(a)\neq0$, prove também que $v(a)\neq0$.
+
+            \part Se $x_1<x_2$ são tais que $u(x_1)=u(x_2)=0$ e $u(x)\neq0$,
+            para todo $x\in\intoo{x_1,x_2}$, então existe um, e só um,
+            $\bar{x}\in\intoo{x_1,x_2}$ tal que $v(\bar{x})=0$.
+
+        \end{parts}
+
+        \question Considere $0<a_1\leqslant b_1$ e as sequências $(a_n)$ e
+        $(b_n)$ definidas como $a_{n+1}=\sqrt{a_n\,b_n}$ e
+        $b_{n+1}=\dfrac{a_n+b_n}{2}$.
+
+        \begin{parts}
+            \part Mostre que essas sequências convergem.
+
+            \begin{solution}
+                Provemos por indução que, para todo $n\in\mathbb{N}$, se tem
+                \[ a_1\leqslant a_n\leqslant a_{n+1}\leqslant b_{n+1}\leqslant b_n\leqslant b_1. \]
+                A partir do caso base (i.e. $a_1\leqslant b_1$), temos, pela
+                desigualdade das médias, que $ a_1\leqslant\sqrt{a_1\,b_1}
+                \leqslant (a_1+b_1)/2\leqslant b_1$ e segue que $a_1\leqslant
+                a_2\leqslant b_2\leqslant b_1$.
+
+                Supondo que a equação acima seja válida para algum $n\geqslant
+                1$ temos, pela desigualdade das médias,
+                \[
+                    a_{n+1} \leqslant \sqrt{a_{n+1}b_{n+1}}\leqslant
+                    (a_{n+1}+b_{n+1})/2\leqslant b_{n+1}
+                \]
+                uma vez que $a_{n+1}\leqslant b_{n+1}$, de onde
+                concluímos que $a_1\leqslant a_{n+1}\leqslant a_{n+2}\leqslant
+                b_{n+2}\leqslant b_{n+1} \leqslant b_{1}$. A partir desse fato,
+                segue que ambas as sequências $(a_n)$ e $(b_n)$ são
+                monotônicas e limitadas e, portanto, convergem.
+            \end{solution}
+
+            \part Mostre que o limite dessas sequências é o mesmo.
+
+            \begin{solution}
+                Pela definição do termo geral da sequência $(b_n)$, temos
+                \[ b_{n+1}=\dfrac{a_{n}+b_n}{2} \]
+                ou seja,
+                \[ 2b_{n+1}=a_{n}+b_n. \]
+                Como toda subsequência de uma sequência converge para o mesmo
+                limite, tomando $n\to\infty$ dos dois lados da igualdade
+                segue que $2B-B=A$, isto é, $B=A$.
+            \end{solution}
+
+        \end{parts}
+
+        \question Sejam $p>0, q>0$ reais e considere, para os naturais
+        $n\geqslant
+        1,x_n=\dfrac{(p+1)(p+2)\cdots(p+n)}{(q+1)(q+2)\cdots(q+n)}$. Prove que
+        $\sum_{n=1}^\infty x_n$ converge se, e só se, $q>p+1$.
+
+        \begin{solution}
+            \paragraph{Nota:} Essa solução foi inspirada por colegas.
+
+            \begin{theorem}\label{thm:divConv}
+                Seja $\sum x_n$ uma série de termos positivos. Se existem $r>0$ e $n_0\in\mathbb{N}$ tais que
+                \[ \dfrac{x_{n+1}}{x_n}\leqslant 1-\dfrac{1+r}{n} \]
+                para todo $n>n_0$, então a série $\sum x_n$ converge. Por outro lado, se
+                \[ \dfrac{x_{n+1}}{x_n}\geqslant 1-\dfrac{1}{n} \]
+                para todo $n>n_0$, então a série $\sum x_n$ diverge.
+            \end{theorem}
+            \begin{proof}
+                Observe que $x_{n+1}/x_n\leqslant 1-(1+r)/n$ equivale a
+                \[ n\dfrac{x_{n+1}}{x_n}\leqslant n-1-r, \]
+                isto é,
+                \[ x_n\leqslant\dfrac{(n-1)x_n-n\,x_{n+1}}{r}. \]
+                As reduzidas da série cujo termo geral é
+                $\del{(n-1)x_n-n\,x_{n+1}}/r$ formam uma série telescópica, da qual segue
+                \[ \sum_{k=n_0+1}^n x_k\leqslant
+                \dfrac{n_0x_{n_0}}{r}-\dfrac{n\,x_{n+1}}{r}\leqslant
+                \dfrac{n_0x_{n_0}}{r} \]
+                para todo $n>n_0$. Dessa forma, $\sum x_n$ é uma série de
+                termos positivos cujas reduzidas são limitadas e, portanto,
+                converge. Para provar o segundo resultado, note que
+                $x_{n+1}/x_n\geqslant 1-1/n$ nos diz que
+                \[ n\,x_{n+1}\geqslant (n-1)x_n \]
+                se $n > n_0$, donde concluímos que $(n-1)x_n\geqslant
+                n_0x_{n_0}+1$ para todo $n>n_0$. Logo, temos que
+                \[ \sum_{k=n_0+1}^n x_k\geqslant
+                n_0x_{n_0}+1\sum_{k=n_0+1}^n\dfrac{1}{k-1}=n_0x_{n_0+1}\sum_{k=n_0}^{n-1}\dfrac{1}{n}
+                \]
+                para todo $n>n_0$. Como a série harmônica é divergente, segue
+                que $\sum x_n$ é uma série divergente nesse caso.
+            \end{proof}
+
+            Sendo os termos de $x_n$ todos positivos, e
+            \[
+                \dfrac{x_{n+1}}{x_n}=\dfrac{p+n+1}{q+n+1} =
+                1+\dfrac{p-q}{q+n+1}=1-\dfrac{q-p}{q+n+1},
+            \]
+            ou seja,
+            \[ \dfrac{x_{n+1}}{x_n}\leqslant 1-\dfrac{(q-p-1)+1}{n} \]
+            para todo $n>\floor{q+1}$, se $p>q+1$, então pelo
+            teorema \ref{thm:divConv} a série $\sum x_n$ converge. Reciprocamente, se $\sum
+            x_n$ converge, afirmamos que $q>p+1$. Com efeito, se
+            $q<p+1$, teríamos $x_n>\dfrac{p+n}{q+1}$ para todo
+            $n\in\mathbb{N}$ e, então a série seria claramente divergente.
+            No caso em que $q=p+1$, seria
+            \[ \dfrac{x_{n+1}}{x_n}\geqslant 1-\dfrac{1}{n} \]
+            para todo $n>\ceil{q+1}$, e portanto, do teorema \ref{thm:divConv}, teríamos
+            $\sum x_n$ divergente, como se queria demonstrar.
+        \end{solution}
+
+        \question Decidir se as séries abaixo convergem e se convergem
+        absolutamente:
+
+        \begin{parts}
+            \part \[\sum_{n=1}^\infty
+            \dfrac{(-1)^{n-1}}{\log\del{\mathrm{e}^n-\mathrm{e}^{-n}}}.\]
+
+            \begin{solution}
+                Sendo $1>\mathrm{e}^{-n}$ para todo $n\in\mathbb{N}$, segue que
+                $\mathrm{e}^n-1<\mathrm{e}^n-\mathrm{e}^{-n}$. Assim, visto que
+                $\lim(\mathrm{e}^n-1)=+\infty$, obtemos
+                $\lim(\mathrm{e}^n-\mathrm{e}^{-n})=+\infty$, o que implica
+                $\lim\log(\mathrm{e}^n-\mathrm{e}^{-n})=+\infty$. Dessa forma,
+                $\lim\dfrac{1}{\log(\mathrm{e}^n-\mathrm{e}^{-n})}=0$ e,
+                portanto, pelo teste de Leibniz, $\sum
+                \dfrac{(-1)^{n-1}}{\log(\mathrm{e}^n-\mathrm{e}^{-n})}$
+                converge. Por outro lado,
+                $\mathrm{e}^n>\mathrm{e}^n-\mathrm{e}^{-n}$, de onde
+                $n>\log(\mathrm{e}^n-\mathrm{e}^{-n})$ para
+                todo $n$ natural, ou seja
+                $1/n<1/\log(\mathrm{e}^n-\mathrm{e}^{-n})$. Como a
+                série harmônica é divergente, pelo
+                teste da comparação temos que
+                $\sum 1/\log\del{\mathrm{e}^n-\mathrm{e}^{-n}}$
+                diverge. Concluímos, então, que a série
+                $\sum\dfrac{(-1)^{n-1}}{\log\del{\mathrm{e}^n-\mathrm{e}^{-n}}}$
+                é condicionalmente convergente.
+            \end{solution}
+
+            \part \[\sum_{n=2}\sin\del{n\,\pi+\dfrac{1}{n\,\log n}}.\]
+
+            \begin{solution}
+                Subdividindo em casos, temos
+                \begin{enumerate}
+                    \item Para $n=2m$, temos
+                    \[ \sin\del{2m\pi+\dfrac{1}{n\log n}} = \sin\del{\dfrac{1}{n\log n}}, \]
+                    \item e, para $n=2m-1$,
+                    \begin{align*}
+                        \sin\del{(2m-1)\pi + \dfrac{1}{n\log
+                        n}}&=\sin\del{\dfrac{1}{n\log n} -
+                        \pi}=-\sin{\pi-\dfrac{1}{n\log n}}\\
+                        &=-\cos\del{\dfrac{\pi}{2}-\dfrac{1}{n\log
+                        n}}=\sin\del{-\dfrac{1}{n\log n}}\\
+                        &=-\sin\del{\dfrac{1}{n\log n}}.
+                    \end{align*}
+                \end{enumerate}
+                Portanto, a série $\sum_{n=2}^\infty \sin\del{n\pi
+                +\dfrac{1}{n\log n}}$ é equivalente à série
+                \[ \sum_{n=2}^\infty (-1)^n\sin\del{\dfrac{1}{n\log n}}. \]
+                Como $\lim\limits_{n\to \infty}\sin\del{\dfrac{1}{n\log n}}=0$,
+                pelo teste de Leibniz temos que a série converge. Por outro
+                lado, como $\sum 1/(n\log n)$ diverge e
+                \[ \lim\limits_{x\to\infty} \dfrac{\sin\del{1/(n \log n)}}{1/(n
+                \log n)}=\lim\limits_{u\to0^+}\dfrac{\sin u}{u}=1, \]
+                temos que a série $\sum_{n=2}^\infty \sin\del{n\pi + 1/(n \log
+                n)}$ é condicionalmente convergente.
+            \end{solution}
+
+        \end{parts}
+
+        \question Determine o(s) $C\in\mathbb{R}$ para o(s) qual(is) a função
+        $f(x)=\sfrac{C\,x}{x^2+1}-\sfrac{1}{2x-1}$ é integrável em
+        $\intco{1,+\infty}$ e, nesse(s) caso(s), calcule sua integral nesse
+        intervalo.
+
+        \begin{solution}
+            Queremos saber se a integral
+            \[ \int_1^\infty\del{\dfrac{C\,x}{x^2+1}-\dfrac{1}{2x-1}}\dif
+            x=\int_1^\infty
+            \dfrac{\del{2C-1}x^2+C\,x-1}{\del{2x-1}\del{x^2+1}}\dif x \]
+            existe. Para isso, podemos usar o critério de comparação limite
+            (teorema 10.25 do Apostol):
+            \begin{align*}
+                \lim\limits_{x\to\infty}
+                \dfrac{\dfrac{\del{2C-1}x^2+C\,x-1}{\del{2x-1}
+                \del{x^2+1}}}{1/x}&=\lim\limits_{x\to\infty}
+                \del{\dfrac{x}{2x-1}}
+                \lim\limits_{x\to\infty}\del{\dfrac{x^2(2C-1)+C\,x-1}{x^2+1}}\\
+                &=\dfrac{1}{2}\lim\limits_{x\to\infty}\del{\dfrac{x^2(2C-1)+C\,x-1}{x^2+1}}\\
+                &=\dfrac{1}{2}\lim\limits_{x\to\infty}\del{\dfrac{2C-1+C/x-1/x^2}{1+1/x^2}}\\
+                &=\dfrac{2C-1}{2}.
+            \end{align*}
+
+            Portanto, como $\int_1^\infty 1/x \dif x$ diverge, a integral
+            proposta certamente irá divergir para todo $C$ tal que
+            $(2C-1)/2\neq0$. Então, o caso de convergência deve ser para
+            $C=1/2$. Substituindo, temos:
+            \begin{align*}
+                \int_1^\infty \del{\dfrac{x/2}{x^2+1}-\dfrac{1}{2x-1}}\dif
+                x&=\lim\limits_{a\to\infty}\del{\dfrac{1}{2}\int_1^a\dfrac{x}{x^2+1}\dif
+                x-\int_1^a \dfrac{1}{2x-1}\dif x}\\
+                &= \lim\limits_{a\to\infty} \eval{\del{\dfrac{\log(x^2+1)}{4}-\dfrac{\log|2x-1|}{2}}}_1^a\\
+                &= \dfrac{1}{4}\lim\limits_{x\to\infty}\sbr{\del{\log\del{a^2+1}-2\log(2a-1)}-\del{\log 2-2\log 1}}\\                &= \dfrac{1}{4}\lim\limits_{x\to\infty}\sbr{\log\del{\dfrac{a^2+1}{2(2a-1)^2}}}\\
+                &= \dfrac{1}{4}\log\sbr{\lim\limits_{x\to\infty}\del{\dfrac{1+1/a^2}{8-8/a+2/a^2}}}\\
+                &= \dfrac{1}{4}\cdot\log\del{\dfrac{1}{8}}=\dfrac{-3\log2}{4}.
+            \end{align*}
+        \end{solution}
+
+        \question Determine os $x\in\mathbb{R}$ para os quais as séries abaixo convergem:
+
+        \begin{parts}
+            \part \[ \sum_{n=1}^\infty \dfrac{(-1)^{n+1}\,2^n\,\sin^{2n}x}{n}. \]
+
+            \begin{solution}
+                Como $\sum (-1)^{n+1}/n$ converge, pelo teste de Abel, a série
+                \[ \sum \del{(-1)^{n+1}2^n \sin^{2n}x}/n \]
+                converge se $x_n=2^n\sin^{2n}x$ é uma sequência não crescente.
+                Mas $x_n=(2\sin^2 x)^n$ é não crescente se, e somente se,
+                $2\sin^2 x\leqslant 1$, isto é, se $|\sin x| \leqslant \sqrt2/2$.
+                Portanto, se
+                \[
+                    -\pi/4+2k\,\pi\leqslant x \leqslant \pi/4+2k\pi\quad(k\in\mathbb{Z}),
+                \]
+                então a série $\sum (-1)^{n+1}/n$ é
+                convergente.
+            \end{solution}
+
+            \part \[ \sum_{n=1}^\infty\dfrac{2^n\,\sin^n x}{n^2}. \]
+
+            \begin{solution}
+                Como $\sum 1/n^2$ converge, pelo teste de Abel, a série
+                \[
+                    \sum \del{2^n \sin^n x}/n^2
+                \]
+                converge se $x_n=2^n\sin^n x$ é não crescente. Mas $x_n=(2\sin
+                x)^n$ é não crescente se, e somente se, $0\leqslant \sin
+                x\leqslant 1/2$. Portanto, se
+                \[
+                    2k\,\pi\leqslant x \leqslant \pi/6 + 2k\,\pi\quad (k\in\mathbb{Z}),
+                \]
+                a série $\sum \del{2^n\sin^n x}/n^2$ é convergente.
+            \end{solution}
+
+        \end{parts}
+
+        \question Seja, para $n\in\mathbb{N}, n\geqslant 1$ e
+        $\alpha\in\intoo{0,+\infty}$ $f_n(x)=\dfrac{\cos{n\,x}}{n^\alpha},x\in
+        \mathbb{R}$.
+
+        \begin{parts}
+            \part Prove que, se $\alpha>1$ então $\sum_{n=1}^\infty f_n(x)$
+            converge uniformemente em $\mathbb{R}$.
+
+            \begin{solution}
+                \paragraph{Nota: } feita nos 45 do segundo tempo, espero que dê pra aproveitar algo :).
+
+                Sabemos que
+                \[ 0\leqslant \dfrac{|\cos(n\,x)|}{n^\alpha} \leqslant\dfrac{1}{n^\alpha} \]
+                para todo $n\in\mathbb{N}$, de tal forma que o somatório $\sum
+                f_n(x)$ converge uniformemente em $\mathbb{R}$, já que $\sum
+                \dfrac{1}{n^\alpha}$ converge para $\alpha>1$ como fora
+                demonstrado em aula.
+            \end{solution}
+
+            \part Mostre que se $0<\alpha\leqslant 1$ então $\sum_{n=1}^\infty
+            f_n(x)$ não converge em $\mathbb{R}$.
+
+            \begin{solution}
+                Tomando $x=2k\pi, k\in\mathbb{Z}$, temos
+                \[\sum_{n=1}^\infty \dfrac{\cos(nx)}{n^\alpha}=\sum_{n=1}^{\infty} \dfrac{1}{n^\alpha}, \]
+                e, portanto, se $x$ é múltiplo de $2\pi$, a série
+                $\sum_{n=1}^\infty \cos(nx)/n^\alpha$ não converge, pois
+                $\sum_{n=1}^{\infty} 1/n^\alpha$ diverge para
+                $\alpha\in\intoc{0,1}$ como mostrado em aula, o que implica que
+                $\sum f_n(x)$ não converge para estes valores de $\alpha$.
+            \end{solution}
+
+            \part Tome $\alpha>1$ e considere
+            $F_\alpha\colon\mathbb{R}\longrightarrow\mathbb{R}$ o limite de
+            $\sum_{n=1}^\infty f_n(x)$. Calcule $\int_0^\pi F_\alpha(x)\dif x$
+            e $\int_0^{\pi/2}F_\alpha (x)\dif x$.
+
+            \begin{solution}
+                Pelo teorema 11.4 do Apostol, temos que
+                \[ \int_0^x F_\alpha(u)\dif u=\sum_{n=1}^\infty\int_0^x
+                f_n(u)\dif
+                u=\sum_{n=1}^\infty\int_0^x\dfrac{\cos(nu)}{n^\alpha}=\sum_{n=1}^\infty\dfrac{\sin(nu)}{n^{\alpha+1}}.
+                \]
+                Para $x=\pi$, temos
+                \[ \sum_{n=1}^\infty \dfrac{\sin(nu)}{n^{\alpha+1}}=0. \]
+                Para $x=\pi/2$, temos
+                \[ \sum_{n=1}^\infty \dfrac{\sin(nu)}{n^{\alpha+1}} \]
+                convergente, já que se $\alpha>1$ então
+                \[ \sum_{n=1}^\infty\int_0^x f_n(u)\dif u \]
+                converge uniformemente em $\mathbb{R}$.
+
+                Sabemos que
+                \[ \int_0^x \dfrac{\cos(nu)}{n^\alpha}\dif u=\dfrac{\sin(nu)}{n^{\alpha+1}}, \]
+                portanto
+                \[ \sum_{n=1}^{\infty}\int_0^x \dfrac{\cos(nu)}{n^\alpha}\dif u=\sum_{n=1}^{\infty}\dfrac{\sin(nu)}{n^{\alpha+1}}, \]
+                Para todo $n\in\mathbb{N}$ e $x\in\mathbb{R}$ vale, então, que
+                \[0\leqslant \dfrac{|\sin(nx)|}{n^{\alpha+1}}\leqslant \dfrac{1}{n^{\alpha+1}} \]
+                A série converge uniformemente em $\mathbb{R}$ já que $\sum
+                1/n^{\alpha+1}$ é convergente para $\alpha>1$, como fora
+                demonstrado em aula.
+            \end{solution}
+
+            \part Considere $\alpha>2$ e prove que $F_\alpha$ é derivável.
+            Calcule, nesse caso, $F'_\alpha(x)$.
+
+            \begin{solution}
+                $F_\alpha$ é derivável, já que para $f_n$ de classe $C^1$ para
+                todo $n\in\mathbb{N}$ onde $\sum f'_n(x)$ converge
+                uniformemente em $\mathbb{R}$, $F_\alpha$ é derivável, e
+                $F'_\alpha(x)=\sum_{n=1}^{\infty}f'_n(x)$. Demonstração:
+                Pelo teorema fundamental do cálculo, para todo $n\in\mathbb{N}$ e $x\in\mathbb{R}$, vale que
+                \[ \sum_{k=1}^{n}f_k(x)=\sum_{k=1}^{n}f_k(0)+\int_0^x\sum_{k=1}^{n}f'_k(t)\dif t. \]
+                Tomando o limite, pelo teorema 11.3 do Apostol, temos que
+                \[ F_\alpha(x)=F_\alpha(0)+\int_0^x\sum_{n=1}^{\infty}f'_n(t)\dif t \]
+                já que $\sum f'_n$ converge uniformemente em $\mathbb{R}$.
+                Pelo teorema 11.1 do Apostol, $\sum_{n=1}^{\infty} f'_n$ é contínua, logo $F_\alpha$ é derivável e $F'_\alpha(x)=\sum_{n=1}^{\infty}f'_n(x)$.
+                Portanto, $F'_\alpha(x)=\sum_{n=1}^{\infty}\dfrac{\sin(nx)}{n^{\alpha-1}}$.
+            \end{solution}
+
+        \end{parts}
+
+        \extra{Apêndice}
+
+        \begin{theorem}\label{thm:apostol8.6.13}
+            Seja $k$ uma constante não nula. Assuma que $P$ e $Q$ são
+            contínuos num intervalo $I$. Se $a\in I$ e $b$ é qualquer
+            número real, seja $v=g(x)$ a única solução do problema de valor
+            inicial dado por
+            \begin{equation}\label{eq:thmEq}
+                v'+k\,P(x)v=k\,Q(x)
+            \end{equation}
+            em $I$, com $g(a)=b$. Se $n\neq1$ e $k=1-n$, prove que uma
+            função $y=f(x)$, que nunca é nula em $I$, é solução pra o
+            problema de valor inicial dado por
+            \[ y'+P(x)y=Q(x)y^n \quad\textup{em }I,\textup{ com }f(a)^k=b \]
+            se, e somente se, a $k-$ésima potência de $f$ é igual à $g$ em $I$.
+        \end{theorem}
+        \begin{proof}
+            Tomemos
+            \[ v=y^k\implies v'=y'k\,y^{k-1}, \]
+            substituindo na equação \ref{eq:thmEq}, temos
+            \begin{align*}
+                y'k\,y^{k-1}+k\,P\,y^k&=k\,Q
+                \intertext{e, como $k=1-n$}
+                y'\,y^{-n}+P\,y^{1-n}&=Q\\
+                \implies y'+P\,y&=Q\,y^n
+            \end{align*}
+        \end{proof}
+    \end{questions}
+\end{document}

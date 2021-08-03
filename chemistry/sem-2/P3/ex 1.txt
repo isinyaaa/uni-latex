@@ -1,0 +1,64 @@
+% Item a)
+
+Aproximações de estado estacionário:
+\begin{equation}
+    \label{no3rate}
+    \frac{d[NO_{3}]}{dt} = 0 = k_{1}[N_{2}O_{5}] - (k_{-1}[NO_{2}][NO_{3}] + k_{2}[NO_{2}][NO_{3}])
+\end{equation}
+
+\begin{equation}
+    \label{norate}
+    \frac{d[NO]}{dt} = 0 = k_{2}[NO_{2}][NO_{3}] - k_{3}[NO][N_{2}O_{5}]
+\end{equation}
+
+
+Isolamos os intermediários por álgebra:
+
+\[k_{1}[N_{2}O_{5}] = [NO_{3}](k_{-1}[NO_{2}] + k_{2}[NO_{2}])\]
+\[NO_{3}] = \frac{k_{1}[N_{2}O_{5}]}{k_{-1}[NO_{2}] + k_{2}[NO_{2}]}\]
+\[k_{2}[NO_{2}][NO_{3}] = k_{3}[NO][N_{2}O_{5}]\]
+\[[NO] = \frac{k_{2}[NO_{2}][NO_{3}]}{k_{3}[N_{2}O_{5}]}\]
+
+O intermediário $[NO]$ depende de $[NO_{3}]$. Removemos essa dependência:
+
+\[[NO] = \frac{k_2[NO_{2}]}{k_{3}[N_{2}O_{5}]} * \frac{k_{1}[N_{2}O_{5}]}{k_{-1}[NO_{2}] + k_{2}[NO_{2}]}\]
+
+\begin{equation}
+    \label{noconc}
+    [NO] = \frac{k_{1}k_{2}}{k_{3}(k_{-1} + k_{2})}
+\end{equation}
+
+Determinamos a expressão para a lei cinética do mecanismo completo e substituimos valores que conhecemos via (\ref{no3rate}) e (\ref{norate}):
+\[\frac{d[N_{2}O_{5}]}{dt} = k_{-1}[NO_{2}][NO_{3}] - (k_{1}[N_{2}O_{5}] + k_{3}[NO][N_{2}O_{5}])\]
+
+\[\frac{d[N_{2}O_{5}]}{dt} = -2k_{3}[NO][N_{2}O_{5}]\]
+
+Substituindo o valor de $[NO]$ achado em (\ref{noconc}),
+\[\frac{d[N_{2}O_{5}]}{dt} = -2\frac{k_{1}k_{2}}{k_{-1}+k_{2}}[N_{2}O_{5}]\]
+
+% Item b)
+
+Aproximação de pré-equilíbrio:
+\[k_{1}[N_{2}O_{5}] = k_{-1}[NO_{2}][NO_{3}]\]
+\[[NO_{2}][NO_{3}] = \frac{k_{1}}{k_{-1}}[N_{2}O_{5}]\]
+
+Separamos o mecanismo em duas partes:
+
+ \ce{N_{2}O_{5} <=>[k_{1}][k_{-1}] NO_{2} + NO_{3} ->[k_{2}] NO_{2} + O_{2} + NO}
+ 
+ \ce{NO + N_{2}O_{5} ->[k_{3}] 3NO_{2}}
+
+A aproximação de pré-equilíbrio assume que $k_{2} << k_{1}$ e $k_{-1}$, mas não nos diz nada sobre $k_{3}$. Dado o resultado da (a), é razoável assumir que a segunda parte do mecanismo é relativamente rápida, i.e que $k_{3} > k_{2}$. Logo, a etapa limitante é a etapa 2.
+
+Analisamos, então, a lei cinética para $NO$ para a etapa 2:
+\[\frac{d[NO]}{dt} = k_{2}[NO_{2}][NO_{3}]\]
+
+Pela aproximação de pré-equilíbrio:
+\[\frac{d[NO]}{dt} = \frac{k_{1}k_{2}}{k_{-1}}[N_{2}O_{5}]\]
+
+Essa é a etapa limitante, então é a nossa lei cinética. Para obtê-la para $[N_{2}O_{5}]$, basta ajustar a estequiometria:
+\[\frac{d[N_{2}O_{5}]}{dt} = -2\frac{k_{1}k_{2}}{k_{-1}}[N_{2}O_{5}]\]
+
+% Item c) (INCOMPLETO)
+
+Como já foi dito, a aproximação de pré-equilíbrio assume que $k_{2} << k_{1}$ e $k_{-1}$. Se assumirmos isso para a equação obtida em a), podemos aproximar $k_{-1} + k_{2} \approx k_{-1}$, obtendo uma equação idêntica à b).

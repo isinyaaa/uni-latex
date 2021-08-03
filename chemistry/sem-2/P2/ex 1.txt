@@ -1,0 +1,23 @@
+\section*{Exercicio 1}
+
+\begin{enumerate}
+\begin{figure}[h]
+    \centering
+    \includegraphics{grafico.png}
+    \caption{Gráfico, com novos pontos e chutes pros valores.}
+\end{figure}
+    \item 
+    $a_{1}$ é óbvio: uma única fase líquida de B com A dissolvido. Proporção B:A é uns 90:10.
+    
+    $a_{2}$ está bem no ponto de ebulição, descrevendo uma fase líquida e uma fase gasosa infinitésima. A fase líquida é idêntica a $a_{1}$, com 90\% de B. A fase gasosa é indicada pelo ponto $b_{1}$, tendo aprox. 75\% de B. Não há quase nada de gás em cima do ponto de ebulição, então a razão gás/liq é quase nula.
+    
+    $b_{3}$ descreve duas fases líquidas, nos pontos de intersecção entre a sua reta e a curva líquido-líquido. O ponto da esquerda, chamemos de $\mathcal{A}$, descreve uma fase com aprox. 85\% de A dissolvendo 15\% de B, enquanto o da direita, chamemos de $\mathcal{B}$, descreve uma fase com aprox. 80\% de B dissolvendo 20\% de A. Pela regra da alavanca, temos $\frac{\eta_{\mathcal{A}}}{\eta_{\mathcal{B}}} = \frac{l_{\mathcal{B}}}{l_{\mathcal{A}}}$. Considerando $l_{\mathcal{B}} \approx 0.05$ e $l_{\mathcal{A}} \approx 0.6$, $\frac{\eta_{\mathcal{A}}}{\eta_{\mathcal{B}}} \approx \frac{1}{12}$.
+    \item
+    O ponto c no gráfico indica o ponto onde os destilados serão recolhidos. Por análise similar à feita para $b_{3}$ no último item, vemos que duas fases serão geradas: $\mathcal{A}$ de A:B 85:15 e $\mathcal{B}$ de A:B 20:80. Por regra da alavanca com $l_{\mathcal{B}} \approx 0.45$ e $l_{\mathcal{A}} \approx 0.2$, obtemos a razão entre fases $\frac{\eta_{\mathcal{A}}}{\eta_{\mathcal{B}}} \approx \frac{9}{4}$. 
+    \item
+    Menor: valores menores de temperatura correspondem a proporções maiores de B na fase $\mathcal{B}$ rica em B. Isso se deve ao fato que a curva líquido-líquido do diagrama é côncava, com valores menores de temperatura correpondendo a frações molares de B maiores à direita (e menores à esquerda).
+    \item
+    Se há separação de fase, então o desvio da idealidade parte de uma entalpia de excesso positiva: existem condições onde a interação A-B é menos favorável que A-A e B-B. Nessas condições, o potencial químico de A ou B em solução é maior (i.e. menos favorável) que o ideal, indicando que o coeficiente de atividade é maior que 1. 
+    \item
+    No intervalo entre os pontos $\mathcal{A}$ e $\mathcal{B}$, a mistura não ocorre: os dois líquidos se separam em duas fases. Isso indica que a mistura não é favorável, e portanto que o $\Delta G_{0}$ de mistura é positivo. Antes e depois desse intervalo, a mistura ocorre, logo ela é favorável e o $\Delta G_{0}$ de mistura é negativo. Naturalmente, o $\Delta G_{0}$ de mistura é nulo nesses dois pontos.
+\end{enumerate}
