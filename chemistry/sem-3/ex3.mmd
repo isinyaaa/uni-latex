@@ -1,0 +1,42 @@
+# Exercício \#3
+
+## Isabella B. --- 11810773
+
+---
+
+1. Usando a aproximação de HMO, como são calculadas as propriedades:
+
+    - **Ordem de ligação**
+
+        A ordem de ligação concerne primariamente o quanto dois átomos estão
+        ligados, de tal forma que podemos notar, pela discussão do cálculo de
+        $\psi$, que é possível utilizar
+        $$P_{ij}=\sum_{\psi\text{ ocupados}}n\,c_i c_j$$
+        onde temos $n$ sendo o número de elétrons em cada $\psi$, $i$ e $j$
+        índices de cada par de átomos em todos os orbitais moleculares
+        ocupados, e $c$ se refere à mesma constante usada na equação de $\psi$.
+
+    - **Índice de valência livre**
+
+        A valência livre pode ser tomada como a diferença entre a maior ordem de ligação possível e a total real. Temos então
+        $$\mathcal{F}_i = N_r - \sum_{\psi\text{ ocupados}}\sum_j P_{ij}$$
+        onde $N_r$ é um parâmetro experimental da ordem de ligação máxima
+        teórica, que deve ser próxima de um átomo fazendo o máximo de ligações
+        que pode. Para o carbono, por exemplo, $N_r = 4.732$.
+
+    - **Carga atômica parcial**
+
+        A carga parcial pode ser calculada partindo, novamente, do cálculo
+        inicial de $\psi$, onde notamos que as contribuições de termos de
+        átomos distintos porém ser ignoradas (na integral de overlap), de tal
+        forma que terminamos com o somatório
+        $$\rho_i=\sum_{\psi\text{ ocupados}} n c_i^2$$
+        e este, então, que nos dá a densidade de elétrons em um átomo $i$ e,
+        portanto, podemos encontrar a carga parcial do átomo tomando
+        $$q_i = 1 - \rho_i$$
+
+2. Calcule os valores dessas propriedades para as moléculas:
+
+    - **Ânion ciclopentadienil**
+
+    - **Furano (carbono sp3 do ciclopentadienil substituído por oxigênio)**
