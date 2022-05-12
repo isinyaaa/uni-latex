@@ -1,0 +1,208 @@
+\documentclass[
+    % -- opções da classe memoir --
+    12pt,
+    openright,
+    twoside,
+    a4paper,
+    % -- opções do pacote babel --
+    english,
+    french,
+    spanish,
+    brazil
+    ]{abntex2}
+
+% Pacotes básicos
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lastpage}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{microtype}
+
+% Pacotes de citações
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+    \ifcase #1 %
+        Nenhuma citação no texto.%
+    \or
+        Citado na página #2.%
+    \else
+        Citado #1 vezes nas páginas #2.%
+    \fi}
+
+% Informações de dados para CAPA e FOLHA DE ROSTO
+\titulo{Ensaio: sobre a evolução convergente do cérebro cetáceo}
+\autor{Isabella Basso do Amaral}
+\local{Brasil}
+\data{18 de Janeiro de 2022}
+\renewcommand{\orientadorname}{Professor:}
+\orientador{Diogo Meyer}
+%\coorientador{Equipe \abnTeX}
+\instituicao{%
+    Universidade de São Paulo -- USP
+    \par
+    INOVA
+    \par
+    Graduação em Ciências Moleculares}
+\tipotrabalho{Ensaio}
+
+% O preambulo deve conter o tipo do trabalho, o objetivo,
+% o nome da instituição e a área de concentração
+\preambulo{}
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+\usepackage{csquotes}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+    %pagebackref=true,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={\imprimirpreambulo},
+    pdfcreator={Isabella Basso do Amaral},
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    bookmarksdepth=4
+}
+\makeatother
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.3cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0.2cm}  % tente também \onelineskip
+
+\makeindex
+
+\begin{document}
+
+\frenchspacing
+
+% \pretextual
+
+%\imprimircapa
+
+\imprimirfolhaderosto*
+
+\textual
+
+\textbf{%
+    Geralmente adotava-se que os cetáceos, embora cognitivamente complexos, não
+    possuíam um cérebro bem diferenciado, sendo tido como homogêneo%
+    \footnote{Veja \cite{glezer1988implications}}. Uma análise mostra que esse
+    não é o caso.
+}
+
+Os cetáceos têm uma longa e (dramaticamente) divergente história evolutiva em
+relação aos mamíferos terrestres, o que é intuitivo haja vista de que são
+animais aquáticos.
+
+Ao longo de seus $\approx 50$ milhões de anos de evolução
+\cite{gingerich1998likelihood}, eles adquiriram um conjunto altamente
+especializado de características neurobiológicas, que incluem capacidades
+distintas daquelas dos primatas, como a ecolocalização, presente na subordem
+dos odontocetos \cite{SensoryS50:online}.
+
+Eles, no entanto, possuem um conjunto de atributos cognitivos que são
+surpreendentemente convergentes com os de muitos primatas, incluindo grandes
+símios e humanos, como por exemplo capacidades auditivas e comunicativas
+complexas, além de organização social complexa \cite{marino2002convergence,
+sayigh2014cetacean}.
+
+Dessa forma, os cérebros dos cetáceos oferecem uma oportunidade crítica para
+abordar questões de como o comportamento complexo pode ser baseado em
+processos evolutivos neuroanatômicos e neurobiológicos muito diferentes.
+
+Revisitando, experimentalmente, a anatomia do cérebro odontoceto
+(especificamente o do golfinho-nariz-de-garrafa), \citeonline{main} são capazes
+de substanciar parte da base teórica biológica que tenta explicar as
+capacidades cognitivas dos hominídeos, através de similaridades traçadas por
+meio de análise da configuração citoarquitetônica do córtex cerebral de membros
+da espécie.
+
+Apesar das capacidades notáveis dos cetáceos, é relativamente recentemente o
+interesse em buscar fontes outras do que de nossos antepassados evolutivos para
+pesquisar a respeito de nossa inteligência. Afinal, o legado das ideias de
+Darwin sugere que é lógico que deva-se endereçar tais questões à nossa própria
+linhagem evolutiva. Porém, o quociente de encefalização somado à sua história
+evolutiva distinta demonstram que os cetáceos se fazem de excepcional interesse
+a esse estudo.
+
+Desde então, algumas pesquisas analisam a forma desses cérebros
+\cite{gaskin1982ecology, aronson1988conservative}, tentando desvendar quais
+partes do cérebro desses indivíduos seriam homólogas ao nosso próprio cérebro,
+além de medidas mais significativas do que seria inteligência, num contexto
+mais geral, para além da definição restritiva de que é "a capacidade de
+resolução de problemas" \cite{pearce2013animal}.
+
+Notavelmente, esses estudos sobre a anatomia dos cérebros desses animais
+falham em descrever a maior parte do objeto de estudo, dadas as diferenças
+apreciáveis em sua forma, que surgem devido aos milhões de anos que se
+desenvolveram de forma distinta aos hominídeos.
+
+\citeonline{main}, então, analisam a citoarquitetura como também a arquitetura
+química de cérebros dos golfinhos-nariz-de-garrafa a fim de desvendar essas
+semelhanças, e também buscando entender o aparente paradoxo entre sua falta de
+diferenciação e comportamento complexo.
+
+O golfinho-nariz-de-garrafa mostra-se um excelente espécime para essa análise,
+visto que, além de seu tamanho mais tratável em relação à uma baleira, possuem
+a capacidade de se reconhecerem no espelho \cite{reiss2001mirror} e até de
+usarem ferramentas \cite{krutzen2005cultural}, o que indica que são pelo menos
+tão capazes quanto chimpanzés \cite{herman2002exploring}.
+
+Seus resultados mostram que a aparente falta de diferenciação é produto de uma
+plausível pedomorfose presente na infraordem dos cetáceos, em que se manifestam
+traços de cérebros menos diferenciados, nomeadamente, àqueles de
+características juvenis ancestrais.
+
+O cérebro desses golfinhos demonstra suas próprias características de
+especialização, próximas de artiodáctilos terrestres de grande porte, e que
+indicam uma abordagem evolutiva distinta no processamento cortical dos
+cetáceos.
+
+No entanto, os cérebros desses animais demonstram notória homologia aos de outros mamíferos:
+
+\begin{displayquote}
+``Our findings reveal nonetheless that there are potentially as many neocortical
+    regions that can be identified by cytoarchitectural criteria in cetaceans
+    as in other mammals such as primates and carnivores.'' - \citeonline{main}
+\end{displayquote}
+
+Havendo demonstrado a complexidade por trás de diversos comportamentos
+complexos desses animais, resta agora outra questão também levantada por
+\cite{main}:
+
+\begin{displayquote}
+``What remains a com pelling question for future study, however, is how such
+    dissimilar neocortical cytoarchitectural motifs, such as that found in
+    cetaceans and primates, result in convergent cognitive and behavioral
+    characteristics, and why.'' - \citeonline{main}
+\end{displayquote}
+
+Isto é, como suas características dissimilares levam à convergência de
+comportamentos complexos.
+
+\postextual
+
+\bibliography{essay}
+
+\printindex
+
+\end{document}

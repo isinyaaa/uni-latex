@@ -1,0 +1,78 @@
+@article{main,
+	author = {Hof, Patrick R and Chanis, Rebecca and Marino, Lori},
+	journal = {The Anatomical Record Part A: Discoveries in Molecular, Cellular, and Evolutionary Biology: An Official Publication of the American Association of Anatomists},
+	number = {1},
+	pages = {1142--1152},
+	publisher = {Wiley Online Library},
+	title = {Cortical complexity in cetacean brains},
+	volume = {287},
+	year = {2005}
+}
+
+@article{gingerich1998likelihood,
+	author = {Gingerich, Philip D and Uhen, Mark D},
+	journal = {Palaeontologia Electronica},
+	number = {2},
+	pages = {47},
+	title = {Likelihood estimation of the time of origin of Cetacea and the time of divergence of Cetacea and Artiodactyla},
+	volume = {1},
+	year = {1998}
+}
+
+@article{glezer1988implications,
+	author = {Glezer, Ilya I and Jacobs, Myron S and Morgane, Peter J},
+	journal = {Behavioral and Brain Sciences},
+	number = {1},
+	pages = {75--89},
+	publisher = {Cambridge University Press},
+	title = {Implications of the ``initial brain'' concept for brain evolution in Cetacea},
+	volume = {11},
+	year = {1988}
+}
+
+@article{marino2002convergence,
+	author = {Marino, Lori},
+	journal = {Brain, behavior and evolution},
+	number = {1-2},
+	pages = {21--32},
+	publisher = {Karger Publishers},
+	title = {Convergence of complex cognitive abilities in cetaceans and primates},
+	volume = {59},
+	year = {2002}
+}
+
+@article{sayigh2014cetacean,
+	author = {Sayigh, Laela S},
+	journal = {Biocommunication of animals},
+	pages = {275--297},
+	publisher = {Springer},
+	title = {Cetacean acoustic communication},
+	year = {2014}
+}
+
+@misc{SensoryS50:online,
+	howpublished = {\url{https://en.wikibooks.org/wiki/Sensory_Systems/Other_Animals/Echolocation_Toothed_Whales}},
+	month = {},
+	note = {(Accessed on 01/20/2022)},
+	title = {Sensory Systems/Other Animals/Echolocation Toothed Whales - Wikibooks, open books for an open world},
+	year = {}
+}
+
+@article{gaskin1982ecology,
+	author = {Gaskin, David Edward},
+	publisher = {London (UK) Heinemann},
+	title = {The ecology of whales and dolphins},
+	year = {1982}
+}
+
+@article{aronson1988conservative,
+	author = {Aronson, Lester R and Tobach, Ethel},
+	journal = {Behavioral and Brain Sciences},
+	number = {1},
+	pages = {89--90},
+	publisher = {Cambridge University Press},
+	title = {Conservative aspects of the dolphin cortex match its behavioral level},
+	volume = {11},
+	year = {1988}
+}
+
