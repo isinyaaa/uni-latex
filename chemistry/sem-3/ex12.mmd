@@ -1,0 +1,104 @@
+# Exercício \#12
+
+## Isabella B. --- 11810773
+
+---
+
+1. Partindo do artigo de Vermeeren et al. [2020], podemos notar que, numa
+perspectiva histórica, o avanço tecnológico permitiu que, em poucas
+décadas, houvesse um grande progresso no campo de química quântica, fornecendo
+ferramentas poderosas aos pesquisadores de diversas áreas, que agora podem
+estimar as energias e estruturas moleculares envolvidas em diversas reações.
+A teoria do funcional da densidade (DFT) e suas ramificações (i.e. CDFT e
+FDFT), em combinação com os crescentes recursos computacionais, levaram a um
+aumento considerável das pesquisas envolvendo modelagem química, sendo a DFT
+base para a estimativa atual das relações lineares de energia livre (LFER).
+
+No artigo a ser analisado os autores descrevem o que chamam de "activation
+strain model" (ASM), que separa a típica trajetória energética entre reagentes
+e produtos em partes contribuintes (interação eletrônica) e antagônicas
+(distorção dos reagentes em direção a conformação dos produtos) a reação o que
+permite analisar como cada uma dessas componentes influencia a reação como um
+todo. O protocolo descrito é implementado utilizando o "Amsterdam Density
+Functional" (ADF) como ferramenta de cálculo de estruturas eletrônicas, baseado
+na DFT, e que permite aos autores decompor a energia de interação (EDA) obtida
+em termos com significância física, a partir dos quais pode-se obter uma
+análise dos orbitais moleculares dos reagentes, o que é um dos motivos para sua
+adoção.  Com esse protocolo é, então, possível deduzir os fatores responsáveis
+pela altura da energia de reação e, consequentemente, estimar como estes afetam
+a reatividade.
+Também é interessante notar que, a partir dessa abordagem, obtém-se um modelo
+universal e tão preciso quanto o método de química computacional empregado, uma
+vez que são levados em conta todos os fatores, além de distorções, deformações
+reacionais e interações que compõem a energia de ativação total (Bickelhaupt &
+Houk, 2017).
+
+Inicialmente, pontos iniciais do reagente (R), do complexo de reação (RC), do
+complexo de produtos (PC) e/ou produtos (P) e, por fim, do estado de transição
+(TS) podem ser localizados no potencial de superfície de energia.
+Calculando a coordenada de reação intrínseca (IRC) entre o estado de transição
+e seus reagentes e produtos em coordenadas ponderadas de massa (Maeda et al.
+[2015]), obtemos a curvatura da superfície de energia potencial.
+Então, realizam-se os cálculos de EDA e deformação de ativação (ASA) para cada
+ponto da IRC.
+Conforme mencionado, o ASA decompõe a energia do complexo em qualquer ponto da
+superfície nos termos: energia de deformação para atingir a geometria na
+reação, afetada pela rigidez estrutural, e a energia de interação entre as
+os reagentes deformados e que pode ser decomposta.
+
+$$\Delta E(\zeta)=\Delta E_{strain}(\zeta)+\Delta E_{int}(\zeta)$$
+
+Então, pela decomposição gerada a partir do EDA temos:
+
+$$\Delta E_{int}(\zeta)=\Delta V_{elstat}(\zeta)+\Delta E_{Pauli}(\zeta)+\Delta E_{oi}(\zeta)+\Delta E_{disp}(\zeta)$$
+
+Com exceção da interação de espalhamento, ainda é possível analisar cada um dos
+casos obtidos:
+
+interação eletrostática - cargas atômicas e distribuição do potencial
+eletrostático molecular para cada reagente;
+
+Repulsão de Pauli - análise dos orbitais moleculares (MOs) de Kohm-Sham para
+cada reagente pela sobreposição entre seus MOs;
+
+interação orbital - análise dos MOs de Kohm-Sham comparando a sobreposição orbital
+e a diferença de energia entre fragmentos de MOs ocupados e não ocupados.
+
+Nos casos em que a reação é controlada por deformação, a energia de deformação
+pode ser decomposta em termos relacionados à deformação de cada reagente:
+pode ser decomposta em termos associados à deformação de cada reagente:
+
+$$\Delta E_{strain}(\zeta)=\Delta E_{strain\,frag1}(\zeta)+\Delta E_{strain\,frag2}(\zeta)$$
+
+Esse método pode ser usado em todas as reações unimoleculares e bimoleculares,
+independentemente da homegeneidade do sistema, o que o faz muito popular na
+química para fins de esclarecimento de reações (in)orgânicas e
+supramoleculares. A partir dele peculiaridades podem
+ser derivadas dos mecanismos de reação. O ASM
+não se limita à análise das energias de deformação e interação no estado de
+transição, pode ser estendido a qualquer ponto da superfície de energia, como o
+ponto de equilíbrio de um complexo. Uma análise abrangente também nos permite
+desmistificar interpretações anteriores de estruturas reacionárias; um exemplo
+citado é que, a diminuição do tamanho do anel em alguns cicloalquinos, leva a
+uma maior reatividade na cicloadição com azida de metila não apenas pela
+redução da energia de deformação, mas também devido à estabilização por
+interações orbitalares:
+
+![](2021-11-15-17-22-32.png)
+
+O que contrariava algumas suposições teóricas.
+
+![](2021-11-15-17-22-46.png)
+
+O fato de que as energias de interação e formação das avaliações de
+espalhamento por ASA são para a coordenada de reação inteira, ao invés de
+apenas em um ponto estacionário, impede que os resultados obtidos sejam uma
+função da coordenada. No exemplo da imagem que ilustra a energia de reação de
+duas reações (A e B), em que os pontos representam os estados de transição
+(TS), uma análise seria apenas nos resultados de TS que uma reação B ocorre
+mais rapidamente por ter menor energia de deformação, dado que a energia de
+interação de ambas as relações é igual no TS.  Porém, por ASM temos uma
+referência pra toda a coordenada de reação, o que nos mostra que a energia da
+interação de B é mais estabilizadora, enquanto que as energias de deformação de
+ambas reações são quase idênticas.
+
