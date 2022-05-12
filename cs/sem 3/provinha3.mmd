@@ -1,0 +1,62 @@
+# Provinha \#3
+
+## Isabella B. --- 11810773
+
+---
+
+1. Sendo $p_0(x)$ um polinômio de grau zero e, portanto, igual à um
+    $a\in\mathbb{R}$ constante, pelo enunciado temos que vale:
+
+    $$\langle p_k, p_0 \rangle = \langle p_k, a \rangle = a \langle p_k, 1 \rangle = 0,$$
+
+    o que vale para todo $k \geqslant 1$. Dessa forma, devemos ter que para
+    todo $k \geqslant 1$, $p_k$ possui pelo menos uma raíz no intervalo
+    $(a,b)$. Isso se verifica pois, suponhamos que não houvesse raíz neste
+    intervalo, teríamos, então, que $\omega(x)p_k(x)$ seria sempre um produto positivo (e contínuo), de tal forma que
+
+    $$\int_a^b \omega(x)p_k(x)\mathrm{d}x = \langle p_k, 1\rangle \neq 0$$
+
+    o que é claramente absurdo.
+
+2. Fazendo $p_k(x) = (x - \bar{x})^2 q(x)$, onde $q(x)$ é um polinômio de grau
+    $k-2$, notamos que o conjunto de polinômios de grau $k'\leqslant k - 2$ é
+    linearmente independente, de tal forma que compõe uma base para o espaço de
+    $\mathbb{P}_{k-2}$. Dessa forma, podemos então expressar $q(x)$ em termos
+    desta base e, por consequência, temos
+
+    $$\langle p_k, q\rangle = \alpha_0 \langle p_k, p_0 \rangle + \cdots + \alpha_{k-2}\langle p_k, p_{k-2} \rangle = 0$$
+
+    $$\implies\langle p_k, q\rangle = \int_a^b \omega(x)(x - \bar{x})^2q(x)^2\mathrm{d}x = 0,$$
+
+    e, como o produto do integrando é sempre não-negativo dentro do intervalo
+    de integração, isso nos dá que $q(x)^2$ deve ser nulo, o que implica em
+    $p_k = 0$, o que é absurdo, dado que $p_k$ é um polinômio de grau $k$,
+    dessa forma temos que, para $k \geqslant 2$ toda raíz de $p_k$ é simples,
+    como se queria demonstrar.
+
+3. Sendo $p_k$ um polinômio de grau $k$, é fácil notar que não deve possuir
+    mais de $k$ raízes. Analisamos, então, o caso onde $p_k$ tem $m < k$
+    raízes. Como para $k \geqslant 2$ temos somente raízes simples, segue que
+
+    $$p_k(x) = (x - x_1)\cdots (x-x_m)q(x),$$
+
+    onde $q(x)$ é um polinômio de grau $k-m$ e que não possui raízes no
+    intervalo $(a,b)$ -- caso contrário teríamos mais raízes em $p_k(x)$.
+    Tomando, então, o polinômio $q_m(x) = (x - x_1)\cdots (x - x_m)$, temos que
+    $q_m(x)$ pode ser escrito como combinação linear dos polinômios de grau
+    $k \leqslant m$, de tal forma que
+
+    $$\langle p_k, q_m\rangle = \alpha_0 \langle p_k, p_0 \rangle + \cdots + \alpha_{k-2}\langle p_k, p_m \rangle = 0.$$
+
+    e, também sabemos que
+
+    $$\implies\langle p_k, q_m\rangle = \int_a^b \omega(x)(x - x_1)^2\cdots (x-x_m)^2q_m(x)\mathrm{d}x.$$
+
+    Tendo em vista que $q(x)$ não se anula no intervalo $(a,b)$, temos que
+    $\omega(x)(x - x_1)^2\cdots (x - x_m)^2 q(x) \geqslant 0$ para todo
+    $x\in (a,b)$.
+    Então sendo $p_k(x)$ e $q_m(x)$ ortogonais entre si, temos que
+    $\omega(x)(x - x_1)^2\cdots (x-x_m)^2 q(x) = 0$
+    para todo $x \in (a,b)$ e, sendo $\omega(x) > 0$ em $(a,b)$ e $q(x)$ é uma
+    função contínua, isso implica que $q = 0$, o que é um absurdo. Então para
+    todo $k\geqslant 2$, $p_k$ tem exatamente $k$ raízes em $(a,b)$.

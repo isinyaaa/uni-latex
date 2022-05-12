@@ -1,0 +1,37 @@
+# Provinha \#4
+
+## Isabella B. --- 11810773
+
+---
+
+1. Seja uma função $f(x)=1$. Temos que, para quaisquer valores do domínio $x\in
+[a, b],f(x)$ é constante e igual à $1$, o que nos indica que seu polinômio
+interpolador $p_n(x) = f(x)$, de tal forma que escrevendo
+
+$$p_n(x)=\sum_{i=0}^n y_i L_i(x) = \sum_{i=0}^n L_i(x) = f(x) = 1,\quad x\in\mathbb{R},$$
+
+como se queria demonstrar.
+
+2. Sendo $f(x)=x^k$ um polinômio, sabemos que deve ser idêntica ao seu polinômio interpolador equivalente, pela unicidade do mesmo. Escrevendo, então
+
+\begin{align*}
+p_n(x)&=\sum_{i=0}^n x^k L_i(x)\\
+\implies p_n(0)&=f(0)\\
+\implies\sum_{i=0}^n x^k L_i(0)&=0^k=0,\\
+\end{align*}
+
+como se queria demonstrar.
+
+3. Sendo a fórmula do erro para a interpolação polinomial
+
+$$f(x) - p_n(x) = \frac{f^{(n+1)}(t')}{(n+1)!}\prod_{i=0}^n (x - x_i)$$
+
+para algum $t'\in\mathbb{R}$. Dessa forma, seja uma $f(x)=x^{n+1}$ (e, portanto, $f^{(n+1)}(x)=(n+1)!$), segue que
+
+$$x^{n+1} - \sum_{j=0}^n x_j^{n+1} L_j(x) = \prod_{i=0}^n (x-x_i),\quad x\in\mathbb{R}.$$
+
+Para $x=0$ temos, então, que
+
+$$\sum_{j=0}^n x_j^{n+1} L_j(0) = (-1)^n\prod_{i=0}^n x_i,$$
+
+como se queria demonstrar.

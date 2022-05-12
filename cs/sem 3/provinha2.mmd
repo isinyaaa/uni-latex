@@ -1,0 +1,44 @@
+# Provinha \#2
+
+## Isabella B. --- 11810773
+
+---
+
+a. Sendo a matriz inversível, seu determinante deve ser não nulo. Dessa forma,
+    pelo método de cálculo do determinante por meio dos cofatores, temos que:
+    $$\det A = a_{11}\cdot \det A_{11} \neq 0\implies a_{11} \neq 0,$$
+    como se queria demonstrar.
+
+b. Denote a matriz $A$ modificada por $A'$. Pela letra (a), sabemos que
+    $$\det A \neq 0 \implies \det A' = a_{11}\cdot \det A'_{11} \neq 0\implies \det A'_{11} \neq 0,$$
+    de tal forma que esta é inversível, como se queria demonstrar.
+
+c. Após um passo $i$ qualquer, temos que o elemento $a_{(i+1)i}$ será nulo, de
+    tal forma que
+    $$\alpha_i \cdot a_{ii} = a_{(i+1)i} \implies \alpha_i = a_{(i+1)i}/a_{ii},$$
+    portanto, o elemento da diagonal modificado será
+    $$a'_{(i+1)(i+1)} = a_{(i+1)(i+1)} - a_{i(i+1)}\cdot a_{(i+1)i}/a_{ii},$$
+    portanto
+    $$|a'_{(i+1)(i+1)}| + |a_{i(i+1)}\cdot a_{(i+1)i}/a_{ii}|\geqslant |a'_{(i+1)(i+1)} + a_{i(i+1)}\cdot a_{(i+1)i}/a_{ii}| = |a_{(i+1)(i+1)}|\geqslant \sum_{j\neq i+1} |a_{(i+1)j}|,$$
+    ou seja,
+    $$|a'_{(i+1)(i+1)}|\geqslant |a_{(i+1)i}| - |a_{(i+1)i} \cdot a_{i(i+1)}/a_{ii}| + \sum_{j=i+2}^n |a_{(i+1)j}$$
+    $$=|a_{(i+1)i}|\cdot |1-|a_{i(i+1)}|/|a_{ii}| + \sum_{j=i+2}^n |a_{(i+1)j}|$$
+
+    Sendo a matriz original diagonal dominante, vale que
+    $$|a_{ii}\geqslant \sum_{j\neq i}^n |a_{ij}|\geqslant |a_{i(i+1)}|,$$
+    então
+    $$|a_{i(i+1)}|/|a_{ii}|\leqslant 1,$$
+    logo
+    $$|a'_{(i+1)(i+1)} \geqslant \sum_{j=i+2}^n |a_{(i+1)j}|.$$
+
+    Como se queria demonstrar.
+
+d. Como a matriz é diagonal dominante, por indução, podemos notar que sempre é
+    possível manter o elemento da diagonal inferior $\geqslant 1$, (i.e. note
+    pelo resultado anterior que essa nova matriz menor também será diagonal
+    dominante).
+
+e. Operando cada linha independentemente (tratando da matriz extendida)
+    dividimos cada qual pelo elemento da respectiva diagonal, de tal forma que
+    a matriz estará balanceada, e a diagonal terá os pivôs.
+

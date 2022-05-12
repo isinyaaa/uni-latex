@@ -1,0 +1,36 @@
+# Provinha \#1
+
+## Isabella B. --- 11810773
+
+---
+
+1. Simulando o algoritmo, temos que, ao subdividir o intervalo $(a, b)$ em $(a,
+(a+b)/2)$ e $((a+b)/2, b)$, a aplicação da função no primeiro intervalo terá
+sinais idênticos e, portanto, será desconsiderado de inicio. Portanto notamos
+que as iterações convergirão para a última raíz (i.e. aquela dentro do
+intervalo $((a+b)/2, b)$).
+
+2. A função $f$ não possui raízes no intervalo para o qual está definida, já
+que $x^2=0\implies x=0$.
+
+    ![](graph1.jpg)
+
+    O método de dicotomia depende de pontos antipodais, de tal forma que, começando
+    em $(1,2)$, o ponto $b$ se manterá fixado (é o único ponto negativo da função)
+    em $b=2$ enquanto o ponto $a$ se aproxima pelo outro lado sempre aumentando, e
+    então convergindo em $f((a+b)/2)=4$.
+
+3. Analisando a derivada da função, podemos notar que
+    $f^{\prime}(x)=(1-x)e^{-x}$ iguala zero para $x=1$, de tal forma que é aqui
+    onde seu sinal se inverte, de tal forma que $f^{\prime}(x)<0$ para $x>1$ e,
+    portanto as secantes geradas a partir desse ponto divergem da raíz da função
+    (i.e. apontam para o infinito), enquanto que quaisquer secantes formadas com
+    pontos entre $(-\infty,1)$ convergem para o zero utilizando o método de Newton.
+
+    ![](graph2.png)
+
+4. Para encontrar a intercessão de duas funções polares primeiro analisamos o
+período de ambas, de tal forma que, avaliando $f(\theta)-g(\theta)=0$ no
+intervalo de $(0, p_{max})$ ($p_{max}$ é o $\text{max}(p_f,p_g)$, onde $p_f$ e
+$p_g$ são os períodos de $f$ e $g$ respectivamente) encontramos todas as suas
+intercessões. Utilizamos o período máximo para não repetir pontos já que, sendo as funções periódicas, os pontos devem se repetir após $p_{max}$.
