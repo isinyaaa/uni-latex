@@ -1,0 +1,49 @@
+# Lista \#2
+
+## Isabella B. --- 11810773
+
+---
+
+1.
+    a. \begin{gather*}
+            P(A_c)=\frac{1}{52}+\frac{1}{52}=\frac{2}{52}\\
+            P(D\cap A_c)=\frac{1}{52}\cdot\frac{3}{51}\cdot2
+        \end{gather*}
+
+        \begin{align*}
+            P(D|A_c)&=\frac{P(D\cap A_c)}{P(A_c)}=\frac{3/(51\cdot52)}{2/52}\\
+            P(D|A_c)&=\frac{3}{51}=\frac{1}{17}
+        \end{align*}
+
+    b. \begin{align*}
+            P(A)&=1-\frac{48}{52}\cdot\frac{47}{51}=\frac{48\cdot(51-47)+4\cdot 51}{52\cdot51}\\
+            &=\frac{4\cdot(48+51)}{52\cdot 51}=\frac{33}{13\cdot17}
+        \end{align*}
+
+        $$P(D\cap A)=P(D)=\frac{4}{52}\cdot\frac{3}{51}$$
+
+        \begin{align*}
+            P(D|A)&=\frac{P(D\cap A)}{P(A)}=\frac{(4\cdot3)/(52\cdot51)}{22/(3\cdot51)}
+            &=\frac{4\cdot3\cdot3}{22\cdot52}=\frac{1}{33}
+        \end{align*}
+
+2. Sendo $C$ o evento de um parto ser uma cesariana e $S$ o evento de um bebê
+    sobreviver o parto, queremos encontrar $P(S|C^c)$, onde $C^c$ representa o
+    complemento do evento $C$. Dessa forma, temos:
+
+    $$P(S|C^c)=\frac{P(S\cap C^c)}{P(C^c)}=\frac{P(S)+P(C^c)-P(S\cap C^c)}{P(C^c)}$$
+
+    Porém ainda não sabemos a probabilidade do bebê viver dado que seu parto
+    foi normal. Podemos usar, no entanto, o fato de que numa cesariana a chance
+    de sobrevivência é de 96\% para descobrir isso, já que
+
+    \begin{align*}
+        P(S)&=P(C)\cdot P(S\cap C) + P(C^c)\cdot P(S\cap C^c)\\
+        \implies 0.98&=0.15\cdot 0.96 + 0.85\cdot P(S\cap C^c)\\
+        \implies 0.85\cdot P(S\cap C^c)&=0.98 - 0.144\\
+        \implies P(S\cap C^c)&=\frac{0.836}{0.85}\approx 0.984\\
+    \end{align*}
+
+    De tal forma que
+
+    $$P(S|C^c)\approx\frac{0.98+0.85-0.984}{0.85}\approx0.996.$$
